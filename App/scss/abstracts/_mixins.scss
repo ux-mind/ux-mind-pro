@@ -1,0 +1,17 @@
+@mixin arial($size, $weight) {
+  font: {
+    family: $font-stack-arial;
+    size: $size;
+    weight: $weight;
+  }
+  color: $neutral-black;
+}
+
+@mixin manrope($size, $weight) {
+  font: {
+    family: $font-stack-manrope;
+    size: $size;
+    weight: $weight;
+  }
+  color: $neutral-black;
+}

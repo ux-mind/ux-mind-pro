@@ -1,0 +1,15 @@
+@function wrap($width) {
+  @return calc(50% - $width / 2);
+}
+
+@function asset($type, $file) {
+  @return url($base-path + $type + '/' + $file);
+}
+
+@function icon($file) {
+  @return asset('img/icons', $file);
+}
+
+@function img($file) {
+  @return asset('img/', $file);
+}

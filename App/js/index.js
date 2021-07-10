@@ -1,12 +1,3 @@
-import { useState } from 'react';
+// const Test = () => <div>Hello</div>;
 
-function Test() {
-  const [text, setText] = useState('Some text');
-  return (
-    <div>
-      <h1>{text}</h1>
-    </div>
-  );
-}
-
-ReactDOM.render(<Test />, document.getElementById('root'));
+// ReactDOM.render(<Test />, document.getElementById('root'));

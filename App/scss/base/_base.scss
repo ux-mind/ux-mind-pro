@@ -1,3 +1,15 @@
 .body {
   @include arial(15px, 400);
 }
+
+.container {
+  max-width: 1200px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+// .container {
+//   padding: 0 calc(50% - 1170px / 2);
+//   height: 200px;
+//   background: img('text');
+// }

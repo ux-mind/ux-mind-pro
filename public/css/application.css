@@ -39,6 +39,17 @@
   padding-left: 15px;
 }
 
+.container {
+  max-width: 1200px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.row {
+  margin-left: -15px;
+  margin-right: -15px;
+}
+
 html {
   line-height: 1.15;
   /* 1 */
@@ -263,10 +274,4 @@ input {
   font-size: 15px;
   font-weight: 400;
   color: #000;
-}
-
-.container {
-  max-width: 1200px;
-  padding-left: 15px;
-  padding-right: 15px;
 }

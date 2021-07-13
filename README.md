@@ -6,4 +6,4 @@ To start webpack:
 2. npm run start - start devserver 
 3. npm run build - production package
 
-*you can check package.json to find plugins
+*you can check package.json to find plugins that are using in this project

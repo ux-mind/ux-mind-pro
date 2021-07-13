@@ -8,3 +8,5 @@ console.log('2. config key: ', config.key);
 
 const service = new AppService('3. Hello webpack');
 service.log();
+
+const a = 5;

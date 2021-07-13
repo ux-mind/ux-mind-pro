@@ -1,0 +1,26 @@
+// 3. Vendors
+@import 
+  './vendors/bootstrap',
+  './vendors/normalize';
+
+// 5. layout
+@import 
+  './layout/header',
+  './layout/main',
+  './layout/footer';
+
+div {
+  background: url('../img/logos/relax-logo.svg') no-repeat center;
+}
+
+@font-face {
+  font-family: "Manrope";
+  src: url("../fonts/Manrope-VariableFont_wght.woff2") format("woff2"),
+      url("../fonts/Manrope-VariableFont_wght.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+p {
+  font-family: "Manrope";
+}

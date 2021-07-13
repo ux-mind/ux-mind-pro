@@ -34,7 +34,7 @@
   "scripts": {
     "dev": "cross-env NODE_ENV=development webpack --mode development",
     "start": "cross-env NODE_ENV=development webpack serve --mode development",
-    "build": "cross-env NODE_ENV=production webpack --mode production"
+    "prod": "cross-env NODE_ENV=production webpack --mode production"
   },
   "keywords": [
     "javasctipt",

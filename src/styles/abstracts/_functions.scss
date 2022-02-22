@@ -2,7 +2,7 @@
 // This file contains all application-wide Sass functions.
 // -----------------------------------------------------------------------------
 @function asset($type, $file) {
-	@return url($base-path + $type + '/' + $file);
+	@return url($base-path + 'assets/' + $type + '/' + $file);
 }
 
 @function image($file) {

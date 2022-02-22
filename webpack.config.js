@@ -46,11 +46,11 @@ const plugins = () => {
     new MiniCssExtractPlugin({
       filename: `./css/${filename('css')}`
     }),
-    new CopyWebpackPlugin({
-      patterns: [
-        {from: path.resolve(__dirname, 'src/assets'), to: path.resolve(__dirname, 'dist')}
-      ]
-    })
+    // new CopyWebpackPlugin({
+    //   patterns: [
+    //     {from: path.resolve(__dirname, 'src/assets'), to: path.resolve(__dirname, 'dist')}
+    //   ]
+    // })
   ];
 
   if(isProd) {
@@ -157,10 +157,13 @@ module.exports = {
         ],
       },
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         exclude: /node_modules/,
         use: ['babel-loader']
       }
     ],
-  }
+  },
+	resolve: {
+		extensions: ['', '.js', '.jsx', '.ts', '.tsx'],
+	}
 }

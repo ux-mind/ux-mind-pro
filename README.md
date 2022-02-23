@@ -1,5 +1,5 @@
 # webpack-config
-The repo helps to save simple webpack configuration
+The repo helps to save simple webpack configuration for react
 
 To start webpack:
 1. npm run dev - development package

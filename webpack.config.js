@@ -12,6 +12,8 @@ const isProd = !isDev;
 
 const filename = (ext) => (isDev ? `[name].${ext}` : `[contenthash].${ext}`);
 
+const PUBLICPATH = '/dist/';
+
 const optimize = () => {
 	const configObj = {
 		splitChunks: {
@@ -104,14 +106,27 @@ module.exports = {
 	output: {
 		filename: `./js/${filename('js')}`,
 		path: path.resolve(__dirname, 'dist'),
-		assetModuleFilename: 'img/[hash][ext][query]'
+		publicPath: PUBLICPATH,
+		assetModuleFilename: 'img/[hash][ext][query]',
+		clean: true
 	},
 	devtool: isProd ? false : 'inline-source-map',
 	devServer: {
 		static: {
 			directory: path.join(__dirname, './')
 		},
-		historyApiFallback: true,
+		// historyApiFallback: true,
+		historyApiFallback: {
+			index: '/dist/'
+		},
+		proxy: {
+			'/': {
+				bypass: function (req, res, proxyOptions) {
+					console.log('Skipping proxy for browser request.');
+					return `${PUBLICPATH}/index.html`;
+				}
+			}
+		},
 		open: true,
 		compress: true,
 		hot: true, //makes hmr available

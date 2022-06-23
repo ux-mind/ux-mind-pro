@@ -61,12 +61,14 @@ const plugins = () => {
 							[
 								'svgo',
 								{
-									plugins: {
-										name: 'preset-default',
-										overrides: {
-											cleanupListOfValues: true
+									plugins: [
+										{
+											name: 'preset-default',
+											overrides: {
+												cleanupListOfValues: true
+											}
 										}
-									}
+									]
 									// plugins: extendDefaultPlugins([
 									// 	{
 									// 		name: 'removeViewBox',

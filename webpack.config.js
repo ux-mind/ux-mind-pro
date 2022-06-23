@@ -2,7 +2,7 @@ const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
@@ -51,6 +51,14 @@ const plugins = () => {
 
 	if (isProd) {
 		basePlugins.push(
+			new CopyWebpackPlugin({
+				patterns: [
+					{
+						from: path.resolve(__dirname, '_redirects'),
+						to: path.resolve(__dirname, 'dist')
+					}
+				]
+			}),
 			new ImageMinimizerPlugin({
 				minimizer: {
 					implementation: ImageMinimizerPlugin.imageminMinify,

@@ -44,7 +44,8 @@ html {
 @import 'base/base', 'base/fonts', 'base/typography', 'base/helpers';
 
 //4. Components
-@import './components/text', 'components/title', 'components/button', './components/link';
+@import './components/text', 'components/title', 'components/button', './components/link',
+	'./components/animated-textline';
 
 // 5. Layout-related sections
 @import 'layout/header', 'layout/main', 'layout/footer';

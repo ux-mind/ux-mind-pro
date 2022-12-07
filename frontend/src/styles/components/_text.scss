@@ -1,21 +1,26 @@
 .text {
-	& p {
-		margin: 0;
-		color: $white;
-		@include font(1.6rem, calc(24 / 16));
-		letter-spacing: -0.02em;
+	&-block {
+		& p {
+			margin: 0;
+			color: $white;
+			letter-spacing: -0.02em;
+		}
 	}
 	&_size {
-		&-xl {
+		&-xl,
+		&-xl p {
 			@include font(5.8rem, calc(68 / 58));
 		}
-		&-l {
+		&-l,
+		&-l p {
 			@include font(4.8rem, calc(56 / 48));
 		}
-		&-s {
+		&-s,
+		&-s p {
 			@include font(2rem, calc(28 / 20));
 		}
-		&-xs {
+		&-xs,
+		&-xs p {
 			@include font(1.6rem, calc(24 / 16));
 		}
 	}
@@ -23,6 +28,17 @@
 		color: $primary-color;
 		& p {
 			color: $primary-color;
+		}
+	}
+}
+
+@media screen and (max-width: 991px) {
+	.text {
+		&_size {
+			&-s,
+			&-s p {
+				@include font(1.4rem, calc(22 / 14));
+			}
 		}
 	}
 }

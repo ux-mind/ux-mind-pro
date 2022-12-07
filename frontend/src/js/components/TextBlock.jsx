@@ -3,9 +3,9 @@ import React from 'react';
 const TextBlock = ({ children, color = 'white', className, size }) => {
 	return (
 		<div
-			class={`${className && className} text-block ${color === blue && `text_blue`} ${
-				size && `text_size-${size}`
-			}`}
+			className={`${className ? className : ''} text-block ${
+				color === 'blue' ? `text_blue` : ''
+			} ${size && `text_size-${size}`}`}
 		>
 			{children}
 		</div>

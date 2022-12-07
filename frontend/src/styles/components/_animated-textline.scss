@@ -1,0 +1,11 @@
+.animated-textline {
+	display: flex;
+	&__line {
+		& span {
+			white-space: nowrap;
+		}
+		&-mobile {
+			display: none;
+		}
+	}
+}

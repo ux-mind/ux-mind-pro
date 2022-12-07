@@ -32,8 +32,10 @@ strong {
 body {
 	font-family: $font;
 	font-weight: 400;
-	color: $black;
+	color: $white;
 	font-size: 1.6rem;
+	line-height: calc(24 / 16);
+	letter-spacing: -0.02em;
 	height: 100%;
 	&.locked {
 		overflow: hidden;
@@ -53,7 +55,7 @@ button {
 	outline-color: transparent;
 	box-shadow: none;
 	border-radius: 0;
-	color: $black;
+	color: $white;
 }
 select {
 	@extend button;

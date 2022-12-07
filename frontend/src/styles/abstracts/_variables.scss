@@ -7,6 +7,11 @@ $font: 'Trap', Arial, sans-serif;
 $base-font-size: 16px;
 $base-path: '../';
 
+$container-padding-xl: calc((100% - 1264px) / 2);
+$container-padding-lg: calc((100% - 912px) / 2);
+$container-padding-md: calc((100% - 672px) / 2);
+$container-padding-sm: calc((100% - 492px) / 2);
+
 // Colors
 $white: #fff;
 $gray-600: #ccc;

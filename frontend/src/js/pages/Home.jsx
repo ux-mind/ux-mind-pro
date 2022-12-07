@@ -1,10 +1,10 @@
 import React from 'react';
-import ArrowBtn from '../components/ArrowBtn';
+import Hero from '../components/Hero';
 
 const Home = () => {
 	return (
-		<div style={{ background: `blue` }}>
-			<ArrowBtn>See more projects</ArrowBtn>
+		<div className="home">
+			<Hero />
 		</div>
 	);
 };

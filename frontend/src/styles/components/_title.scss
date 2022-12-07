@@ -1,2 +1,51 @@
 .title {
+	color: $white;
+	font-weight: 700;
+	letter-spacing: -0.02em;
+	margin: 0;
+	&_size {
+		&-xl {
+			@include font(24rem, calc(248 / 240));
+		}
+		&-l {
+			@include font(13.6rem, 1);
+		}
+		&-s {
+			@include font(6.4rem, calc(72 / 64));
+		}
+		&-sm {
+			@include font(3.6rem, calc(44 / 36));
+		}
+		&-xs {
+			@include font(3.2rem, calc(40 / 32));
+		}
+	}
+	&_transparent {
+		color: transparent;
+		-webkit-text-stroke: 3px $white;
+	}
+}
+
+@media screen and (max-width: 1420px) {
+	.title {
+		&_size {
+			&-xl {
+				@include font(16rem, calc(24 / 16));
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 991px) {
+	.title {
+		&_size {
+			&-xl {
+				@include font(6.4rem, calc(72 / 64));
+			}
+		}
+		&_transparent {
+			color: transparent;
+			-webkit-text-stroke: 1.5px $white;
+		}
+	}
 }

@@ -28,7 +28,7 @@
 		"node-sass": "^7.0.1",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
-		"react-router-dom": "^6.3.0",
+		"react-router-dom": "^6.4.4",
 		"sass-loader": "^13.0.0",
 		"terser-webpack-plugin": "^5.3.3",
 		"ts-loader": "^9.3.0",

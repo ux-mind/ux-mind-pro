@@ -1,0 +1,31 @@
+.link {
+	&-arrow {
+		display: inline-block;
+		color: $white;
+		position: relative;
+		@include font(2.8rem, calc(36 / 28));
+		letter-spacing: -0.02em;
+		font-weight: 700;
+		text-decoration: none;
+		padding-right: 42px;
+		&::before {
+			@include before(0, calc(100% - 42px), 2px);
+			background: $white;
+			top: auto;
+			transform: none;
+			bottom: 2px;
+		}
+		&::after {
+			@include after(0, 22px, 22px);
+			background: icon('arrow-white-right.svg') no-repeat 50% / cover;
+		}
+		&:hover {
+			&::before {
+				content: none;
+			}
+		}
+		&:active {
+			opacity: 0.5;
+		}
+	}
+}

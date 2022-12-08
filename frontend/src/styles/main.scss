@@ -48,7 +48,7 @@ html {
 	'./components/animated-textline', './components/logo', './components/menu-btn';
 
 // 5. Layout-related sections
-@import 'layout/header', 'layout/main', 'layout/footer';
+@import 'layout/header', 'layout/main', 'layout/footer', 'layout/menu';
 
 // 6. Components
 @import 'components/app', './components/hero';

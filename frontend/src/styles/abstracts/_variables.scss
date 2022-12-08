@@ -7,10 +7,15 @@ $font: 'Trap', Arial, sans-serif;
 $base-font-size: 16px;
 $base-path: '../';
 
+// Container variables
 $container-padding-xl: calc((100% - 1264px) / 2);
 $container-padding-lg: calc((100% - 912px) / 2);
 $container-padding-md: calc((100% - 672px) / 2);
 $container-padding-sm: calc((100% - 492px) / 2);
+
+// Header and menu variables
+$header-height: 78px;
+$menu-height: calc(100vh - 78px);
 
 // Colors
 $white: #fff;

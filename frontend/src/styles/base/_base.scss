@@ -37,6 +37,7 @@ body {
 	line-height: calc(24 / 16);
 	letter-spacing: -0.02em;
 	height: 100%;
+	scroll-behavior: smooth;
 	&.locked {
 		overflow: hidden;
 	}

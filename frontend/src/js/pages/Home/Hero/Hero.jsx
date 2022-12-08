@@ -1,7 +1,7 @@
 import React from 'react';
 import AnimatedTitle from './AnimatedTitle/AnimatedTitle';
 import TextBlock from '../../../components/TextBlock';
-import AnimatedTextLine from './AnimatedTextLine/AnimatedTextLine';
+import AnimatedTextLine from '../../../components/AnimatedTextLine/AnimatedTextLine';
 
 const Hero = () => {
 	return (

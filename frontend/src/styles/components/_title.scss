@@ -51,6 +51,9 @@
 			&-s {
 				@include font(3.2rem, calc(40 / 32));
 			}
+			&-xs {
+				@include font(2.4rem, calc(32 / 24));
+			}
 		}
 		&_transparent {
 			color: transparent;

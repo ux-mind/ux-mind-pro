@@ -1,10 +1,89 @@
 .menu {
 	position: fixed;
-	z-index: 0;
+	z-index: 4;
 	bottom: 0;
 	left: 0;
 	background: $primary-color;
-	width: 100%;
+	width: 100vw;
 	height: 100vh;
-	overflow-y: auto;
+	&-wrapper {
+		padding-top: 240px;
+		padding-bottom: 80px;
+	}
+	&-content {
+		display: grid;
+		grid-template-columns: 50% 50%;
+		margin-bottom: 132px;
+	}
+	&-nav,
+	&-contacts {
+		& .link:hover::before {
+			height: 2px;
+		}
+	}
+	&-contacts {
+		& .link {
+			font-weight: 600;
+		}
+	}
+	&-contacts {
+		&__link-wrapper {
+			@include flex(row, flex-start, flex-end);
+			&:not(:last-child) {
+				margin-bottom: 32px;
+			}
+		}
+	}
+	&-list {
+		&__item {
+			display: flex;
+		}
+		&__item:not(:last-child) {
+			margin-bottom: 32px;
+		}
+	}
+	&-textline {
+		max-width: 100%;
+		overflow: hidden;
+	}
+}
+
+@media screen and (max-width: 991px) {
+	.menu {
+		&-wrapper {
+			padding-top: 144px;
+		}
+		&-content {
+			grid-template-columns: 100%;
+			grid-gap: 172px;
+			margin-bottom: 0;
+		}
+		&-list {
+			&__item:not(:last-child) {
+				margin-bottom: 20px;
+			}
+		}
+		&-nav,
+		&-contacts {
+			& .link:hover::before {
+				height: 1px;
+			}
+		}
+		&-nav {
+			& .link {
+				@include font(4rem, calc(48 / 40));
+			}
+		}
+		&-contacts {
+			&__link-wrapper {
+				justify-content: flex-start;
+				&:not(:last-child) {
+					margin-bottom: 20px;
+				}
+			}
+		}
+		&-textline {
+			display: none;
+		}
+	}
 }

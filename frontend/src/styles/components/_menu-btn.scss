@@ -1,11 +1,13 @@
 .menu-btn {
 	position: relative;
 	@include flex(row, center);
+	min-height: 100%;
 	&-sticks {
 		position: relative;
 		margin-right: 20px;
 		width: 32px;
 		height: 20px;
+		transition: transform 0.3s;
 		& span {
 			position: absolute;
 			left: 0;
@@ -13,6 +15,7 @@
 			width: 32px;
 			height: 2px;
 			background: $white;
+			transition: 0.3s transform;
 			&:first-child {
 				transform: translateY(calc(-50% - 4px));
 			}
@@ -24,5 +27,31 @@
 	&__text {
 		@include font(1.4rem, calc(22 / 14));
 		font-weight: 500;
+		position: relative;
+	}
+	&:hover {
+		& .menu-btn__text::before {
+			@include before(0, 100%, 1px);
+			background: $white;
+			top: auto;
+			transform: none;
+			bottom: 5px;
+		}
+	}
+	&:active {
+		opacity: 0.3;
+	}
+	&_opened {
+		& .menu-btn-sticks {
+			transform: translateX(6px);
+			& span:first-child {
+				width: 26px;
+				transform: translateX(4px) translateY(-2px) rotate(-45deg);
+			}
+			& span:last-child {
+				width: 26px;
+				transform: translateX(4px) translateY(-2px) rotate(45deg);
+			}
+		}
 	}
 }

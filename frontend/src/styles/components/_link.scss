@@ -1,4 +1,15 @@
 .link {
+	position: relative;
+	&:hover::before {
+		@include before(0, 100%, 1px);
+		background: $white;
+		top: auto;
+		transform: none;
+		bottom: 5px;
+	}
+	&:active {
+		opacity: 0.3;
+	}
 	&-arrow {
 		display: inline-block;
 		color: $white;

@@ -1,11 +1,11 @@
 import React from 'react';
 import AnimatedTitle from './AnimatedTitle/AnimatedTitle';
-import TextBlock from '../TextBlock';
+import TextBlock from '../../../components/TextBlock';
 import AnimatedTextLine from './AnimatedTextLine/AnimatedTextLine';
 
 const Hero = () => {
 	return (
-		<div className="hero">
+		<section className="hero">
 			<AnimatedTitle />
 			<div className="container">
 				<div className="hero-text">
@@ -18,7 +18,7 @@ const Hero = () => {
 				</div>
 			</div>
 			<AnimatedTextLine />
-		</div>
+		</section>
 	);
 };
 

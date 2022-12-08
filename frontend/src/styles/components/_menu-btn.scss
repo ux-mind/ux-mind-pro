@@ -1,0 +1,28 @@
+.menu-btn {
+	position: relative;
+	@include flex(row, center);
+	&-sticks {
+		position: relative;
+		margin-right: 20px;
+		width: 32px;
+		height: 20px;
+		& span {
+			position: absolute;
+			left: 0;
+			top: 50%;
+			width: 32px;
+			height: 2px;
+			background: $white;
+			&:first-child {
+				transform: translateY(calc(-50% - 4px));
+			}
+			&:last-child {
+				transform: translateY(calc(-50% + 4px));
+			}
+		}
+	}
+	&__text {
+		@include font(1.4rem, calc(22 / 14));
+		font-weight: 500;
+	}
+}

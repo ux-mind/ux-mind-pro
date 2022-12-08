@@ -1,5 +1,5 @@
 import React from 'react';
-import Title from '../../Title';
+import Title from '../../../../components/Title';
 import { useMediaQuery } from 'react-responsive';
 import { motion } from 'framer-motion';
 

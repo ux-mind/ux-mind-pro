@@ -1,6 +1,11 @@
 import React from 'react';
+import { useTransform, motion, useScroll } from 'framer-motion';
 
 const Experience = () => {
+	const { scrollY } = useScroll();
+
+	const offsetY = [0, 500];
+
 	return (
 		<section className="experience">
 			<div className="container">

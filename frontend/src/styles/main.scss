@@ -51,7 +51,7 @@ html {
 @import 'layout/header', 'layout/main', 'layout/footer', 'layout/menu';
 
 // 6. Components
-@import 'components/app', './components/hero', './components/experience';
+@import 'components/app', './components/hero', './components/experience', './components/latest-projects';
 
 // 7. Page-specific styles
 @import 'pages/home';

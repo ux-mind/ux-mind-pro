@@ -7,11 +7,37 @@
 	padding-top: 40px;
 	max-height: $header-height;
 	&-wrapper {
+		position: relative;
 		@include flex(row, stretch, space-between);
 	}
 	&_active {
 		background: $primary-color;
-		padding-bottom: 20px;
 		max-height: none;
+		& .header-wrapper {
+			padding-bottom: 20px;
+			&::before {
+				pointer-events: none;
+				content: '';
+				position: absolute;
+				top: 100%;
+				left: 50%;
+				transform: translateX(-50%);
+				width: 100vw;
+				height: 40px;
+				background: linear-gradient(to bottom, $primary-color, rgba($primary-color, 0));
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 991px) {
+	.header {
+		&_active {
+			& .header-wrapper {
+				&::before {
+					height: 25px;
+				}
+			}
+		}
 	}
 }

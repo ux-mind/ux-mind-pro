@@ -1,0 +1,17 @@
+.experience {
+	background: $white;
+	&-wrapper {
+		padding: 144px 0;
+	}
+}
+
+@media screen and (max-width: 991px) {
+	.experience {
+		&-wrapper {
+			padding: 130px 0;
+			& p {
+				text-align: center;
+			}
+		}
+	}
+}

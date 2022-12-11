@@ -9,6 +9,7 @@
 	&_size {
 		&-xl,
 		&-xl p {
+			font-weight: 500;
 			@include font(5.8rem, calc(68 / 58));
 		}
 		&-l,
@@ -35,6 +36,10 @@
 @media screen and (max-width: 991px) {
 	.text {
 		&_size {
+			&-xl,
+			&-xl p {
+				@include font(2rem, calc(28 / 20));
+			}
 			&-s,
 			&-s p {
 				@include font(1.4rem, calc(22 / 14));

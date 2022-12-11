@@ -1,13 +1,43 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useTransform, motion, useScroll } from 'framer-motion';
+import { getViewportCoords, getCoords } from '../../../functions/functions';
 
 const Experience = () => {
+	const experienceRef = useRef(null);
+	const [offsetY, setOffsetY] = useState([0, 0, 0]);
+
 	const { scrollY } = useScroll();
 
-	const offsetY = [0, 500];
+	// Animation values for the Experience block
+	const topSizes = [0, 600, 1000];
+	const heightSizes = [560, 650, 0];
+	const scale = [1, 1, 0];
+
+	const minHeight = useTransform(scrollY, offsetY, heightSizes);
+	const topPosition = useTransform(scrollY, offsetY, topSizes);
+	const scaleY = useTransform(scrollY, offsetY, scale);
+
+	useEffect(() => {
+		if (experienceRef) {
+			const { top } = getCoords(experienceRef.current);
+
+			const topValue = top - Math.max(0, Math.max(...topSizes));
+
+			setOffsetY([topValue, topValue + 600, topValue + 1200]);
+		}
+	}, [experienceRef]);
 
 	return (
-		<section className="experience">
+		<motion.div
+			className="experience"
+			ref={experienceRef}
+			style={{
+				height: minHeight,
+				// width: maxWidth,
+				marginTop: topPosition,
+				scale: scaleY
+			}}
+		>
 			<div className="container">
 				<div className="experience-wrapper text_blue text_size-xl">
 					<p>
@@ -18,7 +48,7 @@ const Experience = () => {
 					</p>
 				</div>
 			</div>
-		</section>
+		</motion.div>
 	);
 };
 

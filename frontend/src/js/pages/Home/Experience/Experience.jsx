@@ -9,8 +9,8 @@ const Experience = () => {
 	const { scrollY } = useScroll();
 
 	// Animation values for the Experience block
-	const topSizes = [0, 600, 1000];
-	const heightSizes = [560, 650, 0];
+	const topSizes = [0, 600, 850];
+	const heightSizes = [560, 1000, 0];
 	const scale = [1, 1, 0];
 
 	const minHeight = useTransform(scrollY, offsetY, heightSizes);
@@ -23,7 +23,7 @@ const Experience = () => {
 
 			const topValue = top - Math.max(0, Math.max(...topSizes));
 
-			setOffsetY([topValue, topValue + 600, topValue + 1200]);
+			setOffsetY([topValue, topValue + 600, topValue + 1000]);
 		}
 	}, [experienceRef]);
 
@@ -33,7 +33,6 @@ const Experience = () => {
 			ref={experienceRef}
 			style={{
 				height: minHeight,
-				// width: maxWidth,
 				marginTop: topPosition,
 				scale: scaleY
 			}}

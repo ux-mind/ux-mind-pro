@@ -11,11 +11,15 @@ const Experience = () => {
 	// Animation values for the Experience block
 	const topSizes = [0, 600, 850];
 	const heightSizes = [560, 1000, 0];
-	const scale = [1, 1, 0];
+	// const scale = [1, 1, 0];
+	const widthSizes = ['100%', '100%', '0%'];
+	const leftSizes = ['0%', '0%', '50%'];
 
 	const minHeight = useTransform(scrollY, offsetY, heightSizes);
 	const topPosition = useTransform(scrollY, offsetY, topSizes);
-	const scaleY = useTransform(scrollY, offsetY, scale);
+	// const scaleY = useTransform(scrollY, offsetY, scale);
+	const maxWidth = useTransform(scrollY, offsetY, widthSizes);
+	const leftPosition = useTransform(scrollY, offsetY, leftSizes);
 
 	useEffect(() => {
 		if (experienceRef) {
@@ -34,7 +38,9 @@ const Experience = () => {
 			style={{
 				height: minHeight,
 				marginTop: topPosition,
-				scale: scaleY
+				maxWidth: maxWidth,
+				left: leftPosition
+				// scale: scaleY
 			}}
 		>
 			<div className="container">

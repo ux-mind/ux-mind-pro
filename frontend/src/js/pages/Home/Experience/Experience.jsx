@@ -4,15 +4,15 @@ import { getCoords } from '../../../functions/functions';
 
 const Experience = () => {
 	const experienceRef = useRef(null);
-	const [offsetY, setOffsetY] = useState([0, 0, 0, 0]);
+	const [offsetY, setOffsetY] = useState([0, 0, 0]);
 
 	const { scrollY } = useScroll();
 
 	// Animation values for the Experience text block
-	const topTextValues = [0, 600, 1000, 1600];
-	const heightTextValues = [560, 1000, 0, 0];
-	const widthTextValues = ['100%', '100%', '0%', '0%'];
-	const leftTextValues = ['0%', '0%', '50%', '50%'];
+	const topTextValues = [0, 600, 1000]; // 1600
+	const heightTextValues = [560, 1000, 1000]; // 0
+	const widthTextValues = ['100%', '100%', '0%']; // '0%'
+	const leftTextValues = ['0%', '0%', '50%']; // '50%'
 
 	const minHeight = useTransform(scrollY, offsetY, heightTextValues);
 	const topPosition = useTransform(scrollY, offsetY, topTextValues);
@@ -20,7 +20,7 @@ const Experience = () => {
 	const leftPosition = useTransform(scrollY, offsetY, leftTextValues);
 
 	// Animation values for the Experience text
-	const textColorValues = ['#0D08FF', '#0D08FF', '#FFF', '#FFF'];
+	const textColorValues = ['#0D08FF', '#0D08FF', '#FFF']; // '#fff'
 
 	const textColor = useTransform(scrollY, offsetY, textColorValues);
 
@@ -30,18 +30,18 @@ const Experience = () => {
 		if (experienceRef) {
 			let { top } = getCoords(experienceRef.current);
 
-			top = top - 1600;
+			top = top - Math.max(0, Math.max(...topTextValues));
 
-			setOffsetY([top, top + 600, top + 1000, top + 1600]);
+			setOffsetY([top, top + 600, top + 1000]);
 		}
 	}, [experienceRef]);
 
 	// For controlling scroll value TODO: remove
-	useEffect(() => {
-		window.onscroll = () => {
-			console.log(scrollY.current);
-		};
-	}, []);
+	// useEffect(() => {
+	// 	window.onscroll = () => {
+	// 		console.log(scrollY.current);
+	// 	};
+	// }, []);
 
 	return (
 		<div className="experience">

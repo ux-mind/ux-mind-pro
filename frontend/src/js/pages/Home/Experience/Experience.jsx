@@ -4,47 +4,44 @@ import { getCoords } from '../../../functions/functions';
 
 const Experience = () => {
 	const experienceRef = useRef(null);
-	const [offsetY, setOffsetY] = useState([0, 0, 0, 0]);
+	const [offsetY, setOffsetY] = useState([0, 0, 0, 0, 0]);
 
 	const { scrollY } = useScroll();
 
 	// Animation values for the Experience block
-	const topTextValues = [0, 800, 1600, 2100]; // 1600
-	const heightTextValues = [560, 1000, 1000, 0]; // 0
+	const topValues = [0, 800, 1600, 1800, 2000];
+	const heightValues = [560, 1000, 1000, 1000, 1000];
 
-	const minHeight = useTransform(scrollY, offsetY, heightTextValues);
-	const topPosition = useTransform(scrollY, offsetY, topTextValues);
+	const minHeight = useTransform(scrollY, offsetY, heightValues);
+	const topPosition = useTransform(scrollY, offsetY, topValues);
 
 	// Animation values for the Experience background
-	const heightBgValues = ['100%', '100%', '0%', '0%'];
-	const widthBgValues = ['100%', '100%', '0%', '0%']; // '0%'
-	const leftBgValues = ['0%', '0%', '50%', '50%']; // '50%'
+	const heightBgValues = ['100%', '100%', '0%', '0%', '0%'];
+	const widthBgValues = ['100%', '100%', '0%', '0%', '0%'];
+	const leftBgValues = ['0%', '0%', '50%', '50%', '50%'];
 
 	const heightBgPosition = useTransform(scrollY, offsetY, heightBgValues);
 	const maxBgWidth = useTransform(scrollY, offsetY, widthBgValues);
 	const leftBgPosition = useTransform(scrollY, offsetY, leftBgValues);
 
 	// Animation values for the Experience text
-	const textColorValues = ['#0D08FF', '#0D08FF', '#FFF', 'rgba(255, 255, 255, 0)']; // '#fff'
+	const textColorValues = ['#0D08FF', '#0D08FF', '#FFF', '#FFF', 'rgba(255, 255, 255, 0)'];
+	const textTopValues = ['50%', '50%', '50%', '50%', '0%'];
+	const textScaleValues = [1, 1, 1, 1, 0.6];
 
 	const textColor = useTransform(scrollY, offsetY, textColorValues);
+	const textTop = useTransform(scrollY, offsetY, textTopValues);
+	const textScale = useTransform(scrollY, offsetY, textScaleValues);
 
 	useEffect(() => {
 		if (experienceRef) {
 			let { top } = getCoords(experienceRef.current);
 
-			top = top - topTextValues[topTextValues.length - 1];
+			top = top - topValues[topValues.length - 1];
 
-			setOffsetY([top, top + 800, top + 1600, top + 2100]);
+			setOffsetY([top, top + 800, top + 1600, top + 1800, top + 2300]);
 		}
 	}, [experienceRef]);
-
-	// For controlling scroll value TODO: remove
-	useEffect(() => {
-		window.onscroll = () => {
-			console.log(scrollY.current);
-		};
-	}, []);
 
 	return (
 		<motion.div
@@ -59,7 +56,10 @@ const Experience = () => {
 				className="experience-bg"
 				style={{ maxWidth: maxBgWidth, height: heightBgPosition, left: leftBgPosition }}
 			></motion.div>
-			<div className="experience-text">
+			<motion.div
+				className="experience-text"
+				style={{ top: textTop, scale: textScale, translateY: '-50%' }}
+			>
 				<div className="container">
 					<div className="experience-text__wrapper text_blue text_size-xl">
 						<motion.p style={{ color: textColor }}>
@@ -70,7 +70,7 @@ const Experience = () => {
 						</motion.p>
 					</div>
 				</div>
-			</div>
+			</motion.div>
 		</motion.div>
 	);
 };

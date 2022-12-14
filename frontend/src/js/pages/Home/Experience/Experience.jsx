@@ -8,21 +8,24 @@ const Experience = () => {
 
 	const { scrollY } = useScroll();
 
-	// Animation values for the Experience text block
+	// Animation values for the Experience block
 	const topTextValues = [0, 800, 1600, 2100]; // 1600
 	const heightTextValues = [560, 1000, 1000, 0]; // 0
+
+	const minHeight = useTransform(scrollY, offsetY, heightTextValues);
+	const topPosition = useTransform(scrollY, offsetY, topTextValues);
+
+	// Animation values for the Experience background
 	const heightBgValues = ['100%', '100%', '0%', '0%'];
 	const widthBgValues = ['100%', '100%', '0%', '0%']; // '0%'
 	const leftBgValues = ['0%', '0%', '50%', '50%']; // '50%'
 
-	const minHeight = useTransform(scrollY, offsetY, heightTextValues);
-	const topPosition = useTransform(scrollY, offsetY, topTextValues);
 	const heightBgPosition = useTransform(scrollY, offsetY, heightBgValues);
 	const maxBgWidth = useTransform(scrollY, offsetY, widthBgValues);
 	const leftBgPosition = useTransform(scrollY, offsetY, leftBgValues);
 
 	// Animation values for the Experience text
-	const textColorValues = ['#0D08FF', '#0D08FF', '#FFF', '#FFF']; // '#fff'
+	const textColorValues = ['#0D08FF', '#0D08FF', '#FFF', 'rgba(255, 255, 255, 0)']; // '#fff'
 
 	const textColor = useTransform(scrollY, offsetY, textColorValues);
 

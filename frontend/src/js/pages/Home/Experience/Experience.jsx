@@ -4,23 +4,25 @@ import { getCoords } from '../../../functions/functions';
 
 const Experience = () => {
 	const experienceRef = useRef(null);
-	const [offsetY, setOffsetY] = useState([0, 0, 0]);
+	const [offsetY, setOffsetY] = useState([0, 0, 0, 0]);
 
 	const { scrollY } = useScroll();
 
 	// Animation values for the Experience text block
-	const topTextValues = [0, 600, 1000]; // 1600
-	const heightTextValues = [560, 1000, 0]; // 0
-	const widthTextValues = ['100%', '100%', '0%']; // '0%'
-	const leftTextValues = ['0%', '0%', '50%']; // '50%'
+	const topTextValues = [0, 800, 1600, 2100]; // 1600
+	const heightTextValues = [560, 1000, 1000, 0]; // 0
+	const heightBgValues = ['100%', '100%', '0%', '0%'];
+	const widthBgValues = ['100%', '100%', '0%', '0%']; // '0%'
+	const leftBgValues = ['0%', '0%', '50%', '50%']; // '50%'
 
 	const minHeight = useTransform(scrollY, offsetY, heightTextValues);
 	const topPosition = useTransform(scrollY, offsetY, topTextValues);
-	const maxWidth = useTransform(scrollY, offsetY, widthTextValues);
-	const leftPosition = useTransform(scrollY, offsetY, leftTextValues);
+	const heightBgPosition = useTransform(scrollY, offsetY, heightBgValues);
+	const maxBgWidth = useTransform(scrollY, offsetY, widthBgValues);
+	const leftBgPosition = useTransform(scrollY, offsetY, leftBgValues);
 
 	// Animation values for the Experience text
-	const textColorValues = ['#0D08FF', '#0D08FF', '#FFF']; // '#fff'
+	const textColorValues = ['#0D08FF', '#0D08FF', '#FFF', '#FFF']; // '#fff'
 
 	const textColor = useTransform(scrollY, offsetY, textColorValues);
 
@@ -30,7 +32,7 @@ const Experience = () => {
 
 			top = top - topTextValues[topTextValues.length - 1];
 
-			setOffsetY([top, top + 600, top + 1000]);
+			setOffsetY([top, top + 800, top + 1600, top + 2100]);
 		}
 	}, [experienceRef]);
 
@@ -42,16 +44,17 @@ const Experience = () => {
 	}, []);
 
 	return (
-		<div className="experience">
+		<motion.div
+			className="experience"
+			ref={experienceRef}
+			style={{
+				marginTop: topPosition,
+				height: minHeight
+			}}
+		>
 			<motion.div
 				className="experience-bg"
-				ref={experienceRef}
-				style={{
-					height: minHeight,
-					marginTop: topPosition,
-					maxWidth: maxWidth,
-					left: leftPosition
-				}}
+				style={{ maxWidth: maxBgWidth, height: heightBgPosition, left: leftBgPosition }}
 			></motion.div>
 			<div className="experience-text">
 				<div className="container">
@@ -65,7 +68,7 @@ const Experience = () => {
 					</div>
 				</div>
 			</div>
-		</div>
+		</motion.div>
 	);
 };
 

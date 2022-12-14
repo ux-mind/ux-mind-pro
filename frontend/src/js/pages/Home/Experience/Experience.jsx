@@ -9,7 +9,7 @@ const Experience = () => {
 	const { scrollY } = useScroll();
 
 	// Animation values for the Experience block
-	const topValues = [0, 800, 1600, 1800, 2000];
+	const topValues = [0, 800, 1600, 1800, 2100];
 	const heightValues = [560, 1000, 1000, 1000, 1000];
 
 	const minHeight = useTransform(scrollY, offsetY, heightValues);
@@ -39,7 +39,7 @@ const Experience = () => {
 
 			top = top - topValues[topValues.length - 1];
 
-			setOffsetY([top, top + 800, top + 1600, top + 1800, top + 2300]);
+			setOffsetY([top, top + 800, top + 1600, top + 1800, top + 2400]);
 		}
 	}, [experienceRef]);
 

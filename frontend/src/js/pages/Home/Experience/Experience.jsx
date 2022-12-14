@@ -1,31 +1,45 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTransform, motion, useScroll } from 'framer-motion';
-import { getViewportCoords, getCoords } from '../../../functions/functions';
+import { getCoords } from '../../../functions/functions';
 
 const Experience = () => {
 	const experienceRef = useRef(null);
-	const [offsetY, setOffsetY] = useState([0, 0, 0]);
+	const [offsetY, setOffsetY] = useState([0, 0, 0, 0, 0]);
 
 	const { scrollY } = useScroll();
 
 	// Animation values for the Experience block
-	const topSizes = [0, 600, 1000];
-	const heightSizes = [560, 1000, 0];
-	const widthSizes = ['100%', '100%', '0%'];
-	const leftSizes = ['0%', '0%', '50%'];
+	const topValues = [0, 800, 1600, 1800, 2000];
+	const heightValues = [560, 1000, 1000, 1000, 1000];
 
-	const minHeight = useTransform(scrollY, offsetY, heightSizes);
-	const topPosition = useTransform(scrollY, offsetY, topSizes);
-	const maxWidth = useTransform(scrollY, offsetY, widthSizes);
-	const leftPosition = useTransform(scrollY, offsetY, leftSizes);
+	const minHeight = useTransform(scrollY, offsetY, heightValues);
+	const topPosition = useTransform(scrollY, offsetY, topValues);
+
+	// Animation values for the Experience background
+	const heightBgValues = ['100%', '100%', '0%', '0%', '0%'];
+	const widthBgValues = ['100%', '100%', '0%', '0%', '0%'];
+	const leftBgValues = ['0%', '0%', '50%', '50%', '50%'];
+
+	const heightBgPosition = useTransform(scrollY, offsetY, heightBgValues);
+	const maxBgWidth = useTransform(scrollY, offsetY, widthBgValues);
+	const leftBgPosition = useTransform(scrollY, offsetY, leftBgValues);
+
+	// Animation values for the Experience text
+	const textColorValues = ['#0D08FF', '#0D08FF', '#FFF', '#FFF', 'rgba(255, 255, 255, 0)'];
+	const textTopValues = ['50%', '50%', '50%', '50%', '0%'];
+	const textScaleValues = [1, 1, 1, 1, 0.6];
+
+	const textColor = useTransform(scrollY, offsetY, textColorValues);
+	const textTop = useTransform(scrollY, offsetY, textTopValues);
+	const textScale = useTransform(scrollY, offsetY, textScaleValues);
 
 	useEffect(() => {
 		if (experienceRef) {
-			const { top } = getCoords(experienceRef.current);
+			let { top } = getCoords(experienceRef.current);
 
-			const topValue = top - 1000;
+			top = top - topValues[topValues.length - 1];
 
-			setOffsetY([topValue, topValue + 600, topValue + 1000]);
+			setOffsetY([top, top + 800, top + 1600, top + 1800, top + 2300]);
 		}
 	}, [experienceRef]);
 
@@ -34,22 +48,29 @@ const Experience = () => {
 			className="experience"
 			ref={experienceRef}
 			style={{
-				height: minHeight,
 				marginTop: topPosition,
-				maxWidth: maxWidth,
-				left: leftPosition
+				height: minHeight
 			}}
 		>
-			<div className="container">
-				<div className="experience-wrapper text_blue text_size-xl">
-					<p>
-						UX Mind Creative Agency's team with&nbsp;
-						<strong>7+&nbsp;years of experience</strong> in&nbsp;UX/UI
-						web&nbsp;&&nbsp;mobile design, NFT projects and SAAs. <br />
-						We create style.
-					</p>
+			<motion.div
+				className="experience-bg"
+				style={{ maxWidth: maxBgWidth, height: heightBgPosition, left: leftBgPosition }}
+			></motion.div>
+			<motion.div
+				className="experience-text"
+				style={{ top: textTop, scale: textScale, translateY: '-50%' }}
+			>
+				<div className="container">
+					<div className="experience-text__wrapper text_blue text_size-xl">
+						<motion.p style={{ color: textColor }}>
+							UX Mind Creative Agency's team with&nbsp;
+							<strong>7+&nbsp;years of experience</strong> in&nbsp;UX/UI
+							web&nbsp;&&nbsp;mobile design, NFT projects and SAAs. <br />
+							We create style.
+						</motion.p>
+					</div>
 				</div>
-			</div>
+			</motion.div>
 		</motion.div>
 	);
 };

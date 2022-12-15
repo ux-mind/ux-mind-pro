@@ -4,10 +4,6 @@ import { motion } from 'framer-motion';
 import { useMediaQuery } from 'react-responsive';
 
 const AnimatedTextLine = () => {
-	const isMobile = useMediaQuery({
-		query: `(max-width: 991px)`
-	});
-
 	const isUltraWide = useMediaQuery({
 		query: `(min-width: 1920px)`
 	});

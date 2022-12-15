@@ -17,12 +17,23 @@
 		height: 100%;
 		width: 100%;
 		&__wrapper {
-			padding: 144px 0;
 			height: 100%;
 			display: grid;
 			align-items: center;
 			& p {
 				position: relative;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1420px) {
+	.experience {
+		&-text {
+			&__wrapper {
+				& p {
+					@include font(4.8rem, calc(56 / 48));
+				}
 			}
 		}
 	}
@@ -34,6 +45,14 @@
 			padding: 130px 0;
 			& p {
 				text-align: center;
+			}
+		}
+		&-text {
+			&__wrapper {
+				& p {
+					text-align: center;
+					@include font(2rem, calc(28 / 20));
+				}
 			}
 		}
 	}

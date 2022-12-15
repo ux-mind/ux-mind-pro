@@ -1,8 +1,13 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { useMediaQuery } from 'react-responsive';
 import { useTransform, motion, useScroll } from 'framer-motion';
 import { getCoords } from '../../../functions/functions';
 
 const Experience = () => {
+	const isMobile = useMediaQuery({
+		query: `(max-width: 991px)`
+	});
+
 	const experienceRef = useRef(null);
 	const [offsetY, setOffsetY] = useState([0, 0, 0, 0, 0]);
 
@@ -10,7 +15,7 @@ const Experience = () => {
 
 	// Animation values for the Experience block
 	const topValues = [0, 800, 1600, 1800, 2100];
-	const heightValues = [560, 1000, 1000, 1000, 1000];
+	const heightValues = isMobile ? [375, 812, 812, 812, 812] : [560, 1000, 1000, 1000, 1000];
 
 	const minHeight = useTransform(scrollY, offsetY, heightValues);
 	const topPosition = useTransform(scrollY, offsetY, topValues);

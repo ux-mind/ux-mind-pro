@@ -20,7 +20,7 @@ const AnimatedTitle = () => {
 			<motion.div
 				className="hero-title_animated"
 				animate={{
-					translateX: ['0', '-100%']
+					translateX: ['0%', '-100%']
 				}}
 				transition={{
 					duration: isMobile ? 5 : isUltraWide ? 7 : 9,

@@ -12,7 +12,7 @@ const isProd = !isDev;
 
 const filename = (ext) => (isDev ? `[name].${ext}` : `[contenthash].${ext}`);
 
-const PUBLICPATH = '/dist/';
+const PUBLICPATH = '/';
 
 const optimize = () => {
 	const configObj = {
@@ -45,7 +45,7 @@ const plugins = () => {
 		}),
 		new CleanWebpackPlugin(),
 		new MiniCssExtractPlugin({
-			filename: `./css/${filename('css')}`
+			filename: `css/${filename('css')}`
 		})
 	];
 
@@ -112,7 +112,7 @@ module.exports = {
 		app: './js/index.js'
 	},
 	output: {
-		filename: `./js/${filename('js')}`,
+		filename: `js/${filename('js')}`,
 		path: path.resolve(__dirname, 'dist'),
 		publicPath: PUBLICPATH,
 		assetModuleFilename: 'img/[hash][ext][query]',

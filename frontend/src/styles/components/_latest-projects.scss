@@ -29,6 +29,23 @@
 		align-items: center;
 		&__wrapper {
 			margin-bottom: 104px;
+			position: relative;
+		}
+		&__pagination {
+			display: none;
+			margin-top: 32px;
+			position: relative;
+			left: 0;
+			grid-gap: 8px;
+			& .pagination-tab {
+				display: block;
+				width: 100%;
+				height: 2px;
+				background: rgba($white, 0.3);
+				&_active {
+					background: $white;
+				}
+			}
 		}
 		&__content {
 			& .text-block {
@@ -58,12 +75,35 @@
 			padding: 144px 0;
 		}
 		&-slider {
+			grid-template-columns: 100%;
+			grid-gap: 28px;
 			&__wrapper {
 				margin-bottom: 56px;
+			}
+			&__pagination {
+				display: flex;
+			}
+			&__content {
+				order: 1;
+				& .chapter {
+					@include font(1.6rem, calc(24 / 16));
+					margin-bottom: 6px;
+				}
 			}
 		}
 		&-header {
 			margin-bottom: 64px;
+			grid-template-columns: 100%;
+			grid-gap: 40px;
+			&__count {
+				padding-bottom: 0;
+				& p {
+					padding-bottom: 16px;
+					&::before {
+						height: 2px;
+					}
+				}
+			}
 		}
 	}
 }

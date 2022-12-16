@@ -40,3 +40,21 @@
 		}
 	}
 }
+
+@media screen and (max-width: 991px) {
+	.link {
+		&-arrow {
+			@include font(1.8rem, calc(26 / 18));
+			padding-right: 32px;
+			&::before {
+				width: calc(100% - 32px);
+				height: 1px;
+				bottom: 6px;
+			}
+			&::after {
+				@include after(0, 16px, 16px);
+				background: icon('arrow-white-right-mobile.svg') no-repeat 50% / cover;
+			}
+		}
+	}
+}

@@ -13,6 +13,8 @@ const Experience = () => {
 
 	const { scrollY } = useScroll();
 
+	// TODO: Change mobile animation
+
 	// Animation values for the Experience block
 	const topValues = [0, 800, 1600, 1800, 2100];
 	const heightValues = isMobile ? [375, 812, 812, 812, 812] : [560, 1000, 1000, 1000, 1000];

@@ -16,7 +16,8 @@ const Projects = () => {
 				<div className="latest-projects-wrapper">
 					<div className="latest-projects-header">
 						<h2 className="title title_size-l">
-							Our latest <span className="title_transparent">projects</span>
+							Our latest <br />
+							<span className="title_transparent">projects</span>
 						</h2>
 						<div className="latest-projects-header__count">
 							<p className="title title_size-xs">150+ projects</p>
@@ -37,11 +38,18 @@ const Projects = () => {
 							</div>
 							<div className="latest-projects-slider__image">
 								<img
+									width="835"
+									height="626"
 									src={project1}
 									srcSet={`${project1} 1x, ${project1_2x} 2x`}
 									alt="project"
 								/>
 							</div>
+						</div>
+						<div className="latest-projects-slider__pagination">
+							<span className="pagination-tab pagination-tab_active"></span>
+							<span className="pagination-tab"></span>
+							<span className="pagination-tab"></span>
 						</div>
 					</div>
 					<div className="latest-projects__link">

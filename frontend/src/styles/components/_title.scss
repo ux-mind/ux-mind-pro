@@ -35,6 +35,9 @@
 			&-xl {
 				@include font(16rem, calc(24 / 16));
 			}
+			&-l {
+				@include font(9.2rem, 1);
+			}
 		}
 	}
 }
@@ -48,8 +51,14 @@
 					-webkit-text-stroke: 1.5px $white;
 				}
 			}
+			&-l {
+				@include font(4.8rem, calc(56 / 48));
+			}
 			&-s {
 				@include font(3.2rem, calc(40 / 32));
+			}
+			&-sm {
+				@include font(2.6rem, calc(34 / 26));
 			}
 			&-xs {
 				@include font(2.4rem, calc(32 / 24));

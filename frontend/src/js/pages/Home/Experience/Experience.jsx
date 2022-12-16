@@ -9,32 +9,33 @@ const Experience = () => {
 	});
 
 	const experienceRef = useRef(null);
-	const [offsetY, setOffsetY] = useState([0, 0, 0, 0, 0]);
+
+	const [offsetY, setOffsetY] = useState(() => (isMobile ? [0, 0] : [0, 0, 0, 0, 0]));
 
 	const { scrollY } = useScroll();
 
-	// TODO: Change mobile animation
-
 	// Animation values for the Experience block
-	const topValues = [0, 800, 1600, 1800, 2100];
-	const heightValues = isMobile ? [375, 812, 812, 812, 812] : [560, 1000, 1000, 1000, 1000];
+	const topValues = isMobile ? [0, 800] : [0, 800, 1600, 1800, 2100];
+	const heightValues = isMobile ? [375, 812] : [560, 1000, 1000, 1000, 1000];
 
 	const minHeight = useTransform(scrollY, offsetY, heightValues);
 	const topPosition = useTransform(scrollY, offsetY, topValues);
 
 	// Animation values for the Experience background
-	const heightBgValues = ['100%', '100%', '0%', '0%', '0%'];
-	const widthBgValues = ['100%', '100%', '0%', '0%', '0%'];
-	const leftBgValues = ['0%', '0%', '50%', '50%', '50%'];
+	const heightBgValues = isMobile ? ['100%', '100%'] : ['100%', '100%', '0%', '0%', '0%'];
+	const widthBgValues = isMobile ? ['100%', '100%'] : ['100%', '100%', '0%', '0%', '0%'];
+	const leftBgValues = isMobile ? ['0%', '0%'] : ['0%', '0%', '50%', '50%', '50%'];
 
 	const heightBgPosition = useTransform(scrollY, offsetY, heightBgValues);
 	const maxBgWidth = useTransform(scrollY, offsetY, widthBgValues);
 	const leftBgPosition = useTransform(scrollY, offsetY, leftBgValues);
 
 	// Animation values for the Experience text
-	const textColorValues = ['#0D08FF', '#0D08FF', '#FFF', '#FFF', 'rgba(255, 255, 255, 0)'];
-	const textTopValues = ['50%', '50%', '50%', '50%', '0%'];
-	const textScaleValues = [1, 1, 1, 1, 0.6];
+	const textColorValues = isMobile
+		? ['#0D08FF', '#0D08FF']
+		: ['#0D08FF', '#0D08FF', '#FFF', '#FFF', 'rgba(255, 255, 255, 0)'];
+	const textTopValues = isMobile ? ['50%', '50%'] : ['50%', '50%', '50%', '50%', '0%'];
+	const textScaleValues = isMobile ? [1, 1] : [1, 1, 1, 1, 0.6];
 
 	const textColor = useTransform(scrollY, offsetY, textColorValues);
 	const textTop = useTransform(scrollY, offsetY, textTopValues);
@@ -46,7 +47,13 @@ const Experience = () => {
 
 			top = top - topValues[topValues.length - 1];
 
-			setOffsetY([top, top + 800, top + 1600, top + 1800, top + 2400]);
+			if (!isMobile) {
+				setOffsetY([top, top + 800, top + 1600, top + 1800, top + 2400]);
+			}
+
+			if (isMobile) {
+				setOffsetY([top, top + 800]);
+			}
 		}
 	}, [experienceRef]);
 

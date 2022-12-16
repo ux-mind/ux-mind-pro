@@ -55,7 +55,7 @@ const Experience = () => {
 				setOffsetY([top, top + 800]);
 			}
 		}
-	}, [experienceRef]);
+	}, [experienceRef, isMobile]);
 
 	return (
 		<motion.div

@@ -11,9 +11,9 @@ import project3_2x from '../../../../assets/images/project3@2x.png';
 
 const Projects = () => {
 	return (
-		<section className="latest-projects">
+		<section className="section latest-projects">
 			<div className="container">
-				<div className="latest-projects-wrapper">
+				<div className="section-wrapper latest-projects-wrapper">
 					<div className="latest-projects-header">
 						<h2 className="title title_size-l">
 							Our latest <br />

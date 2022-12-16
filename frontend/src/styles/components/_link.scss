@@ -10,6 +10,30 @@
 	&:active {
 		opacity: 0.3;
 	}
+	&-primary {
+		@include font(2.8rem, calc(32 / 28));
+		display: inline-block;
+		color: $white;
+		position: relative;
+		letter-spacing: -0.02em;
+		font-weight: 700;
+		text-decoration: none;
+		&::before {
+			@include before(0, 100%, 1px);
+			background: $white;
+			top: auto;
+			transform: none;
+			bottom: 4px;
+		}
+		&:hover {
+			&::before {
+				content: none;
+			}
+		}
+		&:active {
+			opacity: 0.5;
+		}
+	}
 	&-arrow {
 		display: inline-block;
 		color: $white;
@@ -43,6 +67,12 @@
 
 @media screen and (max-width: 991px) {
 	.link {
+		&-primary {
+			@include font(1.8rem, calc(26 / 18));
+			&::before {
+				bottom: 6px;
+			}
+		}
 		&-arrow {
 			@include font(1.8rem, calc(26 / 18));
 			padding-right: 32px;

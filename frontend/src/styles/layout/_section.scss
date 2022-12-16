@@ -1,0 +1,13 @@
+.section {
+	&-wrapper {
+		padding: 240px 0;
+	}
+}
+
+@media screen and (max-width: 991px) {
+	.section {
+		&-wrapper {
+			padding: 144px 0;
+		}
+	}
+}

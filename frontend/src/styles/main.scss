@@ -48,11 +48,11 @@ html {
 	'./components/animated-textline', './components/logo', './components/menu-btn';
 
 // 5. Layout-related sections
-@import 'layout/header', 'layout/main', 'layout/footer', 'layout/menu';
+@import 'layout/header', 'layout/main', 'layout/footer', 'layout/menu', './layout/section';
 
 // 6. Components
 @import 'components/app', './components/hero', './components/experience', './components/latest-projects',
-	'./components/home-banner';
+	'./components/home-banner', './components/request';
 
 // 7. Page-specific styles
 @import 'pages/home';

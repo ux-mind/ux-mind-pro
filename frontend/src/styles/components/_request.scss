@@ -1,0 +1,15 @@
+.request {
+	&-top {
+		display: grid;
+		grid-template-columns: 4.29fr 8.35fr;
+		margin-bottom: 80px;
+		&__link {
+			padding-right: 40px;
+		}
+	}
+	&-list {
+		&__item {
+			// writing-mode: vertical-lr;
+		}
+	}
+}

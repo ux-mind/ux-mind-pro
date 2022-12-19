@@ -171,10 +171,10 @@ module.exports = {
 				test: /\.css$/i, //for css
 				use: [
 					{
-						loader: MiniCssExtractPlugin.loader,
-						options: {
-							hmr: isDev //hot model reloading - updates without page reload
-						}
+						loader: MiniCssExtractPlugin.loader
+						// options: {
+						// 	hmr: isDev //hot model reloading - updates without page reload
+						// }
 					},
 					'css-loader'
 				]

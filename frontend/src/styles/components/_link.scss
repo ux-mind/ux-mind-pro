@@ -19,7 +19,7 @@
 		font-weight: 700;
 		text-decoration: none;
 		&::before {
-			@include before(0, 100%, 1px);
+			@include before(0, 100%, 2px);
 			background: $white;
 			top: auto;
 			transform: none;
@@ -32,6 +32,12 @@
 		}
 		&:active {
 			opacity: 0.5;
+		}
+		&.text_blue {
+			color: $primary-color;
+			&::before {
+				background: $primary-color;
+			}
 		}
 	}
 	&-arrow {
@@ -71,6 +77,7 @@
 			@include font(1.8rem, calc(26 / 18));
 			&::before {
 				bottom: 6px;
+				height: 1px;
 			}
 		}
 		&-arrow {

@@ -31,6 +31,9 @@
 		& p {
 			color: $primary-color;
 		}
+		& .title_transparent {
+			-webkit-text-stroke: 2px $primary-color;
+		}
 	}
 }
 

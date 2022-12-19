@@ -1,0 +1,32 @@
+.customers {
+	background: $white;
+	padding: 240px 0;
+	&-title {
+		margin-bottom: 88px;
+	}
+	&-row {
+		margin-bottom: 96px;
+		@include flex();
+		overflow: hidden;
+	}
+	&-line {
+		@include flex();
+		&__item {
+			display: inline-block;
+			padding: 0.416667em 1.166667em;
+			background: $primary-color;
+			border-radius: 100px;
+			@include font(2.4rem, calc(32 / 24));
+			font-weight: 700;
+		}
+		&__slide {
+			width: auto;
+		}
+	}
+}
+
+@media screen and (max-width: 991px) {
+	.customers {
+		padding: 144px 0;
+	}
+}

@@ -8,8 +8,73 @@
 		}
 	}
 	&-list {
+		@include flex(row, stretch);
+		height: 480px;
 		&__item {
-			// writing-mode: vertical-lr;
+			@include flex(row, flex-end, flex-start);
+			min-height: 100%;
+			flex-grow: 1;
+			writing-mode: vertical-rl;
+			padding: 0 16px;
+			border-right: 2px solid $white;
+			position: relative;
+			transform: rotate(180deg);
+			&:last-child {
+				border-left: 2px solid $white;
+			}
+			& p {
+				position: absolute;
+				max-width: none;
+				@include font(3.2rem, calc(36 / 32));
+				margin: 0;
+				max-height: 360px;
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 991px) {
+	.request {
+		&-top {
+			grid-template-columns: 100%;
+			grid-gap: 18px;
+			margin-bottom: 56px;
+			&__link {
+				order: 1;
+				padding: 0;
+			}
+			&__title {
+				max-width: 351px;
+				& .title {
+					@include font(4rem, calc(44 / 40));
+					&_transparent {
+						@include font(4rem, calc(48 / 40));
+					}
+				}
+			}
+		}
+		&-list {
+			@include flex(column);
+			height: auto;
+			&__item {
+				min-height: 96px;
+				width: 100%;
+				writing-mode: inherit;
+				transform: none;
+				border: none;
+				border-top: 2px solid $white;
+				padding: 0;
+				@include flex(row, center);
+				&:last-child {
+					border: none;
+					border-top: 2px solid $white;
+					border-bottom: 2px solid $white;
+				}
+				& p {
+					position: relative;
+					@include font(2.4rem, calc(32 / 24));
+				}
+			}
 		}
 	}
 }

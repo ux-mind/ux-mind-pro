@@ -1,5 +1,8 @@
 .link {
 	position: relative;
+	display: inline-block;
+	@include font(1.8rem, calc(26 / 18));
+	font-weight: 500;
 	&:hover::before {
 		@include before(0, 100%, 1px);
 		background: $white;

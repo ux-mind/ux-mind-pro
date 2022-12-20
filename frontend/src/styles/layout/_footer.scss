@@ -1,3 +1,53 @@
 .footer {
 	background: $primary-color;
+	&-top {
+		display: grid;
+		grid-template-columns: 6.44fr 4.29fr 1.91fr;
+		padding: 48px 0;
+		border-top: 4px solid $white;
+		border-bottom: 4px solid $white;
+	}
+	&-bottom {
+		padding: 16px 0;
+	}
+	&-navigation {
+		display: grid;
+		grid-template-columns: 50% 50%;
+	}
+	&-contacts {
+		&__link {
+			margin-bottom: 12px;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+	&-list {
+		&__item {
+			margin-bottom: 12px;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+		&__link {
+			@include font(1.8rem, calc(26 / 18));
+			font-weight: 500;
+		}
+	}
+}
+
+@media screen and (max-width: 991px) {
+	.footer {
+		&-top {
+			padding-top: 56px;
+			padding-bottom: 48px;
+			grid-template-columns: 100%;
+		}
+		&-logo {
+			margin-bottom: 40px;
+		}
+		&-navigation {
+			margin-bottom: 32px;
+		}
+	}
 }

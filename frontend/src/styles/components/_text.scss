@@ -49,9 +49,18 @@
 			&-xl p {
 				@include font(2rem, calc(28 / 20));
 			}
+			&-l,
+			&-l p {
+				@include font(2rem, calc(28 / 20));
+			}
 			&-s,
 			&-s p {
 				@include font(1.4rem, calc(22 / 14));
+			}
+		}
+		&_blue {
+			& .title_transparent {
+				-webkit-text-stroke: 1.5px $primary-color;
 			}
 		}
 	}

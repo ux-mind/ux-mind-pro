@@ -1,5 +1,7 @@
 import React, { useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { motion } from 'framer-motion';
+import { useMediaQuery } from 'react-responsive';
 import { Navigation, EffectFade } from 'swiper';
 import 'swiper/css';
 
@@ -21,6 +23,16 @@ const reviews = [
 		id: 1,
 		name: 'Stiven Smith',
 		position: 'CEO Company',
+		text: 'It really feels like&nbsp;you are working with a team that can get the job done.',
+		avatar: {
+			x1: stiven,
+			x2: stiven2x
+		}
+	},
+	{
+		id: 3,
+		name: 'Stiven Smith',
+		position: 'CEO Company',
 		text: 'I have been hiring people in this space for a number of years and&nbsp;I&nbsp;have never seen this level of&nbsp;professionalism. It really feels like&nbsp;you are working with a team that can get the job done.',
 		avatar: {
 			x1: stiven,
@@ -30,6 +42,10 @@ const reviews = [
 ];
 
 const ReviewsSwiper = () => {
+	const isMobile = useMediaQuery({
+		query: `(max-width: 991px)`
+	});
+
 	const prevBtn = useRef(null);
 	const nextBtn = useRef(null);
 
@@ -70,7 +86,20 @@ const ReviewsSwiper = () => {
 				))}
 			</Swiper>
 			<div className="reviews-swiper__pagination">
-				<button ref={prevBtn}>
+				<motion.button
+					whileHover={{
+						width: isMobile ? 30 : 48,
+						height: isMobile ? 30 : 48,
+						transition: { duration: 0.2 }
+					}}
+					whileTap={{
+						width: isMobile ? 30 : 48,
+						height: isMobile ? 30 : 48,
+						opacity: 0.3,
+						transition: { duration: 0.1 }
+					}}
+					ref={prevBtn}
+				>
 					<svg
 						width="35"
 						height="35"
@@ -80,8 +109,21 @@ const ReviewsSwiper = () => {
 					>
 						<path d="M34 33H2M2 33V1M2 33L34 1" stroke="#0D08FF" strokeWidth="2.5" />
 					</svg>
-				</button>
-				<button ref={nextBtn}>
+				</motion.button>
+				<motion.button
+					whileHover={{
+						width: isMobile ? 30 : 48,
+						height: isMobile ? 30 : 48,
+						transition: { duration: 0.2 }
+					}}
+					whileTap={{
+						width: isMobile ? 30 : 48,
+						height: isMobile ? 30 : 48,
+						opacity: 0.3,
+						transition: { duration: 0.1 }
+					}}
+					ref={nextBtn}
+				>
 					<svg
 						width="35"
 						height="35"
@@ -91,7 +133,7 @@ const ReviewsSwiper = () => {
 					>
 						<path d="M1 2H33M33 2V34M33 2L1 34" stroke="#0D08FF" strokeWidth="2.5" />
 					</svg>
-				</button>
+				</motion.button>
 			</div>
 		</div>
 	);

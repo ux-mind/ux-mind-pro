@@ -7,16 +7,39 @@
 	&-swiper {
 		position: relative;
 		max-width: 66.06012658%;
+		& .swiper-wrapper {
+			align-items: stretch;
+		}
+		& .swiper-slide {
+			height: auto;
+		}
 		&__pagination {
 			position: relative;
-			@include flex(row, center, flex-end);
+			@include flex(row, flex-start, flex-end);
+			min-height: 32px;
 			& button {
+				position: absolute;
 				width: 32px;
 				height: 32px;
 				display: inline-block;
-				margin-right: 40px;
+				top: 0;
+				z-index: 1;
+				&:first-child {
+					right: 72px;
+				}
 				&:last-child {
-					margin-right: 0;
+					bottom: 0;
+					top: auto;
+					right: auto;
+					left: calc(100% - 32px);
+				}
+				& svg {
+					width: 100%;
+					height: 100%;
+				}
+				&.swiper-button-disabled {
+					opacity: 0.3 !important;
+					pointer-events: none;
 				}
 			}
 		}
@@ -25,6 +48,8 @@
 		background: $white;
 		position: relative;
 		padding-top: 80px;
+		@include flex(column);
+		height: 100%;
 		&::before {
 			@include before(0, auto, auto);
 			top: 0;
@@ -62,10 +87,47 @@
 
 @media screen and (max-width: 991px) {
 	.reviews {
+		grid-template-columns: 100%;
+		&-swiper {
+			max-width: 100%;
+			&__pagination {
+				margin-top: 32px;
+				min-height: 20px;
+				& button {
+					width: 20px;
+					height: 20px;
+					&:first-child {
+						right: 45px;
+					}
+					&:last-child {
+						margin-right: 0;
+						left: calc(100% - 20px);
+					}
+				}
+			}
+		}
+		&-link {
+			display: none;
+		}
 		&-item {
 			padding-top: 58px;
 			&__text {
 				margin-bottom: 24px;
+			}
+			&-profile {
+				&__img {
+					margin-right: 16px;
+					width: 56px;
+					height: 56px;
+				}
+				&__info {
+					& .title {
+						@include font(1.6rem, calc(24 / 16));
+					}
+					& p {
+						@include font(1.2rem, calc(20 / 12));
+					}
+				}
 			}
 		}
 	}

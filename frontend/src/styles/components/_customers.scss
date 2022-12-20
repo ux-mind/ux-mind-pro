@@ -28,5 +28,17 @@
 @media screen and (max-width: 991px) {
 	.customers {
 		padding: 144px 0;
+		&-title {
+			margin-bottom: 48px;
+		}
+		&-row {
+			margin-bottom: 56px;
+		}
+		&-line {
+			&__item {
+				padding: 0.44445em 1.22222em;
+				@include font(1.8rem, calc(26 / 18));
+			}
+		}
 	}
 }

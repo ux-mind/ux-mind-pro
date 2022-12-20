@@ -1,0 +1,16 @@
+.share {
+	&-title {
+		margin-bottom: 56px;
+	}
+}
+
+@media screen and (max-width: 991px) {
+	.share {
+		&-title {
+			margin-bottom: 32px;
+			& .title {
+				@include font(4rem, calc(44 / 40));
+			}
+		}
+	}
+}

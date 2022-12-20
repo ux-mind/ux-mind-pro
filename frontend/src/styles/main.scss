@@ -52,7 +52,8 @@ html {
 
 // 6. Components
 @import 'components/app', './components/hero', './components/experience', './components/latest-projects',
-	'./components/home-banner', './components/request', './components/customers', './components/reviews';
+	'./components/home-banner', './components/request', './components/customers', './components/reviews',
+	'./components/share';
 
 // 7. Page-specific styles
 @import 'pages/home';

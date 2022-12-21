@@ -9,6 +9,7 @@
 		"framer-motion": "^7.6.19",
 		"react-custom-scrollbars-2": "^4.5.0",
 		"react-responsive": "^9.0.2",
+		"resize-observer-polyfill": "^1.5.1",
 		"swiper": "^8.4.5"
 	},
 	"devDependencies": {

@@ -41,6 +41,10 @@
 	&-list {
 		&__item {
 			display: flex;
+			& .link {
+				@include font(6.4rem, calc(72 / 64));
+				font-weight: 700;
+			}
 		}
 		&__item:not(:last-child) {
 			margin-bottom: 32px;

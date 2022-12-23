@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_footer_menu_social_footer_menu_socials",
+  "info": {
+    "displayName": "footer_menu_social"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string"
+    },
+    "link": {
+      "type": "string"
+    }
+  }
+}

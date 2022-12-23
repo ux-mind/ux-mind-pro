@@ -1,0 +1,13 @@
+{
+  "collectionName": "components_customers_tags_customers_tags",
+  "info": {
+    "displayName": "customers_tags"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

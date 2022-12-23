@@ -1,0 +1,14 @@
+{
+  "collectionName": "components_request_list_items_request_list_items",
+  "info": {
+    "displayName": "request_list_items",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

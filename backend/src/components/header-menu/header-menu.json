@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_header_menu_header_menus",
+  "info": {
+    "displayName": "header_menu"
+  },
+  "options": {},
+  "attributes": {
+    "text": {
+      "type": "string",
+      "required": true
+    },
+    "link": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

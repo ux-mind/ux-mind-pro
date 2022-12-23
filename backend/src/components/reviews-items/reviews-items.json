@@ -1,0 +1,29 @@
+{
+  "collectionName": "components_reviews_items_reviews_items",
+  "info": {
+    "displayName": "reviews_items"
+  },
+  "options": {},
+  "attributes": {
+    "reviews_text": {
+      "type": "text",
+      "required": true
+    },
+    "reviews_author_name": {
+      "type": "string",
+      "required": true
+    },
+    "reviews_author_post": {
+      "type": "string",
+      "required": true
+    },
+    "reviews_author_photo": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

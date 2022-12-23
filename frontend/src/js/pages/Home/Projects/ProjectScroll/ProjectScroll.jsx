@@ -1,12 +1,14 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { motion, useTransform, useScroll } from 'framer-motion';
+import { getCoords } from '../../../../functions/functions';
 
 const ProjectScroll = ({ data }) => {
 	const imageContainer = useRef(null);
 	const firstProjectText = useRef(null);
 	const lastProjectText = useRef(null);
 
-	const [contentPaddingTop, setContentPaddingTop] = useState(0);
-	const [contentPaddingBottom, setContentPaddingBottom] = useState(0);
+	const [paddingTop, setPaddingTop] = useState(0);
+	const [paddingBottom, setPaddingBottom] = useState(0);
 
 	useEffect(() => {
 		if (imageContainer && firstProjectText && lastProjectText) {
@@ -16,19 +18,42 @@ const ProjectScroll = ({ data }) => {
 
 			const lastProjectTextHeight = lastProjectText.current.offsetHeight / 2;
 
-			setContentPaddingTop(halfImageHeight - firstProjectTextHeight);
-			setContentPaddingBottom(halfImageHeight - lastProjectTextHeight);
+			setPaddingTop(halfImageHeight - firstProjectTextHeight);
+			setPaddingBottom(halfImageHeight - lastProjectTextHeight);
 		}
 	}, [imageContainer, firstProjectText, lastProjectText]);
 
+	const scrollBlockRef = useRef(null);
+
+	const { scrollY } = useScroll();
+
+	const [offsetY, setOffsetY] = useState(() => new Array(data.length).fill(0));
+
+	useEffect(() => {
+		if (scrollBlockRef) {
+			let { top } = getCoords(scrollBlockRef.current);
+			const height = scrollBlockRef.current.offsetHeight;
+
+			const scrollPerProject = height / data.length;
+
+			setOffsetY(() => {
+				const emptyArr = new Array(data.length).fill(0);
+
+				return emptyArr.map((num, idx) =>
+					Math.round(top - 100 / (idx + 1) + scrollPerProject * idx)
+				);
+			});
+		}
+	}, [scrollBlockRef, paddingBottom, paddingTop]);
+
 	return (
-		<div className="latest-projects-scroll">
+		<div className="latest-projects-scroll" ref={scrollBlockRef}>
 			<div className="latest-projects-scroll__wrapper">
 				<div
 					className="latest-projects-scroll__content"
 					style={{
-						paddingTop: `${contentPaddingTop}px`,
-						paddingBottom: `${contentPaddingBottom}px`
+						paddingTop: `${paddingTop}px`,
+						paddingBottom: `${paddingBottom}px`
 					}}
 				>
 					{data.map((project, idx, arr) => {
@@ -50,46 +75,30 @@ const ProjectScroll = ({ data }) => {
 							</div>
 						);
 					})}
-					{/* <div className="text-block" ref={firstProjectText}>
-						<span className="chapter text_size-s">Ecommerce</span>
-						<h3 className="title title_size-sm">Headphone Store</h3>
-						<p>
-							All the Lorem Ipsum generators on the Internet tend to repeat predefined
-							chunks as necessary, making this the first true generator on the
-							Internet.
-						</p>
-					</div>
-					<div className="text-block">
-						<span className="chapter text_size-s">Mobile App</span>
-						<h3 className="title title_size-sm">Flight Booking</h3>
-						<p>
-							All the Lorem Ipsum generators on the Internet tend to repeat predefined
-							chunks as necessary, making this the first true generator on the
-							Internet.
-						</p>
-					</div>
-					<div className="text-block" ref={lastProjectText}>
-						<span className="chapter text_size-s">Web App</span>
-						<h3 className="title title_size-sm">Crypto Exchange</h3>
-						<p>
-							All the Lorem Ipsum generators on the Internet tend to repeat predefined
-							chunks as necessary, making this the first true generator on the
-							Internet.
-						</p>
-					</div> */}
 				</div>
 				<div className="latest-projects-scroll__image" ref={imageContainer}>
 					<div>
-						{data.map(({ id, img }) => {
+						{data.map(({ id, img }, idx) => {
+							let opacityValues = new Array(data.length).fill(0);
+
+							opacityValues[idx] = 1;
+
+							const opacity = useTransform(scrollY, offsetY, opacityValues);
+
 							return (
-								<img
-									width="835"
-									height="626"
-									src={img.x1}
-									srcSet={`${img.x1} 1x, ${img.x2} 2x`}
-									alt="project"
+								<motion.div
+									className="img-wrapper"
+									style={{ opacity: opacity }}
 									key={id}
-								/>
+								>
+									<img
+										width="835"
+										height="626"
+										src={img.x1}
+										srcSet={`${img.x1} 1x, ${img.x2} 2x`}
+										alt="project"
+									/>
+								</motion.div>
 							);
 						})}
 					</div>

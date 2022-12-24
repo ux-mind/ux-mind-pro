@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
 import { useTransform, motion, useScroll } from 'framer-motion';
+import useExperienceScroll from '../../../hooks/scrollHooks/useExperienceScroll';
 import { getCoords } from '../../../functions/functions';
 
 const Experience = () => {
@@ -15,7 +16,7 @@ const Experience = () => {
 	const { scrollY } = useScroll();
 
 	// Animation values for the Experience block
-	const topValues = isMobile ? [0, 800] : [0, 800, 1600, 1800, 2100];
+	const topValues = useExperienceScroll();
 	const heightValues = isMobile ? [375, 812] : [560, 1000, 1000, 1000, 1000];
 
 	const minHeight = useTransform(scrollY, offsetY, heightValues);
@@ -47,13 +48,11 @@ const Experience = () => {
 
 			top = top - topValues[topValues.length - 1];
 
-			if (!isMobile) {
-				setOffsetY([top, top + 800, top + 1600, top + 1800, top + 2400]);
-			}
+			let offsetArr = new Array(topValues.length).fill(top);
 
-			if (isMobile) {
-				setOffsetY([top, top + 800]);
-			}
+			offsetArr = offsetArr.map((value, idx) => value + topValues[idx]);
+
+			setOffsetY(offsetArr);
 		}
 	}, [experienceRef, isMobile]);
 

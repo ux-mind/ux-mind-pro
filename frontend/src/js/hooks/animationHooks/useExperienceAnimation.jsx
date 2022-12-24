@@ -3,10 +3,12 @@ import { useTransform, useScroll } from 'framer-motion';
 import { useMediaQuery } from 'react-responsive';
 import { getCoords } from '../../functions/functions';
 
-const useExperienceAnimation = (experienceRef) => {
+const useExperienceAnimation = () => {
 	const isMobile = useMediaQuery({
 		query: `(max-width: 991px)`
 	});
+
+	const [experienceBlock, setExperienceBlock] = useState(null);
 
 	const { scrollY } = useScroll();
 
@@ -40,13 +42,21 @@ const useExperienceAnimation = (experienceRef) => {
 	const textScale = useTransform(scrollY, offsetY, textScaleValues);
 
 	const animationValuesLength = topValues.length;
-	const maxTopValue = topValues.reduce((maxValue, value) => {
+	const maxScrollValue = topValues.reduce((maxValue, value) => {
 		return Math.max(maxValue, value);
 	}, 0);
 
 	useEffect(() => {
-		if (experienceRef) {
-			let { top } = getCoords(experienceRef.current);
+		const experienceBlock = document.querySelector('#experience');
+
+		if (experienceBlock) {
+			setExperienceBlock(experienceBlock);
+		}
+	}, []);
+
+	useEffect(() => {
+		if (experienceBlock) {
+			let { top } = getCoords(experienceBlock);
 
 			top = top - topValues[topValues.length - 1];
 
@@ -56,7 +66,7 @@ const useExperienceAnimation = (experienceRef) => {
 
 			setOffsetY(offsetArr);
 		}
-	}, [experienceRef]);
+	}, [experienceBlock]);
 
 	return {
 		minHeight,
@@ -68,7 +78,7 @@ const useExperienceAnimation = (experienceRef) => {
 		textTop,
 		textScale,
 		animationValuesLength,
-		maxTopValue
+		maxScrollValue
 	};
 };
 

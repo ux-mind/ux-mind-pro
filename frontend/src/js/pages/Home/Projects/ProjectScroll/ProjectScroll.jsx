@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { motion, useTransform, useScroll } from 'framer-motion';
 import { getCoords } from '../../../../functions/functions';
+import useExperienceAnimation from '../../../../hooks/animationHooks/useExperienceAnimation';
 
 const ProjectScroll = ({ data }) => {
 	const imageContainer = useRef(null);

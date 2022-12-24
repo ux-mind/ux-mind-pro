@@ -4,18 +4,12 @@ import { motion } from 'framer-motion';
 import useExperienceAnimation from '../../../hooks/animationHooks/useExperienceAnimation';
 
 const Experience = () => {
-	const isMobile = useMediaQuery({
-		query: `(max-width: 991px)`
-	});
-
-	const experienceRef = useRef(null);
-
-	const animationValues = useExperienceAnimation(experienceRef);
+	const animationValues = useExperienceAnimation();
 
 	return (
 		<motion.div
 			className="experience"
-			ref={experienceRef}
+			id="experience"
 			style={{
 				marginTop: animationValues.topPosition,
 				height: animationValues.minHeight

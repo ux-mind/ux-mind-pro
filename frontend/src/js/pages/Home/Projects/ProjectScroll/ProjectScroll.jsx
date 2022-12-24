@@ -33,32 +33,13 @@ const ProjectScroll = ({ data }) => {
 
 	const [offsetY, setOffsetY] = useState(() => new Array(data.length).fill(0));
 
-	// useEffect(() => {
-	// 	if (scrollBlockRef) {
-	// 		let { top } = getCoords(scrollBlockRef.current);
-	// 		const height = scrollBlockRef.current.offsetHeight;
-
-	// 		const scrollPerProject = height / data.length;
-
-	// 		const emptyArr = new Array(data.length).fill(0);
-
-	// 		const arr = emptyArr.map((num, idx) => {
-	// 			// console.log(scrollPerProject);
-
-	// 			return Math.round(top - 100 / data.length + scrollPerProject * idx);
-	// 		});
-
-	// 		setOffsetY(arr);
-	// 	}
-	// }, [scrollBlockRef, paddingBottom, paddingTop]);
-
 	useEffect(() => {
 		if (contentBlockRef) {
 			const block = contentBlockRef.current;
 
 			const newTextScrolls = [];
 
-			Array.from(block.children).forEach((element, idx) => {
+			Array.from(block.children).forEach((element) => {
 				const { top } = getCoords(element);
 
 				const scrollValue = top - 100 - (paddingTop + paddingBottom) / 2;

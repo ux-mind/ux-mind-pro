@@ -1,5 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useMediaQuery } from 'react-responsive';
+import React from 'react';
 import { motion } from 'framer-motion';
 import useExperienceAnimation from '../../../hooks/animationHooks/useExperienceAnimation';
 

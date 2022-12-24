@@ -70,9 +70,10 @@
 			}
 		}
 		&__content {
+			@include flex(column, flex-start, space-between);
+			min-height: 2500px;
 			& .text-block {
 				@include flex(column);
-				margin-bottom: 600px;
 				&:last-child {
 					margin-bottom: 0;
 				}

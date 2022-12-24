@@ -40,6 +40,9 @@ const useExperienceAnimation = (experienceRef) => {
 	const textScale = useTransform(scrollY, offsetY, textScaleValues);
 
 	const animationValuesLength = topValues.length;
+	const maxTopValue = topValues.reduce((maxValue, value) => {
+		return Math.max(maxValue, value);
+	}, 0);
 
 	useEffect(() => {
 		if (experienceRef) {
@@ -64,7 +67,8 @@ const useExperienceAnimation = (experienceRef) => {
 		textColor,
 		textTop,
 		textScale,
-		animationValuesLength
+		animationValuesLength,
+		maxTopValue
 	};
 };
 

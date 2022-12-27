@@ -31,7 +31,7 @@ const ContactModal = ({ opened, setOpened }) => {
 							<div className="container">
 								<div className="contact-modal__title">
 									<Title size="s">
-										Let's discuss your project and find creative solutions
+										Let's discuss your project and&nbsp;find creative solutions
 									</Title>
 								</div>
 								<form

@@ -18,3 +18,18 @@
 		}
 	}
 }
+
+@media screen and (max-width: 991px) {
+	.input {
+		@include font(2.4rem, calc(32 / 24));
+		padding-bottom: 0.6667em;
+		&::placeholder {
+			@include font(2.4rem, calc(32 / 24));
+		}
+		&-wrapper {
+			&_long {
+				grid-column: span 1;
+			}
+		}
+	}
+}

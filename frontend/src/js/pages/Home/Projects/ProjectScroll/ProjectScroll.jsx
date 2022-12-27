@@ -12,8 +12,6 @@ const ProjectScroll = ({ data }) => {
 	const [paddingTop, setPaddingTop] = useState(0);
 	const [paddingBottom, setPaddingBottom] = useState(0);
 
-	const [textScrolls, setTextScrolls] = useState(Array(data.length).fill(0));
-
 	useEffect(() => {
 		if (imageContainer && firstProjectText && lastProjectText) {
 			const halfImageHeight = imageContainer.current.offsetHeight / 2;
@@ -50,14 +48,6 @@ const ProjectScroll = ({ data }) => {
 			setOffsetY(newTextScrolls);
 		}
 	}, [contentBlockRef, paddingBottom, paddingTop]);
-
-	useEffect(() => {
-		window.addEventListener('scroll', () => {
-			console.log(window.scrollY);
-		});
-	}, []);
-
-	console.log(offsetY);
 
 	return (
 		<div className="latest-projects-scroll" ref={scrollBlockRef}>

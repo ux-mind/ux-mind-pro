@@ -1,0 +1,25 @@
+.contact-modal {
+	&__wrapper {
+		padding-top: 200px;
+		padding-bottom: 80px;
+	}
+	&__title {
+		margin-bottom: 88px;
+	}
+	&__form {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-gap: 56px 24px;
+		margin-bottom: 164px;
+	}
+	&__submit {
+		&-wrapper {
+			text-align: center;
+			grid-column: span 2;
+		}
+	}
+	&__textline {
+		overflow: hidden;
+		max-width: 100%;
+	}
+}

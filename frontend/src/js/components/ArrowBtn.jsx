@@ -11,7 +11,7 @@ const ArrowBtn = ({ onClick, type, to, children }) => {
 	}
 
 	return (
-		<button type="button" className="link-arrow" onClick={() => onClick}>
+		<button type="button" className="link-arrow" onClick={onClick}>
 			{children}
 		</button>
 	);

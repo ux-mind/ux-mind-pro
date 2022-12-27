@@ -1,0 +1,20 @@
+.input {
+	width: 100%;
+	@include font(3.2rem, calc(40 / 32));
+	font-weight: 500;
+	padding: 0;
+	background: transparent;
+	padding-bottom: 0.5em;
+	color: $white;
+	&::placeholder {
+		@include font(3.2rem, calc(40 / 32));
+		color: $white;
+	}
+	&-wrapper {
+		position: relative;
+		border-bottom: 4px solid $white;
+		&_long {
+			grid-column: span 2;
+		}
+	}
+}

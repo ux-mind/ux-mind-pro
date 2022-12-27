@@ -45,7 +45,8 @@ html {
 
 //4. Components
 @import 'components/title', './components/text', 'components/button', './components/link',
-	'./components/animated-textline', './components/logo', './components/menu-btn';
+	'./components/animated-textline', './components/logo', './components/menu-btn', './components/modal',
+	'./components/input';
 
 // 5. Layout-related sections
 @import 'layout/header', 'layout/main', 'layout/footer', 'layout/menu', './layout/section';
@@ -53,7 +54,7 @@ html {
 // 6. Components
 @import 'components/app', './components/hero', './components/experience', './components/latest-projects',
 	'./components/home-banner', './components/request', './components/customers', './components/reviews',
-	'./components/share';
+	'./components/share', './components/contact-modal';
 
 // 7. Page-specific styles
 @import 'pages/home';

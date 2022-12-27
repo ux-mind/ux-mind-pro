@@ -19,7 +19,6 @@ const ModalHeader = ({ setOpened }) => {
 							<span></span>
 							<span></span>
 						</div>
-						<span className="menu-btn__text">Menu</span>
 					</button>
 				</div>
 			</div>

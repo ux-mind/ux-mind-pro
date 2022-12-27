@@ -18,7 +18,12 @@ const Menu = ({ opened }) => {
 	return (
 		<AnimatePresence>
 			{opened ? (
-				<motion.div className="menu">
+				<motion.div
+					className="menu"
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					exit={{ opacity: 0 }}
+				>
 					<Scrollbars>
 						<div className="menu-wrapper">
 							<div className="container">

@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_projects_info_latest_projects_info_items",
+  "info": {
+    "displayName": "latest_projects_info_items",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "subtitle": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

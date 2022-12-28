@@ -18,8 +18,8 @@ const useExperienceAnimation = () => {
 	const topValues = isMobile ? [0, 800] : [0, 800, 1600, 1800, 2100];
 	const heightValues = isMobile ? [375, 812] : [560, 1000, 1000, 1000, 1000];
 
-	const minHeight = useTransform(scrollY, offsetY, heightValues);
 	const topPosition = useTransform(scrollY, offsetY, topValues);
+	const minHeight = useTransform(scrollY, offsetY, heightValues);
 
 	// Animation values for the Experience background
 	const heightBgValues = isMobile ? ['100%', '100%'] : ['100%', '100%', '0%', '0%', '0%'];

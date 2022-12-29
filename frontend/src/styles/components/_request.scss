@@ -16,11 +16,11 @@
 			flex-grow: 1;
 			writing-mode: vertical-rl;
 			padding: 0 16px;
-			border-right: 2px solid $white;
+			border-left: 2px solid $white;
 			position: relative;
 			transform: rotate(180deg);
 			&:first-child {
-				border-left: 2px solid $white;
+				border-right: 2px solid $white;
 			}
 			& p {
 				position: absolute;

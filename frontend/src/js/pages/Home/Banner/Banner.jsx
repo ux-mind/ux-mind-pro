@@ -1,6 +1,5 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { getViewportCoords, getCoords } from '../../../functions/functions';
+import React from 'react';
+import { motion } from 'framer-motion';
 import useBannerAnimation from '../../../hooks/animationHooks/useBannerAnimation';
 
 import banner from '../../../../assets/images/home-banner.png';
@@ -10,12 +9,14 @@ const Banner = () => {
 	const { bannerShown, topPosition, minHeight, mobileHeight } = useBannerAnimation();
 
 	return (
-		<motion.div
-			id="banner"
-			className="home-banner"
-			style={{ opacity: bannerShown ? '1' : '0', transition: 'opacity 1s' }}
-		>
-			<motion.div className="home-banner__block" style={{ marginTop: topPosition }}>
+		<motion.div id="banner" className="home-banner" style={{ marginTop: topPosition }}>
+			<motion.div
+				className="home-banner__block"
+				style={{
+					opacity: bannerShown ? '1' : '0',
+					transition: 'opacity 1s'
+				}}
+			>
 				<motion.div
 					id="banner-wrapper"
 					className="home-banner__wrapper"

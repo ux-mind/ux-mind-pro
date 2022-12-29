@@ -50,8 +50,6 @@ const Request = () => {
 												? `opacity .4s ${0.5 * idx}s`
 												: 'none'
 										}}
-										// animate={{ opacity: isInView ? 1 : 0 }}
-										// transition={{ ease: 'easeOut', duration: 0.5 * idx }}
 									>
 										<p dangerouslySetInnerHTML={{ __html: text }}></p>
 									</motion.li>

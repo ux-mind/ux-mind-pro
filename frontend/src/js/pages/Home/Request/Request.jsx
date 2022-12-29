@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Title from '../../../components/Title';
+import { motion, useInView } from 'framer-motion';
 
 const requestList = [
 	{ id: 0, text: 'UX/UI' },
@@ -16,6 +17,10 @@ const requestList = [
 ];
 
 const Request = () => {
+	const requestRef = useRef(null);
+
+	const isInView = useInView(requestRef);
+
 	return (
 		<section className="section request">
 			<div className="container">
@@ -33,12 +38,23 @@ const Request = () => {
 						</div>
 					</div>
 					<div className="request-content">
-						<ul className="request-list">
-							{requestList.map(({ id, text }) => {
+						<ul className="request-list" ref={requestRef}>
+							{requestList.map(({ id, text }, idx) => {
 								return (
-									<li className="request-list__item" key={id}>
+									<motion.li
+										className="request-list__item"
+										key={id}
+										style={{
+											opacity: isInView ? 1 : 0,
+											transition: isInView
+												? `opacity .4s ${0.5 * idx}s`
+												: 'none'
+										}}
+										// animate={{ opacity: isInView ? 1 : 0 }}
+										// transition={{ ease: 'easeOut', duration: 0.5 * idx }}
+									>
 										<p dangerouslySetInnerHTML={{ __html: text }}></p>
-									</li>
+									</motion.li>
 								);
 							})}
 						</ul>

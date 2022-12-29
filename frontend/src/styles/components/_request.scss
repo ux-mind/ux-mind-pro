@@ -19,7 +19,7 @@
 			border-right: 2px solid $white;
 			position: relative;
 			transform: rotate(180deg);
-			&:last-child {
+			&:first-child {
 				border-left: 2px solid $white;
 			}
 			& p {

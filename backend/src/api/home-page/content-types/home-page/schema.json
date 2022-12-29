@@ -44,14 +44,6 @@
       "type": "string",
       "required": true
     },
-    "latest_projects_image": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ]
-    },
     "latest_projects_info_items": {
       "displayName": "latest_projects_info_items",
       "type": "component",
@@ -151,6 +143,12 @@
     "share_link_url": {
       "type": "string",
       "required": true
+    },
+    "latest_project_images": {
+      "displayName": "latest_project_images",
+      "type": "component",
+      "repeatable": true,
+      "component": "latest-project-images.latest-project-images"
     }
   }
 }

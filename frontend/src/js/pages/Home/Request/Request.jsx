@@ -1,6 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import Title from '../../../components/Title';
-import { motion, useInView } from 'framer-motion';
+import { motion, useTransform, useScroll, useInView } from 'framer-motion';
+import { getCoords } from '../../../functions/functions';
 
 const requestList = [
 	{ id: 0, text: 'UX/UI' },
@@ -21,45 +22,91 @@ const Request = () => {
 
 	const isInView = useInView(requestRef);
 
+	const { scrollY } = useScroll();
+
+	const [offsetY, setOffsetY] = useState(() => [0, 0, 0]);
+
+	// Animation values for the Request block
+	const topValues = [0, 1200, 1200];
+
+	const topPosition = useTransform(scrollY, offsetY, topValues);
+
+	// Animation values for the Request list
+	const listHeightValues = [380, 380, 1306];
+
+	const listMinHeight = useTransform(scrollY, offsetY, listHeightValues);
+
+	// Animation values for the list items
+	const itemTransform = useTransform(scrollY, offsetY, [0, 0, 521]);
+
+	useEffect(() => {
+		if (requestRef) {
+			let { top } = getCoords(requestRef.current);
+
+			const topValue = topValues[topValues.length - 1];
+
+			top = top - topValue;
+
+			let offsetArr = new Array(topValues.length).fill(top);
+
+			offsetArr = [top, top + 1200, top + 2400];
+
+			setOffsetY(offsetArr);
+		}
+	}, [requestRef]);
+
 	return (
-		<section className="section request">
-			<div className="container">
-				<div className="section-wrapper request-wrapper">
-					<div className="request-top">
-						<div className="request-top__link">
-							<button className="link-primary">Leave a request</button>
+		<motion.section
+			className="section request"
+			ref={requestRef}
+			style={{ marginTop: topPosition }}
+		>
+			<motion.div className="request-block">
+				<div className="container">
+					<div className="section-wrapper request-wrapper">
+						<div className="request-top">
+							<div className="request-top__link">
+								<button className="link-primary">Leave a request</button>
+							</div>
+							<div className="request-top__title">
+								<Title size="s">
+									<span className="title_transparent">Smart design</span>
+									<br />& development solutions <br />
+									for the digital environment
+								</Title>
+							</div>
 						</div>
-						<div className="request-top__title">
-							<Title size="s">
-								<span className="title_transparent">Smart design</span>
-								<br />& development solutions <br />
-								for the digital environment
-							</Title>
+						<div className="request-content">
+							<motion.ul
+								className="request-list"
+								ref={requestRef}
+								style={{ height: listMinHeight }}
+							>
+								{requestList.map(({ id, text }, idx) => {
+									return (
+										<motion.li
+											className="request-list__item"
+											key={id}
+											style={{
+												transition: isInView
+													? `opacity .4s ${1 + 0.4 * idx}s`
+													: 'none',
+												opacity: isInView ? 1 : 0
+											}}
+										>
+											<motion.p
+												dangerouslySetInnerHTML={{ __html: text }}
+												style={{ top: itemTransform }}
+											></motion.p>
+										</motion.li>
+									);
+								})}
+							</motion.ul>
 						</div>
-					</div>
-					<div className="request-content">
-						<ul className="request-list" ref={requestRef}>
-							{requestList.map(({ id, text }, idx) => {
-								return (
-									<motion.li
-										className="request-list__item"
-										key={id}
-										style={{
-											opacity: isInView ? 1 : 0,
-											transition: isInView
-												? `opacity .4s ${0.5 * idx}s`
-												: 'none'
-										}}
-									>
-										<p dangerouslySetInnerHTML={{ __html: text }}></p>
-									</motion.li>
-								);
-							})}
-						</ul>
 					</div>
 				</div>
-			</div>
-		</section>
+			</motion.div>
+		</motion.section>
 	);
 };
 

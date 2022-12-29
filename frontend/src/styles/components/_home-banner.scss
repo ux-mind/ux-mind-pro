@@ -2,6 +2,7 @@
 	position: relative;
 	&__block {
 		height: 1000px;
+		max-height: inherit;
 		position: relative;
 	}
 	&__wrapper {
@@ -17,12 +18,18 @@
 
 @media screen and (max-width: 991px) {
 	.home-banner {
-		max-height: 400px;
+		max-height: 811px;
+		&__wrapper {
+			height: 25.89396%;
+		}
+		&__block {
+			height: auto;
+		}
 	}
 }
 
-@media screen and (max-width: 576px) {
-	.home-banner {
-		max-height: 202px;
-	}
-}
+// @media screen and (max-width: 576px) {
+// 	.home-banner {
+// 		max-height: 202px;
+// 	}
+// }

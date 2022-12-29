@@ -7,7 +7,7 @@ import banner from '../../../../assets/images/home-banner.png';
 import banner2x from '../../../../assets/images/home-banner@2x.png';
 
 const Banner = () => {
-	const { bannerShown, topPosition, minHeight } = useBannerAnimation();
+	const { bannerShown, topPosition, minHeight, mobileHeight } = useBannerAnimation();
 
 	return (
 		<motion.div
@@ -19,7 +19,7 @@ const Banner = () => {
 				<motion.div
 					id="banner-wrapper"
 					className="home-banner__wrapper"
-					style={{ height: minHeight }}
+					style={{ height: mobileHeight ? mobileHeight : minHeight }}
 				>
 					<img
 						width="100%"

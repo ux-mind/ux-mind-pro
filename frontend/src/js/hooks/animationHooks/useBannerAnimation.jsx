@@ -1,8 +1,13 @@
 import { useState, useEffect } from 'react';
 import { getCoords, getViewportCoords } from '../../functions/functions';
 import { useTransform, useScroll } from 'framer-motion';
+import { useMediaQuery } from 'react-responsive';
 
 const useBannerAnimation = () => {
+	const isMobile = useMediaQuery({
+		query: `(max-width: 991px)`
+	});
+
 	const { scrollY } = useScroll();
 
 	const [banner, setBanner] = useState(null);
@@ -13,10 +18,16 @@ const useBannerAnimation = () => {
 	const [offsetY, setOffsetY] = useState(() => [0, 0]);
 
 	const topValues = [0, 1200];
-	const heightValues = ['54.4%', '100%'];
+	const heightValues = isMobile ? ['100%', '100%'] : ['54.4%', '100%'];
 
 	const topPosition = useTransform(scrollY, offsetY, topValues);
 	const minHeight = useTransform(scrollY, offsetY, heightValues);
+
+	const mobileHeightValues = isMobile ? [210, 811] : null;
+
+	const mobileHeight = mobileHeightValues
+		? useTransform(scrollY, offsetY, mobileHeightValues)
+		: null;
 
 	useEffect(() => {
 		const banner = document.querySelector('#banner');
@@ -69,7 +80,7 @@ const useBannerAnimation = () => {
 		}
 	}, [banner]);
 
-	return { bannerShown, topPosition, minHeight };
+	return { bannerShown, topPosition, minHeight, mobileHeight };
 };
 
 export default useBannerAnimation;

@@ -40,6 +40,9 @@ body {
 	height: 100%;
 	scroll-behavior: smooth;
 	overscroll-behavior: none;
+	&::-webkit-scrollbar {
+		display: none;
+	}
 	&.locked {
 		overflow: hidden;
 	}

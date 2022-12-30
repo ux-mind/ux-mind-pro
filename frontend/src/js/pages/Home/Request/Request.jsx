@@ -24,20 +24,20 @@ const Request = () => {
 
 	const { scrollY } = useScroll();
 
-	const [offsetY, setOffsetY] = useState(() => [0, 0, 0]);
+	const [offsetY, setOffsetY] = useState(() => [0, 0]);
 
 	// Animation values for the Request block
-	const topValues = [0, 150, 150];
+	const topValues = [0, 0];
 
 	const topPosition = useTransform(scrollY, offsetY, topValues);
 
 	// Animation values for the Request list
-	const listHeightValues = [380, 380, 1306];
+	const listHeightValues = [380, 1306];
 
 	const listMinHeight = useTransform(scrollY, offsetY, listHeightValues);
 
 	// Animation values for the list items
-	const itemTransform = useTransform(scrollY, offsetY, [0, 0, 521]);
+	const itemTransform = useTransform(scrollY, offsetY, [0, 521]);
 
 	useEffect(() => {
 		if (requestRef) {
@@ -49,7 +49,7 @@ const Request = () => {
 
 			let offsetArr = new Array(topValues.length).fill(top);
 
-			offsetArr = [top, top + 150, top + 1300];
+			offsetArr = [top, top + 1200];
 
 			setOffsetY(offsetArr);
 		}

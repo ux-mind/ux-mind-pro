@@ -17,10 +17,10 @@
 			background: $white;
 			transition: 0.3s transform;
 			&:first-child {
-				transform: translateY(calc(-50% - 4px));
+				transform: translateY(calc(-50% - 5px));
 			}
 			&:last-child {
-				transform: translateY(calc(-50% + 4px));
+				transform: translateY(calc(-50% + 3px));
 			}
 		}
 	}

@@ -11,11 +11,11 @@ const ProjectSlider = ({ data }) => {
 				<Swiper
 					modules={[EffectFade, Pagination]}
 					pagination={{
-						el: paginationRef.current
+						el: '.latest-projects-slider__pagination'
 					}}
-					onBeforeInit={(swiper) => {
-						swiper.params.pagination.el = paginationRef.current;
-					}}
+					// onBeforeInit={(swiper) => {
+					// 	swiper.params.pagination.el = paginationRef.current;
+					// }}
 					effect="fade"
 				>
 					{data.map((project) => (

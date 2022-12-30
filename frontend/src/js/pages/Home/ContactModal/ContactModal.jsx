@@ -47,7 +47,6 @@ const ContactModal = ({ opened, setOpened }) => {
 										? formik.errors.email
 										: null
 								}
-								type="email"
 								value={formik.values.email}
 								onChange={formik.handleChange}
 								placeholder="Email"

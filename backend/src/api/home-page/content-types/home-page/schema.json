@@ -58,15 +58,7 @@
       "type": "string",
       "required": true
     },
-    "big_banner_image_1x": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ]
-    },
-    "big_banner_image_2x": {
+    "big_banner_image": {
       "type": "media",
       "multiple": false,
       "required": true,
@@ -144,11 +136,29 @@
       "type": "string",
       "required": true
     },
-    "latest_project_images": {
-      "displayName": "latest_project_images",
-      "type": "component",
-      "repeatable": true,
-      "component": "latest-project-images.latest-project-images"
+    "latest_projects_image_1": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "latest_projects_image_2": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "latest_projects_image_3": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     }
   }
 }

@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import Title from '../../../components/Title';
 import { motion, useTransform, useScroll, useInView } from 'framer-motion';
 import { getCoords } from '../../../functions/functions';
+import { useMediaQuery } from 'react-responsive';
 
 const requestList = [
 	{ id: 0, text: 'UX/UI' },
@@ -18,6 +19,10 @@ const requestList = [
 ];
 
 const Request = () => {
+	const isMobile = useMediaQuery({
+		query: `(max-width: 991px)`
+	});
+
 	const requestRef = useRef(null);
 
 	const isInView = useInView(requestRef);
@@ -77,31 +82,43 @@ const Request = () => {
 							</div>
 						</div>
 						<div className="request-content">
-							<motion.ul
-								className="request-list"
-								ref={requestRef}
-								style={{ height: listMinHeight }}
-							>
-								{requestList.map(({ id, text }, idx) => {
-									return (
-										<motion.li
-											className="request-list__item"
-											key={id}
-											style={{
-												transition: isInView
-													? `opacity .4s ${1 + 0.4 * idx}s`
-													: 'none',
-												opacity: isInView ? 1 : 0
-											}}
-										>
-											<motion.p
-												dangerouslySetInnerHTML={{ __html: text }}
-												style={{ top: itemTransform }}
-											></motion.p>
-										</motion.li>
-									);
-								})}
-							</motion.ul>
+							{isMobile ? (
+								<ul className="request-list" ref={requestRef}>
+									{requestList.map(({ id, text }, idx) => {
+										return (
+											<li className="request-list__item" key={id}>
+												<p dangerouslySetInnerHTML={{ __html: text }}></p>
+											</li>
+										);
+									})}
+								</ul>
+							) : (
+								<motion.ul
+									className="request-list"
+									ref={requestRef}
+									style={{ height: listMinHeight }}
+								>
+									{requestList.map(({ id, text }, idx) => {
+										return (
+											<motion.li
+												className="request-list__item"
+												key={id}
+												style={{
+													transition: isInView
+														? `opacity .4s ${1 + 0.4 * idx}s`
+														: 'none',
+													opacity: isInView ? 1 : 0
+												}}
+											>
+												<motion.p
+													dangerouslySetInnerHTML={{ __html: text }}
+													style={{ top: itemTransform }}
+												></motion.p>
+											</motion.li>
+										);
+									})}
+								</motion.ul>
+							)}
 						</div>
 					</div>
 				</div>

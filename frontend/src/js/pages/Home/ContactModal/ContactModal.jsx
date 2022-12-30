@@ -18,8 +18,6 @@ const ContactModal = ({ opened, setOpened }) => {
 		}
 	});
 
-	console.log(formik.errors);
-
 	return (
 		<motion.div className={`modal contact-modal ${opened ? 'modal_opened' : ''}`}>
 			<ModalHeader setOpened={setOpened} />

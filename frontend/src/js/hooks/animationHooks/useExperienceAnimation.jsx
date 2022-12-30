@@ -23,12 +23,12 @@ const useExperienceAnimation = () => {
 
 	// Animation values for the Experience background
 	const heightBgValues = isMobile ? ['100%', '100%'] : ['100%', '100%', '0%', '0%'];
-	const widthBgValues = isMobile ? ['100%', '100%'] : ['100%', '100%', '0%', '0%'];
-	const leftBgValues = isMobile ? ['0%', '0%'] : ['0%', '0%', '50%', '50%'];
+	// const widthBgValues = isMobile ? ['100%', '100%'] : ['100%', '100%', '0%', '0%'];
+	// const leftBgValues = isMobile ? ['0%', '0%'] : ['0%', '0%', '50%', '50%'];
 
 	const heightBgPosition = useTransform(scrollY, offsetY, heightBgValues);
-	const maxBgWidth = useTransform(scrollY, offsetY, widthBgValues);
-	const leftBgPosition = useTransform(scrollY, offsetY, leftBgValues);
+	// const maxBgWidth = useTransform(scrollY, offsetY, widthBgValues);
+	// const leftBgPosition = useTransform(scrollY, offsetY, leftBgValues);
 
 	// Animation values for the Experience text
 	const textColorValues = isMobile
@@ -72,8 +72,8 @@ const useExperienceAnimation = () => {
 		minHeight,
 		topPosition,
 		heightBgPosition,
-		maxBgWidth,
-		leftBgPosition,
+		// maxBgWidth,
+		// leftBgPosition,
 		textColor,
 		textTop,
 		textScale,

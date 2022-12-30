@@ -54,10 +54,9 @@ const ReviewsSwiper = () => {
 			<Swiper
 				modules={[Navigation, EffectFade]}
 				effect={'fade'}
-				navigation={{ prevEl: prevBtn.current, nextEl: nextBtn.current }}
-				onBeforeInit={(swiper) => {
-					swiper.params.navigation.prevEl = prevBtn.current;
-					swiper.params.navigation.nextEl = nextBtn.current;
+				navigation={{
+					prevEl: '.reviews-swiper__btn.btn_prev',
+					nextEl: '.reviews-swiper__btn.btn_next'
 				}}
 			>
 				{reviews.map((review) => (
@@ -87,6 +86,7 @@ const ReviewsSwiper = () => {
 			</Swiper>
 			<div className="reviews-swiper__pagination">
 				<motion.button
+					className="reviews-swiper__btn btn_prev"
 					whileHover={{
 						width: isMobile ? 30 : 48,
 						height: isMobile ? 30 : 48,
@@ -111,6 +111,7 @@ const ReviewsSwiper = () => {
 					</svg>
 				</motion.button>
 				<motion.button
+					className="reviews-swiper__btn btn_next"
 					whileHover={{
 						width: isMobile ? 30 : 48,
 						height: isMobile ? 30 : 48,

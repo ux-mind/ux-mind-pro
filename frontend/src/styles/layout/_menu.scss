@@ -6,6 +6,13 @@
 	background: $primary-color;
 	width: 100vw;
 	height: 100vh;
+	opacity: 0;
+	transition: opacity 0.3s;
+	pointer-events: none;
+	&_opened {
+		opacity: 1;
+		pointer-events: auto;
+	}
 	&-wrapper {
 		padding-top: 240px;
 		padding-bottom: 80px;

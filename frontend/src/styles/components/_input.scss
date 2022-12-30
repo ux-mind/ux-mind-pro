@@ -13,9 +13,19 @@
 	&-wrapper {
 		position: relative;
 		border-bottom: 4px solid $white;
+		@include flex(column);
 		&_long {
 			grid-column: span 2;
 		}
+	}
+	&-error {
+		position: absolute;
+		left: 0;
+		top: calc(100% + 8px);
+		display: inline-block;
+		@include font(1.4rem, calc(22 / 14));
+		color: $error;
+		font-weight: 500;
 	}
 }
 

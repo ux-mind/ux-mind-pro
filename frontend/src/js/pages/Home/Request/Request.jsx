@@ -27,7 +27,7 @@ const Request = () => {
 	const [offsetY, setOffsetY] = useState(() => [0, 0, 0]);
 
 	// Animation values for the Request block
-	const topValues = [0, 1200, 1200];
+	const topValues = [0, 150, 150];
 
 	const topPosition = useTransform(scrollY, offsetY, topValues);
 
@@ -49,7 +49,7 @@ const Request = () => {
 
 			let offsetArr = new Array(topValues.length).fill(top);
 
-			offsetArr = [top, top + 1200, top + 2400];
+			offsetArr = [top, top + 150, top + 1300];
 
 			setOffsetY(offsetArr);
 		}

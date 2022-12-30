@@ -1,11 +1,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import useBannerAnimation from '../../../hooks/animationHooks/useBannerAnimation';
+import { useMediaQuery } from 'react-responsive';
 
 import banner from '../../../../assets/images/home-banner.png';
 import banner2x from '../../../../assets/images/home-banner@2x.png';
 
 const Banner = () => {
+	const isMobile = useMediaQuery({
+		query: `(max-width: 991px)`
+	});
+
 	const { bannerShown, topPosition, minHeight, mobileHeight } = useBannerAnimation();
 
 	return (
@@ -20,7 +25,7 @@ const Banner = () => {
 				<motion.div
 					id="banner-wrapper"
 					className="home-banner__wrapper"
-					style={{ height: mobileHeight ? mobileHeight : minHeight }}
+					style={{ height: isMobile ? mobileHeight : minHeight }}
 				>
 					<img
 						width="100%"

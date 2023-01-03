@@ -3,7 +3,7 @@ import Title from '../../../../components/Title';
 import { useMediaQuery } from 'react-responsive';
 import { motion } from 'framer-motion';
 
-const AnimatedTitle = () => {
+const AnimatedTitle = ({ attributes }) => {
 	const isMobile = useMediaQuery({
 		query: `(max-width: 991px)`
 	});
@@ -15,7 +15,7 @@ const AnimatedTitle = () => {
 	return (
 		<div className="hero-title">
 			<div className="hero-title__wrapper">
-				<Title size="xl">UX Mind</Title>
+				<Title size="xl">{attributes.top_banner_title}</Title>
 			</div>
 			<motion.div
 				className="hero-title_animated"
@@ -29,7 +29,7 @@ const AnimatedTitle = () => {
 				}}
 			>
 				<Title size="xl">
-					<span className="title_transparent">UX Mind UX Mind&nbsp;</span>
+					<span className="title_transparent">{attributes.top_banner_title_animated}&nbsp;</span>
 				</Title>
 			</motion.div>
 			<motion.div
@@ -44,7 +44,7 @@ const AnimatedTitle = () => {
 				}}
 			>
 				<Title size="xl">
-					<span className="title_transparent">UX Mind UX Mind&nbsp;</span>
+					<span className="title_transparent">{attributes.top_banner_title_animated}&nbsp;</span>
 				</Title>
 			</motion.div>
 			{(isMobile || isUltraWide) && (
@@ -60,7 +60,7 @@ const AnimatedTitle = () => {
 					}}
 				>
 					<Title size="xl">
-						<span className="title_transparent">UX Mind UX Mind&nbsp;</span>
+						<span className="title_transparent">{attributes.top_banner_title_animated}&nbsp;</span>
 					</Title>
 				</motion.div>
 			)}

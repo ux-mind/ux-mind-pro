@@ -1,0 +1,36 @@
+{
+  "kind": "singleType",
+  "collectionName": "modal_forms",
+  "info": {
+    "singularName": "modal-form",
+    "pluralName": "modal-forms",
+    "displayName": "Modal form",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "text",
+      "required": true
+    },
+    "name_input_placeholder": {
+      "type": "string",
+      "required": true
+    },
+    "email_input_placeholder": {
+      "type": "string",
+      "required": true
+    },
+    "message_input_placeholder": {
+      "type": "string",
+      "required": true
+    },
+    "submit_button": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

@@ -14,7 +14,7 @@ const menuLinks = [
 	{ name: 'Contact', route: PUBLIC_ROUTES.contact }
 ];
 
-const Menu = ({ opened }) => {
+const Menu = ({ opened, attributes }) => {
 	return (
 		<motion.div className={opened ? 'menu menu_opened' : 'menu'}>
 			<Scrollbars>
@@ -23,14 +23,14 @@ const Menu = ({ opened }) => {
 						<div className="menu-content">
 							<nav className="nav menu-nav">
 								<ul className="menu-list">
-									{menuLinks.map((link) => {
+									{attributes.header_menu.map((link) => {
 										return (
-											<li className="menu-list__item" key={link.name}>
+											<li className="menu-list__item" key={link.text}>
 												<Link
-													to={link.route}
+													to={link.link}
 													className="title title_size-s link"
 												>
-													{link.name}
+													{link.text}
 												</Link>
 											</li>
 										);
@@ -40,25 +40,25 @@ const Menu = ({ opened }) => {
 							<div className="menu-contacts">
 								<div className="menu-contacts__link-wrapper">
 									<a
-										href={`mailto:${CONTACT.email}`}
+										href={`mailto:${attributes.header_mail}`}
 										className="title title_size-xs link"
 									>
-										{CONTACT.email}
+										{attributes.header_mail}
 									</a>
 								</div>
 								<div className="menu-contacts__link-wrapper">
 									<a
-										href={`tel:${CONTACT.tel}`}
+										href={`tel:${attributes.header_phone}`}
 										className="title title_size-xs link"
 									>
-										{CONTACT.tel}
+										{attributes.header_phone}
 									</a>
 								</div>
 							</div>
 						</div>
 					</div>
 					<div className="menu-textline">
-						<AnimatedTextLine />
+						<AnimatedTextLine attributes={attributes} />
 					</div>
 				</div>
 			</Scrollbars>

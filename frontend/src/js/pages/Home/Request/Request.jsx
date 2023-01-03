@@ -18,7 +18,7 @@ const requestList = [
 	{ id: 7, text: 'full-stack development from&nbsp;scratch' }
 ];
 
-const Request = () => {
+const Request = ({ attributes }) => {
 	const isMobile = useMediaQuery({
 		query: `(max-width: 991px)`
 	});
@@ -71,20 +71,19 @@ const Request = () => {
 					<div className="section-wrapper request-wrapper">
 						<div className="request-top">
 							<div className="request-top__link">
-								<button className="link-primary">Leave a request</button>
+								<button className="link-primary">{attributes.request_link_text}</button>
 							</div>
 							<div className="request-top__title">
 								<Title size="s">
-									<span className="title_transparent">Smart design</span>
-									<br />& development solutions <br />
-									for the digital environment
+									<span className="title_transparent">{attributes.request_title_transparent}</span>
+									<span dangerouslySetInnerHTML={{ __html: attributes.request_title_bold }}></span>
 								</Title>
 							</div>
 						</div>
 						<div className="request-content">
 							{isMobile ? (
 								<ul className="request-list" ref={requestRef}>
-									{requestList.map(({ id, text }, idx) => {
+									{attributes.request_list_items.map(({ id, text }, idx) => {
 										return (
 											<li className="request-list__item" key={id}>
 												<p dangerouslySetInnerHTML={{ __html: text }}></p>
@@ -98,7 +97,7 @@ const Request = () => {
 									ref={requestRef}
 									style={{ height: listMinHeight }}
 								>
-									{requestList.map(({ id, text }, idx) => {
+									{attributes.request_list_items.map(({ id, text }, idx) => {
 										return (
 											<motion.li
 												className="request-list__item"

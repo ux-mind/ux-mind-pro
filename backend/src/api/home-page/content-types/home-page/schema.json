@@ -136,29 +136,10 @@
       "type": "string",
       "required": true
     },
-    "latest_projects_image_1": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ]
-    },
-    "latest_projects_image_2": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ]
-    },
-    "latest_projects_image_3": {
-      "type": "media",
-      "multiple": true,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ]
+    "latest_projects_images": {
+      "type": "component",
+      "repeatable": true,
+      "component": "latest-project-images.latest-project-images"
     }
   }
 }

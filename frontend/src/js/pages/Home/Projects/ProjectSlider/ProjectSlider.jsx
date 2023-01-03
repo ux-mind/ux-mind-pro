@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, EffectFade } from 'swiper';
 
-const ProjectSlider = ({ data }) => {
+const ProjectSlider = ({ data, attributes }) => {
 	const paginationRef = useRef(null);
 
 	return (
@@ -18,22 +18,22 @@ const ProjectSlider = ({ data }) => {
 					// }}
 					effect="fade"
 				>
-					{data.map((project) => (
+					{attributes.latest_projects_info_items.map((project, idx) => (
 						<SwiperSlide key={project.id}>
 							<div className="latest-projects-slider__image">
 								<img
 									width="835"
 									height="626"
-									src={project.img.x1}
-									srcSet={`${project.img.x1} 1x, ${project.img.x2} 2x`}
+									src={'http://localhost:1337' + attributes.latest_projects_images[idx].image.data.attributes.formats.medium.url}
+									srcSet={`http://localhost:1337${attributes.latest_projects_images[idx].image.data.attributes.formats.medium.url} 1x, http://localhost:1337${attributes.latest_projects_images[idx].image.data.attributes.url} 2x`}
 									alt="project"
 								/>
 							</div>
 							<div className="latest-projects-slider__content">
 								<div className="text-block">
 									<span className="chapter text_size-s">{project.industry}</span>
-									<h3 className="title title_size-sm">{project.name}</h3>
-									<p>{project.content}</p>
+									<h3 className="title title_size-sm">{project.title}</h3>
+									<p>{project.text}</p>
 								</div>
 							</div>
 						</SwiperSlide>

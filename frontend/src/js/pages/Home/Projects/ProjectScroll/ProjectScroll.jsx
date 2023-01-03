@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { motion, useTransform, useScroll } from 'framer-motion';
 import { getCoords } from '../../../../functions/functions';
 
-const ProjectScroll = ({ data }) => {
+const ProjectScroll = ({ data, attributes }) => {
 	const imageContainer = useRef(null);
 	const firstProjectText = useRef(null);
 	const lastProjectText = useRef(null);
@@ -60,7 +60,7 @@ const ProjectScroll = ({ data }) => {
 					}}
 					ref={contentBlockRef}
 				>
-					{data.map((project, idx, arr) => {
+					{attributes.latest_projects_info_items.map((project, idx, arr) => {
 						let currentRef = null;
 
 						if (idx === 0) {
@@ -74,15 +74,15 @@ const ProjectScroll = ({ data }) => {
 						return (
 							<div className="text-block" ref={currentRef} key={project.id}>
 								<span className="chapter text_size-s">{project.industry}</span>
-								<h3 className="title title_size-sm">{project.name}</h3>
-								<p>{project.content}</p>
+								<h3 className="title title_size-sm">{project.title}</h3>
+								<p>{project.text}</p>
 							</div>
 						);
 					})}
 				</div>
 				<div className="latest-projects-scroll__image" ref={imageContainer}>
 					<div>
-						{data.map(({ id, img }, idx) => {
+						{attributes.latest_projects_images.map(({ id, image }, idx) => {
 							let opacityValues = new Array(data.length).fill(0);
 
 							opacityValues[idx] = 1;
@@ -98,8 +98,8 @@ const ProjectScroll = ({ data }) => {
 									<img
 										width="835"
 										height="626"
-										src={img.x1}
-										srcSet={`${img.x1} 1x, ${img.x2} 2x`}
+										src={'http://localhost:1337' + image.data.attributes.formats.medium.url}
+										srcSet={`http://localhost:1337${image.data.attributes.formats.medium.url} 1x, http://localhost:1337${image.data.attributes.url} 2x`}
 										alt="project"
 									/>
 								</motion.div>

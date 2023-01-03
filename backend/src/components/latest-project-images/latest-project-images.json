@@ -1,31 +1,21 @@
 {
   "collectionName": "components_latest_project_images_latest_project_images",
   "info": {
-    "displayName": "latest_project_images"
+    "displayName": "latest_project_images",
+    "description": ""
   },
   "options": {},
   "attributes": {
-    "image_1x": {
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": false,
-      "required": true
-    },
-    "image_2x": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ],
-      "type": "media",
-      "multiple": false,
-      "required": true
+      ]
     }
   }
 }

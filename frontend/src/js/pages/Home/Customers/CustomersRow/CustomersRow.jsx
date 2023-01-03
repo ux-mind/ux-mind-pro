@@ -14,7 +14,7 @@ const hashRow = [
 	{ id: 7, content: '#trends' }
 ];
 
-function CustomersRow() {
+function CustomersRow({ attributes }) {
 	const isUltraWide = useMediaQuery({
 		query: `(min-width: 1920px)`
 	});
@@ -32,9 +32,9 @@ function CustomersRow() {
 					repeat: Infinity
 				}}
 			>
-				{hashRow.map(({ id, content }) => (
+				{attributes.customers_tags.map(({ id, text }) => (
 					<div className="customers-line__item" key={id}>
-						{content}
+						{text}
 					</div>
 				))}
 			</motion.div>
@@ -49,9 +49,9 @@ function CustomersRow() {
 					repeat: Infinity
 				}}
 			>
-				{hashRow.map(({ id, content }) => (
+				{attributes.customers_tags.map(({ id, text }) => (
 					<div className="customers-line__item" key={id}>
-						{content}
+						{text}
 					</div>
 				))}
 			</motion.div>
@@ -66,9 +66,9 @@ function CustomersRow() {
 					repeat: Infinity
 				}}
 			>
-				{hashRow.map(({ id, content }) => (
+				{attributes.customers_tags.map(({ id, text }) => (
 					<div className="customers-line__item" key={id}>
-						{content}
+						{text}
 					</div>
 				))}
 			</motion.div>

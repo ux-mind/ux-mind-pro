@@ -10,7 +10,7 @@ import useFetch from '../../hooks/useFetch';
 
 const Home = () => {
 	const data = useFetch(
-		'http://localhost:1337/api/home-page?populate[reviews_items][populate]=*&populate[latest_projects_info_items][populate]=*&populate[latest_projects_images][populate]=*&populate[big_banner_image][populate]=*&populate[request_list_items][populate]=*',
+		'http://localhost:1337/api/home-page?populate[reviews_items][populate]=*&populate[latest_projects_info_items][populate]=*&populate[latest_projects_images][populate]=*&populate[big_banner_image][populate]=*&populate[request_list_items][populate]=*&populate[customers_tags][populate]=*&populate[reviews_items][reviews_author_photo][populate]=*',
 		{}
 	);
 

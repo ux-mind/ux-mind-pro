@@ -41,7 +41,7 @@ const reviews = [
 	}
 ];
 
-const ReviewsSwiper = () => {
+const ReviewsSwiper = ({ attributes }) => {
 	const isMobile = useMediaQuery({
 		query: `(max-width: 991px)`
 	});
@@ -59,25 +59,23 @@ const ReviewsSwiper = () => {
 					nextEl: '.reviews-swiper__btn.btn_next'
 				}}
 			>
-				{reviews.map((review) => (
+				{attributes.reviews_items.map((review) => (
 					<SwiperSlide key={review.id}>
 						<div className="reviews-item">
 							<div className="reviews-item__text text_size-l text_blue">
-								<p dangerouslySetInnerHTML={{ __html: review.text }}></p>
+								<p dangerouslySetInnerHTML={{ __html: review.reviews_text }}></p>
 							</div>
 							<div className="reviews-item-profile">
 								<div className="reviews-item-profile__img">
 									<img
-										src={review.avatar.x1}
-										srcSet={`${review.avatar.x1} 1x, ${
-											review.avatar.x2 ? review.avatar.x2 : review.avatar.x1
-										} 2x`}
+										src={'http://localhost:1337' + review.reviews_author_photo.data.attributes.formats.thumbnail.url}
+										srcSet={`http://localhost:1337${review.reviews_author_photo.data.attributes.formats.thumbnail.url} 1x, http://localhost:1337${review.reviews_author_photo.data.attributes.url} 2x`}
 										alt=""
 									/>
 								</div>
 								<div className="reviews-item-profile__info">
-									<h4 className="title text_blue">{review.name}</h4>
-									<p className="text_blue">{review.position}</p>
+									<h4 className="title text_blue">{review.reviews_author_name}</h4>
+									<p className="text_blue">{review.reviews_author_post}</p>
 								</div>
 							</div>
 						</div>

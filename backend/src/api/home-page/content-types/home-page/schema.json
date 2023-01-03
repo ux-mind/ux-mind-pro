@@ -132,10 +132,6 @@
       "type": "string",
       "required": true
     },
-    "share_link_url": {
-      "type": "string",
-      "required": true
-    },
     "latest_projects_images": {
       "type": "component",
       "repeatable": true,

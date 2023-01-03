@@ -6,7 +6,7 @@
   },
   "options": {},
   "attributes": {
-    "subtitle": {
+    "industry": {
       "type": "string",
       "required": true
     },

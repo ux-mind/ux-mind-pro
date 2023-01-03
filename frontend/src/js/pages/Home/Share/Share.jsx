@@ -3,7 +3,7 @@ import Title from '../../../components/Title';
 import ArrowBtn from '../../../components/ArrowBtn';
 import ContactModal from '../ContactModal/ContactModal';
 
-const Share = () => {
+const Share = ({ attributes }) => {
 	const [contactModalOpened, setContactModalOpened] = useState(false);
 
 	const htmlElement = document.documentElement;
@@ -24,14 +24,14 @@ const Share = () => {
 					<div className="section-wrapper share-wrapper">
 						<div className="share-title">
 							<Title size="l">
-								<span className="title_transparent">Have an idea?</span>
+								<span className="title_transparent">{attributes.share_title_transparent}</span>
 								<br />
-								<span className="title_underlined">Tell us about it</span>
+								<span className="title_underlined">{attributes.share_title_bold}</span>
 							</Title>
 						</div>
 						<div className="share-link">
 							<ArrowBtn onClick={() => setContactModalOpened(true)}>
-								Let’s talk
+								{attributes.share_link_title}
 							</ArrowBtn>
 						</div>
 					</div>

@@ -6,14 +6,14 @@
 	background: $primary-color;
 	width: 100vw;
 	height: 100vh;
-	opacity: 0;
-	transform: translateX(100%);
-	transition: opacity 0.5s ease, transform 0.5s ease;
+	// transform: translateX(100%);
 	pointer-events: none;
 	&_opened {
-		opacity: 1;
 		pointer-events: auto;
-		transform: none;
+		& .menu-nav {
+		}
+		& .menu-contacts {
+		}
 	}
 	&-wrapper {
 		padding-top: 240px;

@@ -30,7 +30,7 @@ const Menu = ({ opened }) => {
 	const innerVariants = {
 		hidden: {
 			opacity: 0,
-			translateX: isMobile ? '-15%' : '-35%'
+			translateX: isMobile ? '-25%' : '-70%'
 		},
 		show: {
 			opacity: 1,
@@ -47,7 +47,10 @@ const Menu = ({ opened }) => {
 					initial="hidden"
 					animate="show"
 					exit="hidden"
-					transition={{ ease: 'easeOut', duration: isMobile ? 0.35 : 0.6 }}
+					transition={{
+						type: 'tween',
+						duration: isMobile ? 0.35 : 0.6
+					}}
 				>
 					<Scrollbars>
 						<div className="menu-wrapper">
@@ -60,8 +63,8 @@ const Menu = ({ opened }) => {
 										animate="show"
 										exit="hidden"
 										transition={{
-											ease: isMobile ? 'easeOut' : 'easeIn',
-											duration: isMobile ? 0.35 : 0.57
+											type: 'tween',
+											duration: isMobile ? 0.35 : 0.6
 										}}
 									>
 										<ul className="menu-list">
@@ -86,8 +89,8 @@ const Menu = ({ opened }) => {
 										animate="show"
 										exit="hidden"
 										transition={{
-											ease: 'easeIn',
-											duration: isMobile ? 0.3 : 0.57
+											type: 'tween',
+											duration: isMobile ? 0.35 : 0.6
 										}}
 									>
 										<div className="menu-contacts__link-wrapper">
@@ -115,7 +118,7 @@ const Menu = ({ opened }) => {
 								animate={{ opacity: 1 }}
 								exit={{ opacity: 0 }}
 								transition={{
-									ease: 'easeIn',
+									type: 'tween',
 									duration: 0.6
 								}}
 							>

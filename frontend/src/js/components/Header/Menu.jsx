@@ -5,6 +5,7 @@ import PUBLIC_ROUTES from '../../data/publicRoutes';
 import CONTACT from '../../data/contact';
 import AnimatedTextLine from '../AnimatedTextLine/AnimatedTextLine';
 import { Scrollbars } from 'react-custom-scrollbars-2';
+import { useMediaQuery } from 'react-responsive';
 
 const menuLinks = [
 	{ name: 'About', route: PUBLIC_ROUTES.about },
@@ -15,6 +16,8 @@ const menuLinks = [
 ];
 
 const Menu = ({ opened }) => {
+	const isMobile = useMediaQuery({ query: '(max-width: 991px)' });
+
 	const menuVariants = {
 		hidden: {
 			translateX: '100%'
@@ -27,7 +30,7 @@ const Menu = ({ opened }) => {
 	const innerVariants = {
 		hidden: {
 			opacity: 0,
-			translateX: '-40%'
+			translateX: isMobile ? '-15%' : '-35%'
 		},
 		show: {
 			opacity: 1,
@@ -44,7 +47,7 @@ const Menu = ({ opened }) => {
 					initial="hidden"
 					animate="show"
 					exit="hidden"
-					transition={{ ease: 'easeOut', duration: 0.6 }}
+					transition={{ ease: 'easeOut', duration: isMobile ? 0.35 : 0.6 }}
 				>
 					<Scrollbars>
 						<div className="menu-wrapper">
@@ -57,8 +60,8 @@ const Menu = ({ opened }) => {
 										animate="show"
 										exit="hidden"
 										transition={{
-											ease: 'easeIn',
-											duration: 0.55
+											ease: isMobile ? 'easeOut' : 'easeIn',
+											duration: isMobile ? 0.35 : 0.57
 										}}
 									>
 										<ul className="menu-list">
@@ -84,7 +87,7 @@ const Menu = ({ opened }) => {
 										exit="hidden"
 										transition={{
 											ease: 'easeIn',
-											duration: 0.55
+											duration: isMobile ? 0.3 : 0.57
 										}}
 									>
 										<div className="menu-contacts__link-wrapper">

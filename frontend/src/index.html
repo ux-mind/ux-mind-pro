@@ -12,5 +12,31 @@
 <body>
 	<div id="root"></div>
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/smoothscroll/1.4.10/SmoothScroll.min.js"
+	integrity="sha256-huW7yWl7tNfP7lGk46XE+Sp0nCotjzYodhVKlwaNeco=" crossorigin="anonymous"></script>
+<script>
+	SmoothScroll({
+		// Время скролла в миллисекундах
+		animationTime: 700,
+		stepSize: 75,
+
+		// Ускорение 
+		accelerationDelta: 30,
+		// Максимальное ускорение
+		accelerationMax: 2,
+
+		keyboardSupport: true,
+		// Шаг скролла стрелками на клавиатуре в пикселях
+		arrowScroll: 50,
+
+		// Pulse (less tweakable)
+		// ratio of "tail" to "acceleration"
+		pulseAlgorithm: true,
+		pulseScale: 4,
+		pulseNormalize: 1,
+
+		touchpadSupport: true,
+	})
+</script>
 
 </html>

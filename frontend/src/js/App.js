@@ -1,11 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Header from './components/Header/Header';
 import Home from './pages/Home';
 import Footer from './components/Footer/Footer';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Head from './components/Head';
 import ScrollProvider from './context/ScrollContext';
-// import Scrollbar from 'smooth-scrollbar';
 import { Scrollbar } from 'smooth-scrollbar-react';
 
 const App = () => {

@@ -1,12 +1,11 @@
 .menu {
 	position: fixed;
 	z-index: 4;
-	bottom: 0;
+	top: 0;
 	left: 0;
 	background: $primary-color;
 	width: 100vw;
 	height: 100vh;
-	// transform: translateX(100%);
 	pointer-events: none;
 	&_opened {
 		pointer-events: auto;

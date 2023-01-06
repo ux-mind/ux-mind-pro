@@ -19,23 +19,30 @@ const App = () => {
 		<React.StrictMode>
 			<Head />
 			<div className="app">
-				<BrowserRouter>
-					<Scrollbar
-						id="scrollbar"
-						ref={scrollbarRef}
-						onScroll={(data) => setContext(data)}
-					>
-						<div id="scrollbar-wrapper" style={{ height: '100vh' }}>
-							<ScrollProvider value={context}>
-								<Header />
-								<Routes>
-									<Route path="/" element={<Home />} />
-								</Routes>
-								<Footer />
-							</ScrollProvider>
+				<Scrollbar
+					className="scrollbar"
+					ref={scrollbarRef}
+					onScroll={(data) => setContext(data)}
+					plugins={{
+						overscroll: {
+							effect: 'bounce'
+						}
+					}}
+				>
+					<div className="scrollbar-wrapper" style={{ maxHeight: '100vh' }}>
+						<div style={{ position: 'relative' }}>
+							<BrowserRouter>
+								<ScrollProvider value={context}>
+									<Header />
+									<Routes>
+										<Route path="/" element={<Home />} />
+									</Routes>
+									<Footer />
+								</ScrollProvider>
+							</BrowserRouter>
 						</div>
-					</Scrollbar>
-				</BrowserRouter>
+					</div>
+				</Scrollbar>
 			</div>
 		</React.StrictMode>
 	);

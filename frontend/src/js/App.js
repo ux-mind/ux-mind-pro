@@ -24,11 +24,6 @@ const App = () => {
 						id="scrollbar"
 						ref={scrollbarRef}
 						onScroll={(data) => setContext(data)}
-						plugins={{
-							overscroll: {
-								effect: 'bounce'
-							}
-						}}
 					>
 						<div id="scrollbar-wrapper" style={{ height: '100vh' }}>
 							<ScrollProvider value={context}>

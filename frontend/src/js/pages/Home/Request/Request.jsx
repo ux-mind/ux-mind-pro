@@ -1,8 +1,9 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useContext } from 'react';
 import Title from '../../../components/Title';
-import { motion, useTransform, useScroll, useInView } from 'framer-motion';
+import { motion, useTransform, useMotionValue, useInView } from 'framer-motion';
 import { getCoords } from '../../../functions/functions';
 import { useMediaQuery } from 'react-responsive';
+import { ScrollContext } from '../../../context/ScrollContext';
 
 const requestList = [
 	{ id: 0, text: 'UX/UI' },
@@ -23,11 +24,13 @@ const Request = () => {
 		query: `(max-width: 991px)`
 	});
 
+	const context = useContext(ScrollContext);
+
 	const requestRef = useRef(null);
 
 	const isInView = useInView(requestRef);
 
-	const { scrollY } = useScroll();
+	const scrollY = useMotionValue(context.offset.y);
 
 	const [offsetY, setOffsetY] = useState(() => [0, 0]);
 
@@ -59,6 +62,10 @@ const Request = () => {
 			setOffsetY(offsetArr);
 		}
 	}, [requestRef]);
+
+	useEffect(() => {
+		scrollY.set(context.offset.y);
+	}, [context]);
 
 	return (
 		<motion.section

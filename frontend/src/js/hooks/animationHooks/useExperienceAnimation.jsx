@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
-import { useTransform, useScroll } from 'framer-motion';
+import { useTransform, useMotionValue } from 'framer-motion';
 import { useMediaQuery } from 'react-responsive';
 import { getCoords } from '../../functions/functions';
 
-const useExperienceAnimation = () => {
+const useExperienceAnimation = (context) => {
 	const isMobile = useMediaQuery({
 		query: `(max-width: 991px)`
 	});
 
-	const { scrollY } = useScroll();
+	const scrollY = useMotionValue(context.offset.y);
 
 	const [experienceBlock, setExperienceBlock] = useState(null);
 	const [offsetY, setOffsetY] = useState([0, 0, 0, 0]);
@@ -63,6 +63,10 @@ const useExperienceAnimation = () => {
 			setOffsetY(offsetArr);
 		}
 	}, [experienceBlock]);
+
+	useEffect(() => {
+		scrollY.set(context.offset.y);
+	}, [context]);
 
 	return {
 		minHeight,

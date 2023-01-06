@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import useExperienceAnimation from '../../../hooks/animationHooks/useExperienceAnimation';
+import { ScrollContext } from '../../../context/ScrollContext';
 
 const Experience = () => {
-	const animationValues = useExperienceAnimation();
+	const context = useContext(ScrollContext);
+
+	const animationValues = useExperienceAnimation(context);
 
 	return (
 		<motion.div

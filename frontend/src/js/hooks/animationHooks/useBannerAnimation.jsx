@@ -1,13 +1,12 @@
 import { useState, useEffect } from 'react';
 import { getCoords, getViewportCoords } from '../../functions/functions';
-import { useTransform, useScroll } from 'framer-motion';
-import { useMediaQuery } from 'react-responsive';
+import { useTransform, useMotionValue } from 'framer-motion';
 
-const useBannerAnimation = () => {
+const useBannerAnimation = (context) => {
 	const [banner, setBanner] = useState(null);
 	const [bannerWrapper, setBannerWrapper] = useState(null);
 
-	const { scrollY } = useScroll();
+	const scrollY = useMotionValue(context.offset.y);
 
 	const [offsetY, setOffsetY] = useState(() => [0, 0]);
 
@@ -49,11 +48,11 @@ const useBannerAnimation = () => {
 		}
 	}, [banner]);
 
+	const viewportHeight = window.innerHeight;
+
 	useEffect(() => {
 		if (bannerWrapper) {
-			const viewportHeight = window.innerHeight;
-
-			window.addEventListener('scroll', () => {
+			scrollY.onChange(() => {
 				const { top } = getViewportCoords(bannerWrapper);
 
 				const bannerShown = -top + viewportHeight >= bannerWrapper.offsetHeight / 4;
@@ -61,17 +60,11 @@ const useBannerAnimation = () => {
 				setBannerShown(bannerShown);
 			});
 		}
+	}, [bannerWrapper, scrollY.current]);
 
-		return () => {
-			window.removeEventListener('scroll', () => {
-				const { top } = getViewportCoords(bannerWrapper);
-
-				const bannerShown = -top + window.innerHeight >= bannerWrapper.offsetHeight / 4;
-
-				setBannerShown(bannerShown);
-			});
-		};
-	}, [bannerWrapper]);
+	useEffect(() => {
+		scrollY.set(context.offset.y);
+	}, [context]);
 
 	return { bannerShown, topPosition, minHeight, mobileHeight };
 };

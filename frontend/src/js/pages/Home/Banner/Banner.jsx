@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { motion } from 'framer-motion';
 import useBannerAnimation from '../../../hooks/animationHooks/useBannerAnimation';
 import { useMediaQuery } from 'react-responsive';
+import { ScrollContext } from '../../../context/ScrollContext';
 
 import banner from '../../../../assets/images/home-banner.png';
 import banner2x from '../../../../assets/images/home-banner@2x.png';
@@ -11,7 +12,9 @@ const Banner = () => {
 		query: `(max-width: 991px)`
 	});
 
-	const { bannerShown, topPosition, minHeight, mobileHeight } = useBannerAnimation();
+	const context = useContext(ScrollContext);
+
+	const { bannerShown, topPosition, minHeight, mobileHeight } = useBannerAnimation(context);
 
 	return (
 		<motion.div id="banner" className="home-banner" style={{ marginTop: topPosition }}>

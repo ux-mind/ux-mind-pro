@@ -1,8 +1,11 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { motion, useTransform, useScroll } from 'framer-motion';
+import React, { useRef, useState, useEffect, useContext } from 'react';
+import { motion, useTransform, useMotionValue } from 'framer-motion';
 import { getCoords } from '../../../../functions/functions';
+import { ScrollContext } from '../../../../context/ScrollContext';
 
 const ProjectScroll = ({ data }) => {
+	const context = useContext(ScrollContext);
+
 	const imageContainer = useRef(null);
 	const firstProjectText = useRef(null);
 	const lastProjectText = useRef(null);
@@ -27,9 +30,13 @@ const ProjectScroll = ({ data }) => {
 
 	const scrollBlockRef = useRef(null);
 
-	const { scrollY } = useScroll();
+	const scrollY = useMotionValue(context.offset.y);
 
 	const [offsetY, setOffsetY] = useState(() => new Array(data.length).fill(0));
+
+	useEffect(() => {
+		scrollY.set(context.offset.y);
+	}, [context]);
 
 	useEffect(() => {
 		if (contentBlockRef) {
@@ -81,31 +88,29 @@ const ProjectScroll = ({ data }) => {
 					})}
 				</div>
 				<div className="latest-projects-scroll__image" ref={imageContainer}>
-					<div>
-						{data.map(({ id, img }, idx) => {
-							let opacityValues = new Array(data.length).fill(0);
+					{data.map(({ id, img }, idx) => {
+						let opacityValues = new Array(data.length).fill(0);
 
-							opacityValues[idx] = 1;
+						opacityValues[idx] = 1;
 
-							const opacity = useTransform(scrollY, offsetY, opacityValues);
+						const opacity = useTransform(scrollY, offsetY, opacityValues);
 
-							return (
-								<motion.div
-									className="img-wrapper"
-									style={{ opacity: opacity }}
-									key={id}
-								>
-									<img
-										width="835"
-										height="626"
-										src={img.x1}
-										srcSet={`${img.x1} 1x, ${img.x2} 2x`}
-										alt="project"
-									/>
-								</motion.div>
-							);
-						})}
-					</div>
+						return (
+							<motion.div
+								className="img-wrapper"
+								style={{ opacity: opacity }}
+								key={id}
+							>
+								<img
+									width="835"
+									height="626"
+									src={img.x1}
+									srcSet={`${img.x1} 1x, ${img.x2} 2x`}
+									alt="project"
+								/>
+							</motion.div>
+						);
+					})}
 				</div>
 			</div>
 		</div>

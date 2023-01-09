@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useTransform, useMotionValue } from 'framer-motion';
+import { motion, useMotionValue } from 'framer-motion';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleMenu } from '../../redux/reducers/modalsReducer';

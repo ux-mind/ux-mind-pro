@@ -1,5 +1,6 @@
 .menu-btn {
 	position: relative;
+	// right: $container-padding-xl;
 	@include flex(row, center);
 	min-height: 100%;
 	&-sticks {

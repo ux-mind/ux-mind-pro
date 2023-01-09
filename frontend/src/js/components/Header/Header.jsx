@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import Menu from './Menu';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/images/icons/logo.svg';
 
-const Header = () => {
-	const [menuOpened, setMenuOpened] = useState(false);
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleMenu } from '../../redux/reducers/modalsReducer';
 
+const Header = () => {
 	const htmlElement = document.documentElement;
+
+	const menuOpened = useSelector((state) => state.modals.menuOpened);
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		// Lock body scroll when menu is opened
@@ -29,7 +32,7 @@ const Header = () => {
 						<button
 							type="button"
 							className={`menu-btn ${menuOpened ? 'menu-btn_opened' : ''}`}
-							onClick={() => setMenuOpened((prev) => !prev)}
+							onClick={() => dispatch(toggleMenu())}
 						>
 							<div className="menu-btn-sticks">
 								<span></span>
@@ -40,7 +43,6 @@ const Header = () => {
 					</div>
 				</div>
 			</header>
-			<Menu opened={menuOpened} />
 		</>
 	);
 };

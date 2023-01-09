@@ -1,8 +1,8 @@
 import { createReducer, createAction } from '@reduxjs/toolkit';
 
 const initialState = {
-	menuOpened: false,
-	contactModalOpened: false
+	offset: { x: 0, y: 0 },
+	limit: { x: 0, y: 0 }
 };
 
 export const toggleContactModal = createAction('TOGGLE_CONTACT_MODAL');

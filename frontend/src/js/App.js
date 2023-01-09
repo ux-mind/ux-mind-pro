@@ -24,31 +24,31 @@ const App = () => {
 			<Head />
 			<div className="app">
 				<BrowserRouter>
-					<Provider store={store}>
-						<ModalsComponent />
-						<Scrollbar
-							className="scrollbar"
-							ref={scrollbarRef}
-							onScroll={(data) => setContext(data)}
-							plugins={{
-								overscroll: {
-									effect: 'bounce'
-								}
-							}}
-						>
-							<div className="scrollbar-wrapper" style={{ maxHeight: '100vh' }}>
-								<div style={{ position: 'relative' }}>
-									<ScrollProvider value={context}>
-										<Header />
+					<ScrollProvider value={context}>
+						<Provider store={store}>
+							<Header />
+							<Scrollbar
+								className="scrollbar"
+								ref={scrollbarRef}
+								onScroll={(data) => setContext(data)}
+								plugins={{
+									overscroll: {
+										effect: 'bounce'
+									}
+								}}
+							>
+								<div className="scrollbar-wrapper" style={{ maxHeight: '100vh' }}>
+									<div style={{ position: 'relative' }}>
 										<Routes>
 											<Route path="/" element={<Home />} />
 										</Routes>
 										<Footer />
-									</ScrollProvider>
+									</div>
 								</div>
-							</div>
-						</Scrollbar>
-					</Provider>
+							</Scrollbar>
+							<ModalsComponent />
+						</Provider>
+					</ScrollProvider>
 				</BrowserRouter>
 			</div>
 		</React.StrictMode>

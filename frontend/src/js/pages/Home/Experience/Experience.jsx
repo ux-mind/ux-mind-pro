@@ -1,12 +1,13 @@
-import React, { useContext, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import useExperienceAnimation from '../../../hooks/animationHooks/useExperienceAnimation';
-import { ScrollContext } from '../../../context/ScrollContext';
+
+import { useSelector } from 'react-redux';
 
 const Experience = () => {
-	const context = useContext(ScrollContext);
+	const scroll = useSelector((state) => state.scroll.scrollValues);
 
-	const animationValues = useExperienceAnimation(context);
+	const animationValues = useExperienceAnimation(scroll);
 
 	return (
 		<motion.div

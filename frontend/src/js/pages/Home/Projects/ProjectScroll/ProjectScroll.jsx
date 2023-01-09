@@ -1,10 +1,11 @@
-import React, { useRef, useState, useEffect, useContext } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { motion, useTransform, useMotionValue } from 'framer-motion';
 import { getCoords, getViewportCoords } from '../../../../functions/functions';
-import { ScrollContext } from '../../../../context/ScrollContext';
+
+import { useSelector } from 'react-redux';
 
 const ProjectScroll = ({ data }) => {
-	const context = useContext(ScrollContext);
+	const scroll = useSelector((state) => state.scroll.scrollValues);
 
 	const imageContainer = useRef(null);
 	const firstProjectText = useRef(null);
@@ -41,13 +42,13 @@ const ProjectScroll = ({ data }) => {
 
 	const scrollBlockRef = useRef(null);
 
-	const scrollY = useMotionValue(context.offset.y);
+	const scrollY = useMotionValue(scroll.offset.y);
 
 	const [offsetY, setOffsetY] = useState(() => new Array(data.length).fill(0));
 
 	useEffect(() => {
-		scrollY.set(context.offset.y);
-	}, [context]);
+		scrollY.set(scroll.offset.y);
+	}, [scroll]);
 
 	useEffect(() => {
 		if (imageContainer && scrollBlockRef) {

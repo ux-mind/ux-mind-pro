@@ -1,15 +1,25 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../../../assets/images/icons/logo.svg';
+import { motion, useTransform, useMotionValue } from 'framer-motion';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleMenu } from '../../redux/reducers/modalsReducer';
+
+import logo from '../../../assets/images/icons/logo.svg';
 
 const Header = () => {
 	const htmlElement = document.documentElement;
 
 	const menuOpened = useSelector((state) => state.modals.menuOpened);
+	const scrollY = useSelector((state) => state.scroll.scrollValues.offset.y);
+
 	const dispatch = useDispatch();
+
+	const translateY = useMotionValue(-scrollY);
+
+	useEffect(() => {
+		translateY.set(-scrollY);
+	}, [scrollY]);
 
 	useEffect(() => {
 		// Lock body scroll when menu is opened
@@ -23,7 +33,10 @@ const Header = () => {
 
 	return (
 		<>
-			<header className={`header ${menuOpened ? 'header_active' : ''}`}>
+			<motion.header
+				className={`header ${menuOpened ? 'header_active' : ''}`}
+				style={{ translateY }}
+			>
 				<div className="container">
 					<div className="header-wrapper">
 						<Link className="logo header-logo" to="/">
@@ -42,7 +55,7 @@ const Header = () => {
 						</button>
 					</div>
 				</div>
-			</header>
+			</motion.header>
 		</>
 	);
 };

@@ -1,26 +1,33 @@
 import React from 'react';
-import Title from '../../../components/Title';
+import Title from '../../Title';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Scrollbars } from 'react-custom-scrollbars-2';
-import ModalHeader from '../../../components/ModalHeader/ModalHeader';
+import ModalHeader from '../../ModalHeader/ModalHeader';
 import { useFormik } from 'formik';
-import Input from '../../../components/Input';
-import AnimatedTextLine from '../../../components/AnimatedTextLine/AnimatedTextLine';
+import Input from '../../Input';
+import AnimatedTextLine from '../../AnimatedTextLine/AnimatedTextLine';
 import { basicSchema } from '../../../schemas';
 
-const ContactModal = ({ opened, setOpened }) => {
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleContactModal } from '../../../redux/reducers/modalsReducer';
+
+const ContactModal = () => {
+	const opened = useSelector((state) => state.modals.contactModalOpened);
+
+	const dispatch = useDispatch();
+
 	const formik = useFormik({
 		initialValues: { name: '', email: '', message: '' },
 		validationSchema: basicSchema,
 		onSubmit: (values) => {
 			console.log(values);
-			setOpened(false);
+			dispatch(toggleContactModal());
 		}
 	});
 
 	return (
 		<motion.div className={`modal contact-modal ${opened ? 'modal_opened' : ''}`}>
-			<ModalHeader setOpened={setOpened} />
+			<ModalHeader setOpened={() => dispatch(toggleContactModal())} />
 			<Scrollbars>
 				<div className="contact-modal__wrapper">
 					<div className="container">

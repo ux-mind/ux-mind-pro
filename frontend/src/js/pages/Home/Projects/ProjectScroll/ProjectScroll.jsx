@@ -84,8 +84,6 @@ const ProjectScroll = ({ data }) => {
 				newTextScrolls.push(scrollValue);
 			}, []);
 
-			console.log(newTextScrolls);
-
 			setOffsetY(newTextScrolls);
 		}
 	}, [contentBlockRef, paddingBottom, paddingTop]);

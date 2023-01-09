@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Title from '../../../components/Title';
 import ArrowBtn from '../../../components/ArrowBtn';
-import ContactModal from '../ContactModal/ContactModal';
+
+import { useDispatch, useSelector } from 'react-redux';
+import { toggleContactModal } from '../../../redux/reducers/modalsReducer';
 
 const Share = () => {
-	const [contactModalOpened, setContactModalOpened] = useState(false);
-
 	const htmlElement = document.documentElement;
+
+	const contactModalOpened = useSelector((state) => state.modals.contactModalOpened);
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		// Lock body scroll when menu is opened
@@ -30,14 +33,13 @@ const Share = () => {
 							</Title>
 						</div>
 						<div className="share-link">
-							<ArrowBtn onClick={() => setContactModalOpened(true)}>
+							<ArrowBtn onClick={() => dispatch(toggleContactModal())}>
 								Let’s talk
 							</ArrowBtn>
 						</div>
 					</div>
 				</div>
 			</section>
-			<ContactModal opened={contactModalOpened} setOpened={setContactModalOpened} />
 		</>
 	);
 };

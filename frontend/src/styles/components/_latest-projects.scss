@@ -31,16 +31,20 @@
 			display: grid;
 			grid-template-columns: 3.81fr 8.35fr;
 			grid-gap: 48px;
+			align-items: flex-start;
 		}
 		&__image {
 			position: relative;
-			top: 100px;
-			height: 100%;
 			max-height: 626px;
+			height: auto;
 			& .img-wrapper {
 				position: absolute;
 				top: 0;
 				right: 0;
+				max-height: 626px;
+				&:first-child {
+					position: relative;
+				}
 				& img {
 					width: 100%;
 					height: 100%;
@@ -140,6 +144,18 @@
 	}
 	&__link {
 		text-align: center;
+	}
+}
+
+@media screen and (max-width: 991px) {
+	.latest-projects {
+		&-scroll {
+			&__image {
+				& .img-wrapper {
+					max-height: 445px;
+				}
+			}
+		}
 	}
 }
 

@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect, useContext } from 'react';
 import { motion, useTransform, useMotionValue } from 'framer-motion';
-import { getCoords } from '../../../../functions/functions';
+import { getCoords, getViewportCoords } from '../../../../functions/functions';
 import { ScrollContext } from '../../../../context/ScrollContext';
 
 const ProjectScroll = ({ data }) => {
@@ -14,6 +14,17 @@ const ProjectScroll = ({ data }) => {
 
 	const [paddingTop, setPaddingTop] = useState(0);
 	const [paddingBottom, setPaddingBottom] = useState(0);
+
+	const [scrollTopValue, setScrollTopValue] = useState(0);
+	const [scrollBottomValue, setScrollBottomValue] = useState(0);
+
+	const [imageTransformValue, setImageTransformValue] = useState(0);
+
+	const imageTransformMotionValue = useMotionValue(imageTransformValue);
+
+	useEffect(() => {
+		imageTransformMotionValue.set(imageTransformValue);
+	}, [imageTransformValue]);
 
 	useEffect(() => {
 		if (imageContainer && firstProjectText && lastProjectText) {
@@ -39,6 +50,27 @@ const ProjectScroll = ({ data }) => {
 	}, [context]);
 
 	useEffect(() => {
+		if (imageContainer && scrollBlockRef) {
+			const { top } = getViewportCoords(imageContainer.current);
+
+			const sectionHeight = scrollBlockRef.current.offsetHeight;
+
+			if (top <= 100 && !scrollTopValue && !scrollBottomValue) {
+				setScrollTopValue(scrollY.current);
+				setScrollBottomValue(
+					scrollY.current + sectionHeight - imageContainer.current.offsetHeight
+				);
+			}
+
+			if (scrollTopValue && scrollBottomValue) {
+				if (scrollY.current >= scrollTopValue && scrollY.current < scrollBottomValue) {
+					setImageTransformValue(scrollY.current - scrollTopValue);
+				}
+			}
+		}
+	}, [scrollY.current, imageContainer, scrollBlockRef]);
+
+	useEffect(() => {
 		if (contentBlockRef) {
 			const block = contentBlockRef.current;
 
@@ -52,9 +84,17 @@ const ProjectScroll = ({ data }) => {
 				newTextScrolls.push(scrollValue);
 			}, []);
 
+			console.log(newTextScrolls);
+
 			setOffsetY(newTextScrolls);
 		}
 	}, [contentBlockRef, paddingBottom, paddingTop]);
+
+	const imageTransform = useTransform(scrollY, offsetY, [
+		0,
+		(scrollBottomValue - scrollTopValue) / 2,
+		scrollBottomValue - scrollTopValue
+	]);
 
 	return (
 		<div className="latest-projects-scroll" ref={scrollBlockRef}>
@@ -87,7 +127,11 @@ const ProjectScroll = ({ data }) => {
 						);
 					})}
 				</div>
-				<div className="latest-projects-scroll__image" ref={imageContainer}>
+				<motion.div
+					className="latest-projects-scroll__image"
+					style={{ translateY: imageTransform }}
+					ref={imageContainer}
+				>
 					{data.map(({ id, img }, idx) => {
 						let opacityValues = new Array(data.length).fill(0);
 
@@ -111,7 +155,7 @@ const ProjectScroll = ({ data }) => {
 							</motion.div>
 						);
 					})}
-				</div>
+				</motion.div>
 			</div>
 		</div>
 	);

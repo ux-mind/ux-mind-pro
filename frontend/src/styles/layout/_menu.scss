@@ -9,10 +9,6 @@
 	pointer-events: none;
 	&_opened {
 		pointer-events: auto;
-		& .menu-nav {
-		}
-		& .menu-contacts {
-		}
 	}
 	&-wrapper {
 		padding-top: 240px;

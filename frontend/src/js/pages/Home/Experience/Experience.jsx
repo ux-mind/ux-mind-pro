@@ -9,19 +9,24 @@ const Experience = () => {
 
 	const animationValues = useExperienceAnimation(scroll);
 
+	// translateY to scale background
+	// translateY instead of marginTop
+	// translateY to move the block under Experience
+
 	return (
 		<motion.div
 			className="experience"
 			id="experience"
 			style={{
-				marginTop: animationValues.topPosition,
-				height: animationValues.minHeight
+				marginTop: animationValues.topPosition
+				// height: animationValues.minHeight
 			}}
 		>
 			<motion.div
 				className="experience-bg"
 				style={{
-					height: animationValues.heightBgPosition
+					height: 1000,
+					translateY: animationValues.heightBgPosition
 				}}
 			></motion.div>
 			<motion.div
@@ -34,7 +39,12 @@ const Experience = () => {
 			>
 				<div className="container">
 					<div className="experience-text__wrapper text_blue text_size-xl">
-						<motion.p style={{ color: animationValues.textColor }}>
+						<motion.p
+							style={{
+								color: animationValues.textColor,
+								translateY: animationValues.textPosition
+							}}
+						>
 							UX Mind Creative Agency's team with&nbsp;
 							<strong>7+&nbsp;years of experience</strong> in&nbsp;UX/UI
 							web&nbsp;&&nbsp;mobile design, NFT projects and SAAs. <br />

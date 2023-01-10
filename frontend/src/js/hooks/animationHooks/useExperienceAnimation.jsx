@@ -21,9 +21,7 @@ const useExperienceAnimation = (context) => {
 	const minHeight = useTransform(scrollY, offsetY, heightValues);
 
 	// Animation values for the Experience background
-	const heightBgValues = isMobile
-		? ['100%', '100%', '100%', '100%']
-		: ['100%', '100%', '0%', '0%'];
+	const heightBgValues = isMobile ? ['100%', '100%', '100%', '100%'] : [-440, 0, -1000, -1000];
 
 	const heightBgPosition = useTransform(scrollY, offsetY, heightBgValues);
 
@@ -33,10 +31,12 @@ const useExperienceAnimation = (context) => {
 		: ['#0D08FF', '#0D08FF', '#FFF', 'rgba(255, 255, 255, 0)'];
 	const textTopValues = isMobile ? ['50%', '50%', '50%', '50%'] : ['50%', '50%', '50%', '0%'];
 	const textScaleValues = isMobile ? [1, 1, 1, 1] : [1, 1, 1, 0.65];
+	const textPositionValues = isMobile ? [-218, 0, 0, 0] : [-220, 0, 0, 0];
 
 	const textColor = useTransform(scrollY, offsetY, textColorValues);
 	const textTop = useTransform(scrollY, offsetY, textTopValues);
 	const textScale = useTransform(scrollY, offsetY, textScaleValues);
+	const textPosition = useTransform(scrollY, offsetY, textPositionValues);
 
 	const maxScrollValue = topValues.reduce((maxValue, value) => {
 		return Math.max(maxValue, value);
@@ -75,6 +75,7 @@ const useExperienceAnimation = (context) => {
 		textColor,
 		textTop,
 		textScale,
+		textPosition,
 		animationValuesLength: offsetY.length,
 		maxScrollValue
 	};

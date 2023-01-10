@@ -25,7 +25,7 @@ const Experience = () => {
 			<motion.div
 				className="experience-bg"
 				style={{
-					height: 1000,
+					height: animationValues.experienceBgHeight,
 					translateY: animationValues.heightBgPosition
 				}}
 			></motion.div>

@@ -21,7 +21,8 @@ const useExperienceAnimation = (context) => {
 	const minHeight = useTransform(scrollY, offsetY, heightValues);
 
 	// Animation values for the Experience background
-	const heightBgValues = isMobile ? ['100%', '100%', '100%', '100%'] : [-440, 0, -1000, -1000];
+	const experienceBgHeight = isMobile ? 812 : 1000;
+	const heightBgValues = isMobile ? [-437, 0, 0, 0] : [-440, 0, -1000, -1000];
 
 	const heightBgPosition = useTransform(scrollY, offsetY, heightBgValues);
 
@@ -37,6 +38,12 @@ const useExperienceAnimation = (context) => {
 	const textTop = useTransform(scrollY, offsetY, textTopValues);
 	const textScale = useTransform(scrollY, offsetY, textScaleValues);
 	const textPosition = useTransform(scrollY, offsetY, textPositionValues);
+
+	// Animation values for the Projects block
+	const projectsMarginTop = isMobile ? 0 : -440;
+	const projectsTranslateYValues = isMobile ? [-437, 0, 0, 0] : [0, 440, 440, 0];
+
+	const projectsTranslateY = useTransform(scrollY, offsetY, projectsTranslateYValues);
 
 	const maxScrollValue = topValues.reduce((maxValue, value) => {
 		return Math.max(maxValue, value);
@@ -71,7 +78,10 @@ const useExperienceAnimation = (context) => {
 	return {
 		minHeight,
 		topPosition,
+		experienceBgHeight,
 		heightBgPosition,
+		projectsMarginTop,
+		projectsTranslateY,
 		textColor,
 		textTop,
 		textScale,

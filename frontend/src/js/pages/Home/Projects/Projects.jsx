@@ -2,12 +2,23 @@ import React from 'react';
 import ArrowBtn from '../../../components/ArrowBtn';
 import ProjectScroll from './ProjectScroll/ProjectScroll';
 import ProjectSlider from './ProjectSlider/ProjectSlider';
+import { motion } from 'framer-motion';
+import useExperienceAnimation from '../../../hooks/animationHooks/useExperienceAnimation';
+
+import { useSelector } from 'react-redux';
 
 import projects from '../../../data/projects';
 
 const Projects = () => {
+	const scroll = useSelector((state) => state.scroll.scrollValues);
+
+	const { projectsTranslateY, projectsMarginTop } = useExperienceAnimation(scroll);
+
 	return (
-		<section className="section latest-projects">
+		<motion.section
+			className="section latest-projects"
+			style={{ translateY: projectsTranslateY, marginTop: projectsMarginTop }}
+		>
 			<div className="container">
 				<div className="section-wrapper latest-projects-wrapper">
 					<div className="latest-projects-header">
@@ -33,7 +44,7 @@ const Projects = () => {
 					</div>
 				</div>
 			</div>
-		</section>
+		</motion.section>
 	);
 };
 

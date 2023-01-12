@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { motion } from 'framer-motion';
-import { useMediaQuery } from 'react-responsive';
 
 const hashRow = [
 	{ id: 0, content: '#quick_communication' },
@@ -15,10 +14,6 @@ const hashRow = [
 ];
 
 function CustomersRow() {
-	const isUltraWide = useMediaQuery({
-		query: `(min-width: 1920px)`
-	});
-
 	return (
 		<div className="customers-row">
 			<motion.div
@@ -27,7 +22,7 @@ function CustomersRow() {
 					translateX: ['-100%', '0%']
 				}}
 				transition={{
-					duration: 10,
+					duration: 13,
 					ease: 'linear',
 					repeat: Infinity
 				}}
@@ -44,7 +39,7 @@ function CustomersRow() {
 					translateX: ['-100%', '0%']
 				}}
 				transition={{
-					duration: 10,
+					duration: 13,
 					ease: 'linear',
 					repeat: Infinity
 				}}
@@ -61,7 +56,7 @@ function CustomersRow() {
 					translateX: ['-100%', '0%']
 				}}
 				transition={{
-					duration: 10,
+					duration: 13,
 					ease: 'linear',
 					repeat: Infinity
 				}}

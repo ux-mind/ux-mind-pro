@@ -11,37 +11,32 @@ const useExperienceAnimation = (context) => {
 	const scrollY = useMotionValue(context.offset.y);
 
 	const [experienceBlock, setExperienceBlock] = useState(null);
-	const [offsetY, setOffsetY] = useState([0, 0, 0, 0]);
+	const [offsetY, setOffsetY] = useState([0, 0]);
+
+	const maxScroll = 800;
 
 	// Animation values for the Experience block
-	const topValues = isMobile ? [0, 800, 800, 800] : [0, 800, 1600, 2100];
-	const heightValues = isMobile ? [375, 812, 812, 812] : [560, 1000, 1000, 0];
+	const topValues = [-maxScroll, 0];
+	// const heightValues = isMobile ? [375, 812] : [560, 1000];
+	const heightValues = isMobile ? ['46.1822vh', '100vh'] : [560, 1000];
 
 	const topPosition = useTransform(scrollY, offsetY, topValues);
 	const minHeight = useTransform(scrollY, offsetY, heightValues);
 
 	// Animation values for the Experience background
 	const experienceBgHeight = isMobile ? 812 : 1000;
-	const heightBgValues = isMobile ? [-437, 0, 0, 0] : [-440, 0, -1000, -1000];
+	const heightBgValues = isMobile ? [-437, 0] : [-440, 0];
 
 	const heightBgPosition = useTransform(scrollY, offsetY, heightBgValues);
 
 	// Animation values for the Experience text
-	const textColorValues = isMobile
-		? ['#0D08FF', '#0D08FF', '#0D08FF', '#0D08FF']
-		: ['#0D08FF', '#0D08FF', '#FFF', 'rgba(255, 255, 255, 0)'];
-	const textTopValues = isMobile ? ['50%', '50%', '50%', '50%'] : ['50%', '50%', '50%', '0%'];
-	const textScaleValues = isMobile ? [1, 1, 1, 1] : [1, 1, 1, 0.65];
-	const textPositionValues = isMobile ? [-218, 0, 0, 0] : [-220, 0, 0, 0];
+	const textTop = '50%';
+	const textPositionValues = isMobile ? [-218, 0] : [-220, 0];
 
-	const textColor = useTransform(scrollY, offsetY, textColorValues);
-	const textTop = useTransform(scrollY, offsetY, textTopValues);
-	const textScale = useTransform(scrollY, offsetY, textScaleValues);
 	const textPosition = useTransform(scrollY, offsetY, textPositionValues);
 
 	// Animation values for the Projects block
-	const projectsMarginTop = isMobile ? 0 : -440;
-	const projectsTranslateYValues = isMobile ? [-437, 0, 0, 0] : [0, 440, 440, 0];
+	const projectsTranslateYValues = isMobile ? [-437 - maxScroll, 0] : [-440 - maxScroll, 0];
 
 	const projectsTranslateY = useTransform(scrollY, offsetY, projectsTranslateYValues);
 
@@ -76,15 +71,16 @@ const useExperienceAnimation = (context) => {
 	}, [context]);
 
 	return {
+		maxScroll,
 		minHeight,
 		topPosition,
 		experienceBgHeight,
 		heightBgPosition,
-		projectsMarginTop,
+		// projectsMarginTop,
 		projectsTranslateY,
-		textColor,
 		textTop,
-		textScale,
+		// textColor,
+		// textScale,
 		textPosition,
 		animationValuesLength: offsetY.length,
 		maxScrollValue

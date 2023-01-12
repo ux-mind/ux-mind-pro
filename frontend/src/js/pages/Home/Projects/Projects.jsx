@@ -12,12 +12,17 @@ import projects from '../../../data/projects';
 const Projects = () => {
 	const scroll = useSelector((state) => state.scroll.scrollValues);
 
-	const { projectsTranslateY, projectsMarginTop } = useExperienceAnimation(scroll);
+	const { projectsTranslateY, projectsMarginTop, textTop, topPosition } =
+		useExperienceAnimation(scroll);
 
 	return (
 		<motion.section
 			className="section latest-projects"
-			style={{ translateY: projectsTranslateY, marginTop: projectsMarginTop }}
+			style={{
+				// translateY: projectsTranslateY
+				// marginTop: projectsMarginTop
+				translateY: projectsTranslateY
+			}}
 		>
 			<div className="container">
 				<div className="section-wrapper latest-projects-wrapper">

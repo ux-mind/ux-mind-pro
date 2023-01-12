@@ -9,17 +9,13 @@ const Experience = () => {
 
 	const animationValues = useExperienceAnimation(scroll);
 
-	// translateY to scale background
-	// translateY instead of marginTop
-	// translateY to move the block under Experience
-
 	return (
 		<motion.div
 			className="experience"
 			id="experience"
 			style={{
-				marginTop: animationValues.topPosition
-				// height: animationValues.minHeight
+				marginTop: animationValues.maxScroll,
+				translateY: animationValues.topPosition
 			}}
 		>
 			<motion.div
@@ -33,7 +29,7 @@ const Experience = () => {
 				className="experience-text"
 				style={{
 					top: animationValues.textTop,
-					scale: animationValues.textScale,
+					// scale: animationValues.textScale,
 					translateY: '-50%'
 				}}
 			>
@@ -41,7 +37,7 @@ const Experience = () => {
 					<div className="experience-text__wrapper text_blue text_size-xl">
 						<motion.p
 							style={{
-								color: animationValues.textColor,
+								// color: animationValues.textColor,
 								translateY: animationValues.textPosition
 							}}
 						>

@@ -10,6 +10,10 @@
 		position: relative;
 		@include flex(row, stretch, space-between);
 	}
+	&-mobile .header-wrapper {
+		display: flex;
+		justify-content: flex-end;
+	}
 	&_active {
 		background: $primary-color;
 		max-height: none;

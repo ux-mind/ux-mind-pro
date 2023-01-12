@@ -1,15 +1,15 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import logo from '../../../assets/images/icons/logo.svg';
+// import { Link } from 'react-router-dom';
+// import logo from '../../../assets/images/icons/logo.svg';
 
 const ModalHeader = ({ setOpened }) => {
 	return (
-		<header className="header header_active">
+		<header className="header header-mobile header_active">
 			<div className="container">
 				<div className="header-wrapper">
-					<Link className="logo header-logo" to="/">
+					{/* <Link className="logo header-logo" to="/">
 						<img width="38" height="38" src={logo} alt="logo" />
-					</Link>
+					</Link> */}
 					<button
 						type="button"
 						className="menu-btn menu-btn_opened"

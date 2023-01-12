@@ -118,7 +118,7 @@
 				}
 			}
 			&__btn {
-				// transition: width 0.2s, height 0.2s, opacity 0.2s;
+				transition: none;
 				&:hover {
 					width: 20px;
 					height: 20px;

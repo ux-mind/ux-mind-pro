@@ -87,17 +87,17 @@ const ReviewsSwiper = () => {
 			<div className="reviews-swiper__pagination">
 				<motion.button
 					className="reviews-swiper__btn btn_prev"
-					whileHover={{
-						width: isMobile ? 30 : 48,
-						height: isMobile ? 30 : 48,
-						transition: { duration: 0.2 }
-					}}
-					whileTap={{
-						width: isMobile ? 30 : 48,
-						height: isMobile ? 30 : 48,
-						opacity: 0.3,
-						transition: { duration: 0.1 }
-					}}
+					// whileHover={{
+					// 	width: isMobile ? 30 : 48,
+					// 	height: isMobile ? 30 : 48,
+					// 	transition: { duration: 0.2 }
+					// }}
+					// whileTap={{
+					// 	width: isMobile ? 30 : 48,
+					// 	height: isMobile ? 30 : 48,
+					// 	opacity: 0.3,
+					// 	transition: { duration: 0.1 }
+					// }}
 					ref={prevBtn}
 				>
 					<svg
@@ -112,17 +112,17 @@ const ReviewsSwiper = () => {
 				</motion.button>
 				<motion.button
 					className="reviews-swiper__btn btn_next"
-					whileHover={{
-						width: isMobile ? 30 : 48,
-						height: isMobile ? 30 : 48,
-						transition: { duration: 0.2 }
-					}}
-					whileTap={{
-						width: isMobile ? 30 : 48,
-						height: isMobile ? 30 : 48,
-						opacity: 0.3,
-						transition: { duration: 0.1 }
-					}}
+					// whileHover={{
+					// 	width: isMobile ? 30 : 48,
+					// 	height: isMobile ? 30 : 48,
+					// 	transition: { duration: 0.2 }
+					// }}
+					// whileTap={{
+					// 	width: isMobile ? 30 : 48,
+					// 	height: isMobile ? 30 : 48,
+					// 	opacity: 0.3,
+					// 	transition: { duration: 0.1 }
+					// }}
 					ref={nextBtn}
 				>
 					<svg

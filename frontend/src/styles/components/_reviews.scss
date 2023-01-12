@@ -43,6 +43,18 @@
 				}
 			}
 		}
+		&__btn {
+			transition: width 0.2s, height 0.2s, opacity 0.2s;
+			&:hover {
+				width: 48px;
+				height: 48px;
+			}
+			&:active {
+				width: 48px;
+				height: 48px;
+				opacity: 0.3;
+			}
+		}
 	}
 	&-item {
 		background: $white;
@@ -103,6 +115,18 @@
 						margin-right: 0;
 						left: calc(100% - 20px);
 					}
+				}
+			}
+			&__btn {
+				// transition: width 0.2s, height 0.2s, opacity 0.2s;
+				&:hover {
+					width: 20px;
+					height: 20px;
+				}
+				&:active {
+					width: 20px;
+					height: 20px;
+					opacity: 1;
 				}
 			}
 		}

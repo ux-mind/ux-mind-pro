@@ -8,6 +8,9 @@ const useExperienceAnimation = (context) => {
 		query: `(max-width: 991px)`
 	});
 
+	// Declare static initial height of the white block;
+	const initialBgHeight = isMobile ? 400 : 560;
+
 	const scrollY = useMotionValue(context.offset.y);
 
 	const [experienceBlock, setExperienceBlock] = useState(null);
@@ -24,18 +27,30 @@ const useExperienceAnimation = (context) => {
 
 	// Animation values for the Experience background
 	const experienceBgHeight = viewportHeight;
-	const heightBgValues = [-400, 0, 0];
+	const initialExperienceBgHeight = viewportHeight - initialBgHeight;
+
+	const heightBgValues = [-initialExperienceBgHeight, 0, 0]; // 100vh - 560 вместо 400
+
+	// 100vh in pixels - max height
+	// Static height must be 560px
+	// 400px - difference between max height and static height. It must be 100vh - 560px
 
 	const heightBgPosition = useTransform(scrollY, offsetY, heightBgValues);
 
 	// Animation values for the Experience text
 	const textTop = '50%';
-	const textPositionValues = [-200, 0, 0];
+
+	const textPositionValues = [-initialExperienceBgHeight / 2, 0, 0];
+	// const textPositionValues = [0, 0, 0];
 
 	const textPosition = useTransform(scrollY, offsetY, textPositionValues);
 
 	// Animation values for the Projects block
-	const projectsTranslateYValues = [-maxScroll, -maxScroll + (viewportHeight + 400), 0];
+	const projectsTranslateYValues = [
+		-maxScroll,
+		-maxScroll + (viewportHeight + initialExperienceBgHeight),
+		0
+	];
 	const projectsOpacityValues = [0, 0, 3];
 
 	const projectsTranslateY = useTransform(scrollY, offsetY, projectsTranslateYValues);
@@ -51,10 +66,6 @@ const useExperienceAnimation = (context) => {
 		if (experienceBlock) {
 			setExperienceBlock(experienceBlock);
 		}
-
-		// const vh = window.innerHeight;
-
-		// setViewportHeight(vh);
 	}, []);
 
 	useEffect(() => {

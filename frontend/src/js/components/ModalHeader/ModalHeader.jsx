@@ -26,4 +26,4 @@ const ModalHeader = ({ setOpened }) => {
 	);
 };
 
-export default ModalHeader;
+export default React.memo(ModalHeader);

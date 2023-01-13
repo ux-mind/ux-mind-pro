@@ -33,7 +33,10 @@ const Experience = () => {
 				}}
 			>
 				<div className="container">
-					<div className="experience-text__wrapper text_blue text_size-xl">
+					<div
+						id="experience-text"
+						className="experience-text__wrapper text_blue text_size-xl"
+					>
 						<motion.p
 							style={{
 								translateY: animationValues.textPosition

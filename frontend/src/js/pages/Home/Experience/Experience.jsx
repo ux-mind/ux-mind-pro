@@ -14,7 +14,7 @@ const Experience = () => {
 			className="experience"
 			id="experience"
 			style={{
-				marginTop: animationValues.maxScroll,
+				marginTop: animationValues.maxScroll / 2,
 				translateY: animationValues.topPosition
 			}}
 		>
@@ -29,7 +29,6 @@ const Experience = () => {
 				className="experience-text"
 				style={{
 					top: animationValues.textTop,
-					// scale: animationValues.textScale,
 					translateY: '-50%'
 				}}
 			>
@@ -37,7 +36,6 @@ const Experience = () => {
 					<div className="experience-text__wrapper text_blue text_size-xl">
 						<motion.p
 							style={{
-								// color: animationValues.textColor,
 								translateY: animationValues.textPosition
 							}}
 						>

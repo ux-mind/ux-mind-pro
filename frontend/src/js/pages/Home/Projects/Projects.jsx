@@ -2,7 +2,7 @@ import React from 'react';
 import ArrowBtn from '../../../components/ArrowBtn';
 import ProjectScroll from './ProjectScroll/ProjectScroll';
 import ProjectSlider from './ProjectSlider/ProjectSlider';
-import { motion } from 'framer-motion';
+import { motion, useTransform } from 'framer-motion';
 import useExperienceAnimation from '../../../hooks/animationHooks/useExperienceAnimation';
 
 import { useSelector } from 'react-redux';
@@ -12,15 +12,13 @@ import projects from '../../../data/projects';
 const Projects = () => {
 	const scroll = useSelector((state) => state.scroll.scrollValues);
 
-	const { projectsTranslateY, projectsMarginTop, textTop, topPosition } =
-		useExperienceAnimation(scroll);
+	const { projectsTranslateY, projectsOpacity } = useExperienceAnimation(scroll);
 
 	return (
 		<motion.section
 			className="section latest-projects"
 			style={{
-				// translateY: projectsTranslateY
-				// marginTop: projectsMarginTop
+				opacity: projectsOpacity,
 				translateY: projectsTranslateY
 			}}
 		>

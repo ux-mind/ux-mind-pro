@@ -13,6 +13,8 @@ const ProjectScroll = ({ data }) => {
 
 	const contentBlockRef = useRef(null);
 
+	const [imageTopPadding, setImageTopPadding] = useState(0);
+
 	const [paddingTop, setPaddingTop] = useState(0);
 	const [paddingBottom, setPaddingBottom] = useState(0);
 
@@ -22,6 +24,18 @@ const ProjectScroll = ({ data }) => {
 	const [imageTransformValue, setImageTransformValue] = useState(0);
 
 	const imageTransformMotionValue = useMotionValue(imageTransformValue);
+
+	useEffect(() => {
+		if (imageContainer) {
+			const imageHeight = imageContainer.current.offsetHeight;
+
+			const imageTopPadding = (window.innerHeight - imageHeight) / 2;
+
+			console.log(imageTopPadding);
+
+			setImageTopPadding(imageTopPadding);
+		}
+	}, [imageContainer]);
 
 	useEffect(() => {
 		imageTransformMotionValue.set(imageTransformValue);
@@ -51,12 +65,12 @@ const ProjectScroll = ({ data }) => {
 	}, [scroll]);
 
 	useEffect(() => {
-		if (imageContainer && scrollBlockRef) {
+		if (imageContainer && scrollBlockRef && imageTopPadding > 0) {
 			const { top } = getViewportCoords(imageContainer.current);
 
 			const sectionHeight = scrollBlockRef.current.offsetHeight;
 
-			if (top <= 100 && !scrollTopValue && !scrollBottomValue) {
+			if (top <= imageTopPadding && !scrollTopValue && !scrollBottomValue) {
 				setScrollTopValue(scrollY.current);
 				setScrollBottomValue(
 					scrollY.current + sectionHeight - imageContainer.current.offsetHeight
@@ -72,7 +86,7 @@ const ProjectScroll = ({ data }) => {
 	}, [scrollY.current, imageContainer, scrollBlockRef]);
 
 	useEffect(() => {
-		if (contentBlockRef) {
+		if (contentBlockRef && imageTopPadding > 0) {
 			const block = contentBlockRef.current;
 
 			const newTextScrolls = [];
@@ -80,7 +94,7 @@ const ProjectScroll = ({ data }) => {
 			Array.from(block.children).forEach((element) => {
 				const { top } = getCoords(element);
 
-				const scrollValue = top - 100 - (paddingTop + paddingBottom) / 2;
+				const scrollValue = top - imageTopPadding - (paddingTop + paddingBottom) / 2;
 
 				newTextScrolls.push(scrollValue);
 			}, []);

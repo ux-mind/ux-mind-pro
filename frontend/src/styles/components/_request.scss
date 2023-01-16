@@ -1,5 +1,7 @@
 .request {
 	position: relative;
+	background: $primary-color;
+	z-index: 2;
 	&-top {
 		display: grid;
 		grid-template-columns: 4.29fr 8.35fr;

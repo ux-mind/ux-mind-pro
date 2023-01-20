@@ -28,7 +28,7 @@ const useExperienceAnimation = (context) => {
 	const topPosition = useTransform(scrollY, offsetY, topValues);
 
 	// Animation values for the Experience background
-	const experienceBgHeight = viewportHeight;
+	const experienceBgHeight = viewportHeight + 70;
 	const initialExperienceBgHeight = viewportHeight - initialBgHeight;
 
 	const heightBgValues = [-initialExperienceBgHeight, 0, 0];

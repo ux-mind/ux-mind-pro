@@ -31,8 +31,6 @@ const ProjectScroll = ({ data }) => {
 
 			const imageTopPadding = (window.innerHeight - imageHeight) / 2;
 
-			console.log(imageTopPadding);
-
 			setImageTopPadding(imageTopPadding);
 		}
 	}, [imageContainer]);

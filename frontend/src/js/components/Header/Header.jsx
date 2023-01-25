@@ -11,7 +11,7 @@ const Header = () => {
 	const htmlElement = document.documentElement;
 
 	const menuOpened = useSelector((state) => state.modals.menuOpened);
-	const scrollY = useSelector((state) => state.scroll.scrollValues.offset.y);
+	const scrollY = useSelector((state) => state.scroll.scrollValues.y);
 
 	const dispatch = useDispatch();
 
@@ -35,7 +35,7 @@ const Header = () => {
 		<>
 			<motion.header
 				className={`header ${menuOpened ? 'header_active' : ''}`}
-				style={{ translateY }}
+				// style={{ translateY }}
 			>
 				<div className="container">
 					<div className="header-wrapper">

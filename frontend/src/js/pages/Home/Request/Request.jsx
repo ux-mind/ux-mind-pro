@@ -31,7 +31,7 @@ const Request = () => {
 
 	const isInView = useInView(requestRef);
 
-	const scrollY = useMotionValue(scroll.offset.y);
+	const scrollY = useMotionValue(scroll.y);
 
 	const [offsetY, setOffsetY] = useState(() => [0, 0]);
 
@@ -65,7 +65,7 @@ const Request = () => {
 	}, [requestRef]);
 
 	useEffect(() => {
-		scrollY.set(scroll.offset.y);
+		scrollY.set(scroll.y);
 	}, [scroll]);
 
 	return (

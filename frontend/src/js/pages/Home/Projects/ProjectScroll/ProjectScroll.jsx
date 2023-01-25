@@ -54,12 +54,12 @@ const ProjectScroll = ({ data }) => {
 
 	const scrollBlockRef = useRef(null);
 
-	const scrollY = useMotionValue(scroll.offset.y);
+	const scrollY = useMotionValue(scroll.y);
 
 	const [offsetY, setOffsetY] = useState(() => new Array(data.length).fill(0));
 
 	useEffect(() => {
-		scrollY.set(scroll.offset.y);
+		scrollY.set(scroll.y);
 	}, [scroll]);
 
 	useEffect(() => {

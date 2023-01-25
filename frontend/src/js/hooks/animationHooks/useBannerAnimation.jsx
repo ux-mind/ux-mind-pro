@@ -6,7 +6,7 @@ const useBannerAnimation = (context) => {
 	const [banner, setBanner] = useState(null);
 	const [bannerWrapper, setBannerWrapper] = useState(null);
 
-	const scrollY = useMotionValue(context.offset.y);
+	const scrollY = useMotionValue(context.y);
 
 	const [offsetY, setOffsetY] = useState(() => [0, 0]);
 
@@ -63,7 +63,7 @@ const useBannerAnimation = (context) => {
 	}, [bannerWrapper, scrollY.current]);
 
 	useEffect(() => {
-		scrollY.set(context.offset.y);
+		scrollY.set(context.y);
 	}, [context]);
 
 	return { bannerShown, topPosition, minHeight, mobileHeight };

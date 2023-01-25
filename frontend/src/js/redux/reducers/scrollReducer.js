@@ -1,13 +1,13 @@
 import { createReducer, createAction } from '@reduxjs/toolkit';
 
 const initialState = {
-	scrollValues: { offset: { x: 0, y: 0 }, limit: { x: 0, y: 0 } }
+	scrollValues: { y: 0 }
 };
 
-export const updateScrollValues = createAction('UPDATE_SCROLL_VALUES');
+export const updateScrollY = createAction('UPDATE_SCROLL_Y');
 
 export default createReducer(initialState, {
-	[updateScrollValues]: (state, action) => {
-		state.scrollValues = action.payload;
+	[updateScrollY]: (state, action) => {
+		state.scrollValues.y = action.payload;
 	}
 });

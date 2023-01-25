@@ -8,7 +8,7 @@ const useExperienceAnimation = (context) => {
 		query: `(max-width: 991px)`
 	});
 
-	const scrollY = useMotionValue(context.offset.y);
+	const scrollY = useMotionValue(context.y);
 
 	const [experienceBlock, setExperienceBlock] = useState(null);
 	const [experienceText, setExperienceText] = useState(null);
@@ -77,6 +77,8 @@ const useExperienceAnimation = (context) => {
 
 			top = top - offsetValues[offsetValues.length - 2];
 
+			console.log(top);
+
 			let offsetArr = new Array(offsetValues.length).fill(top);
 
 			offsetArr = offsetArr.map((value, idx) => value + offsetValues[idx]);
@@ -86,7 +88,7 @@ const useExperienceAnimation = (context) => {
 	}, [experienceBlock]);
 
 	useEffect(() => {
-		scrollY.set(context.offset.y);
+		scrollY.set(context.y);
 	}, [context]);
 
 	return {

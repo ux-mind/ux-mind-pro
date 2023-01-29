@@ -1,5 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { gsap, Power4 } from 'gsap';
+import React, { useState, useLayoutEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import ScrollTrigger from 'gsap-trial/ScrollTrigger';
+import ScrollSmoother from 'gsap-trial/ScrollSmoother';
 import { useDispatch } from 'react-redux';
 import { updateScrollY } from '../redux/reducers/scrollReducer';
 
@@ -10,40 +12,26 @@ const SmoothScrollComponent = ({ children }) => {
 
 	const dispatch = useDispatch();
 
-	const ro = new ResizeObserver((elements) => {
-		for (let elem of elements) {
-			const crx = elem.contentRect;
+	const q = gsap.utils.selector(viewportRef);
+	gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-			setHeight(crx.height);
-		}
-	});
-
-	const onScroll = (el) => {
-		const tween = gsap.to(el, 1, {
-			y: -window.pageYOffset,
-			ease: Power4.easeOut
+	useLayoutEffect(() => {
+		const smoother = ScrollSmoother.create({
+			smooth: 1, // how long (in seconds) it takes to "catch up" to the native scroll position
+			effects: true, // looks for data-speed and data-lag attributes on elements
+			onUpdate: (self) => console.log('progress', self)
 		});
 
-		dispatch(updateScrollY(-tween.vars.y));
-	};
-
-	useEffect(() => {
-		if (viewportRef.current) {
-			window.addEventListener('scroll', () => onScroll(viewportRef.current));
-			ro.observe(viewportRef.current);
-		}
-	}, [viewportRef]);
+		return () => {
+			smoother.kill();
+		};
+	}, []);
 
 	return (
 		<>
 			<div className="viewport" ref={viewportRef}>
-				{children}
+				<div id="smooth-content">{children}</div>
 			</div>
-			<div
-				style={{
-					height: height
-				}}
-			/>
 		</>
 	);
 };

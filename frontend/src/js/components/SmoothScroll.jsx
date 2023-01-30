@@ -8,18 +8,17 @@ import { updateScrollY } from '../redux/reducers/scrollReducer';
 const SmoothScrollComponent = ({ children }) => {
 	const viewportRef = useRef(null);
 
-	const [height, setHeight] = useState(window.innerHeight);
+	// const [height, setHeight] = useState(window.innerHeight);
 
-	const dispatch = useDispatch();
+	// const dispatch = useDispatch();
 
 	const q = gsap.utils.selector(viewportRef);
 	gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
 	useLayoutEffect(() => {
 		const smoother = ScrollSmoother.create({
-			smooth: 1, // how long (in seconds) it takes to "catch up" to the native scroll position
-			effects: true, // looks for data-speed and data-lag attributes on elements
-			onUpdate: (self) => console.log('progress', self)
+			smooth: 1,
+			effects: true
 		});
 
 		return () => {

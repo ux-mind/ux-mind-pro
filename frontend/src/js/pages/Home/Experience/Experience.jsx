@@ -1,30 +1,18 @@
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
-import { useIntersection } from 'react-use';
 import useExperienceAnimation from '../../../hooks/animationHooks/useExperienceAnimation';
 
 import { useSelector } from 'react-redux';
 
 const Experience = () => {
-	const el = useRef(null);
-
 	const scroll = useSelector((state) => state.scroll.scrollValues);
 
 	const animationValues = useExperienceAnimation(scroll);
-
-	const intersection = useIntersection(el, {
-		root: null,
-		rootMargin: '0px',
-		threshold: 1
-	});
-
-	console.log(intersection);
 
 	return (
 		<motion.div
 			className="experience"
 			id="experience"
-			ref={el}
 			style={{
 				marginTop: animationValues.maxScroll / 2,
 				translateY: animationValues.topPosition

@@ -1,12 +1,28 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import { useTransform, useMotionValue } from 'framer-motion';
 import { useMediaQuery } from 'react-responsive';
 import { getCoords } from '../../functions/functions';
+
+import { gsap } from 'gsap';
+import ScrollTrigger from 'gsap-trial/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const useExperienceAnimation = (context) => {
 	const isMobile = useMediaQuery({
 		query: `(max-width: 991px)`
 	});
+
+	useLayoutEffect(() => {
+		ScrollTrigger.create({
+			trigger: '#experience',
+			start: 'top top',
+			end: '+=300px',
+			pin: true
+		});
+	}, []);
+
+	// Old animation
 
 	const scrollY = useMotionValue(context.y);
 

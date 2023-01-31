@@ -18,7 +18,6 @@
 		"redux": "^4.2.0",
 		"resize-observer-polyfill": "^1.5.1",
 		"scroller-motion": "^1.2.1",
-		"smooth-scrollbar": "^8.8.1",
 		"smooth-scrollbar-react": "^2.4.1",
 		"swiper": "^8.4.5",
 		"yup": "^0.32.11"

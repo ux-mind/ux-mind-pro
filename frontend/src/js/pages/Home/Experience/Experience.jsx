@@ -1,6 +1,5 @@
 import React, { useLayoutEffect, useRef } from 'react';
 import { useMediaQuery } from 'react-responsive';
-// import useExperienceAnimation from '../../../hooks/animationHooks/useExperienceAnimation';
 
 import { gsap } from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -13,6 +12,7 @@ const Experience = () => {
 	});
 
 	const tl = useRef(null);
+	const experienceRef = useRef(null);
 	const experienceText = useRef(null);
 
 	const textPaddings = isMobile ? 130 : 144;
@@ -22,94 +22,58 @@ const Experience = () => {
 		: 560;
 	const initialExperienceBgHeight = viewportHeight - initialBgHeight;
 
-	function start() {
-		const tl = gsap.timeline({
-			scrollTrigger: {
-				trigger: '#experience',
-				pin: true,
-				start: 'top top',
-				end: `+=${viewportHeight - initialBgHeight}px`,
-				markers: true,
-				scrub: 1
-			}
-		});
-
-		tl.fromTo(
-			'.experience-bg',
-			{
-				y: -initialExperienceBgHeight
-			},
-			{
-				y: 0
-			}
-		).fromTo(
-			'#experience-text p',
-			{
-				y: initialExperienceBgHeight / 2
-			},
-			{
-				y: 0
-			},
-			0
-		);
-
-		return tl;
-	}
-
-	function end() {
-		const tl = gsap.timeline({
-			scrollTrigger: {
-				trigger: '#experience',
-				pin: true,
-				start: `+=${viewportHeight - initialBgHeight}px`,
-				end: `+=${(viewportHeight - initialBgHeight) * 2}px`,
-				markers: true,
-				scrub: 1
-			}
-		});
-	}
-
 	useLayoutEffect(() => {
 		const ctx = gsap.context(() => {
-			tl.current = gsap.timeline();
+			tl.current = gsap.timeline({
+				scrollTrigger: {
+					trigger: '#experience',
+					pin: true,
+					pinSpacer: true,
+					start: 'top top',
+					end: `+=${viewportHeight}px`,
+					scrub: 0.6
+				},
+				ease: 'none'
+			});
 
-			tl.current.add(start()).add(end());
+			tl.current
+				.fromTo(
+					'.experience-bg',
+					{
+						y: -initialExperienceBgHeight
+					},
+					{
+						y: 0
+					},
+					0
+				)
+				.fromTo(
+					'#experience-text p',
+					{
+						y: initialExperienceBgHeight / 2
+					},
+					{
+						y: 0
+					},
+					0
+				)
+				.to(
+					'.experience-bg',
+					{
+						y: -viewportHeight,
+						ease: 'none',
+						duration: 0.7
+					},
+					'>0.12'
+				);
+		}, experienceRef);
 
-			// tl.current.from('#experience', {
-			// 	scrollTrigger: {
-			// 		trigger: '#experience',
-			// 		pin: true,
-			// 		start: 'top top',
-			// 		end: '+=500px',
-			// 		markers: true,
-			// 		scrub: 1
-			// 	}
-			// })
-		});
-
-		// const trigger = ScrollTrigger.create({
-		// 	trigger: '#experience',
-		// 	pin: true,
-		// 	start: 'top top',
-		// 	end: '+=200px',
-		// 	markers: true,
-		// 	scrub: 1
-		// });
-
-		return () => {
-			ctx.revert();
-			// trigger.kill();
-		};
+		return () => ctx.revert();
 	}, []);
 
 	return (
-		<div className="experience" id="experience">
-			<div
-				className="experience-bg"
-				style={{
-					height: viewportHeight
-				}}
-			>
+		<div className="experience" id="experience" ref={experienceRef}>
+			<div className="experience-bg">
 				<div className="experience-text">
 					<div className="container">
 						<div

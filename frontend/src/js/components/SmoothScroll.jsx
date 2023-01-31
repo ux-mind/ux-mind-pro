@@ -18,7 +18,8 @@ const SmoothScrollComponent = ({ children }) => {
 	useLayoutEffect(() => {
 		const smoother = ScrollSmoother.create({
 			smooth: 1,
-			effects: true
+			effects: true,
+			markers: false
 		});
 
 		return () => {

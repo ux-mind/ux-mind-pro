@@ -23,27 +23,57 @@ const Experience = () => {
 	const initialExperienceBgHeight = viewportHeight - initialBgHeight;
 
 	function start() {
-		const tl = gsap.timeline();
-
-		tl.from('#experience', {
+		const tl = gsap.timeline({
 			scrollTrigger: {
 				trigger: '#experience',
 				pin: true,
 				start: 'top top',
-				end: `+=${viewportHeight}px`,
+				end: `+=${viewportHeight - initialBgHeight}px`,
 				markers: true,
 				scrub: 1
 			}
-		}).from('.experience-bg', {});
+		});
+
+		tl.fromTo(
+			'.experience-bg',
+			{
+				y: -initialExperienceBgHeight
+			},
+			{
+				y: 0
+			}
+		).fromTo(
+			'#experience-text p',
+			{
+				y: initialExperienceBgHeight / 2
+			},
+			{
+				y: 0
+			},
+			0
+		);
 
 		return tl;
+	}
+
+	function end() {
+		const tl = gsap.timeline({
+			scrollTrigger: {
+				trigger: '#experience',
+				pin: true,
+				start: `+=${viewportHeight - initialBgHeight}px`,
+				end: `+=${(viewportHeight - initialBgHeight) * 2}px`,
+				markers: true,
+				scrub: 1
+			}
+		});
 	}
 
 	useLayoutEffect(() => {
 		const ctx = gsap.context(() => {
 			tl.current = gsap.timeline();
 
-			tl.current.add(start());
+			tl.current.add(start()).add(end());
 
 			// tl.current.from('#experience', {
 			// 	scrollTrigger: {
@@ -73,27 +103,12 @@ const Experience = () => {
 	}, []);
 
 	return (
-		// <div className="experience" id="experience">
-		// 	<div className="experience-text">
-		// 		<div className="container">
-		// 			<div
-		// 				id="experience-text"
-		// 				className="experience-text__wrapper text_blue text_size-xl"
-		// 			>
-		// 				<p>
-		// 					UX Mind Creative Agency's team with&nbsp;
-		// 					<strong>7+&nbsp;years of experience</strong> in&nbsp;UX/UI
-		// 					web&nbsp;&&nbsp;mobile design, NFT projects and SAAs. <br />
-		// 					We create style.
-		// 				</p>
-		// 			</div>
-		// 		</div>
-		// 	</div>
-		// </div>
 		<div className="experience" id="experience">
 			<div
 				className="experience-bg"
-				style={{ height: viewportHeight, top: `-${initialExperienceBgHeight}px` }}
+				style={{
+					height: viewportHeight
+				}}
 			>
 				<div className="experience-text">
 					<div className="container">

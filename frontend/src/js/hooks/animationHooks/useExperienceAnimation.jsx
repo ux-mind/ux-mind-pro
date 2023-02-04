@@ -12,7 +12,6 @@ const useExperienceAnimation = () => {
 	});
 
 	const tl1 = useRef(null);
-	const tl2 = useRef(null);
 	const experienceRef = useRef(null);
 	const experienceText = useRef(null);
 

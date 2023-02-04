@@ -1,43 +1,33 @@
-import React, { useRef, useState, useEffect } from 'react';
-import { motion, useTransform, useMotionValue } from 'framer-motion';
-import { getCoords, getViewportCoords } from '../../../../functions/functions';
+import React, { useRef, useState, useEffect, useLayoutEffect } from 'react';
+import { motion } from 'framer-motion';
 
-import { useSelector } from 'react-redux';
+import { gsap } from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const ProjectScroll = ({ data }) => {
-	const scroll = useSelector((state) => state.scroll.scrollValues);
-
 	const imageContainer = useRef(null);
 	const firstProjectText = useRef(null);
 	const lastProjectText = useRef(null);
+	const projectsRef = useRef(null);
+	const tl1 = useRef(null);
 
 	const contentBlockRef = useRef(null);
-
-	const [imageTopPadding, setImageTopPadding] = useState(0);
 
 	const [paddingTop, setPaddingTop] = useState(0);
 	const [paddingBottom, setPaddingBottom] = useState(0);
 
-	const [scrollTopValue, setScrollTopValue] = useState(0);
-	const [scrollBottomValue, setScrollBottomValue] = useState(0);
-
-	const [imageTransformValue, setImageTransformValue] = useState(0);
-
-	const imageTransformMotionValue = useMotionValue(imageTransformValue);
+	const [imgScrollHeight, setImgScrollHeight] = useState(0);
 
 	useEffect(() => {
-		if (imageContainer) {
+		if (imageContainer && projectsRef) {
 			const imageHeight = imageContainer.current.offsetHeight;
+			const projectsHieght = projectsRef.current.offsetHeight;
 
-			const imageTopPadding = (window.innerHeight - imageHeight) / 2;
-
-			setImageTopPadding(imageTopPadding);
+			setImgScrollHeight(projectsHieght - imageHeight);
 		}
-	}, [imageContainer]);
-
-	useEffect(() => {
-		imageTransformMotionValue.set(imageTransformValue);
-	}, [imageTransformValue]);
+	}, [imageContainer, projectsRef]);
 
 	useEffect(() => {
 		if (imageContainer && firstProjectText && lastProjectText) {
@@ -52,63 +42,38 @@ const ProjectScroll = ({ data }) => {
 		}
 	}, [imageContainer, firstProjectText, lastProjectText]);
 
-	const scrollBlockRef = useRef(null);
+	useLayoutEffect(() => {
+		const ctx = gsap.context(() => {
+			tl1.current = gsap.timeline(
+				{
+					scrollTrigger: {
+						trigger: '#projects-img',
+						pin: true,
+						start: 'center center',
+						end: `+=${imgScrollHeight}px`,
+						scrub: true
+					},
+					ease: 'none'
+				},
+				imageContainer
+			);
 
-	const scrollY = useMotionValue(scroll.y);
+			tl1.current
+				.add('start')
+				.fromTo(`.image-wrapper-1`, { opacity: 1 }, { opacity: 0 }, 'start')
+				.fromTo('.image-wrapper-2', { opacity: 0 }, { opacity: 1 }, 'start')
+				.fromTo('.image-wrapper-3', { opacity: 0 }, { opacity: 0 }, 'start')
+				.add('end', '>')
+				.fromTo(`.image-wrapper-1`, { opacity: 0 }, { opacity: 0 }, 'end')
+				.fromTo('.image-wrapper-2', { opacity: 1 }, { opacity: 0 }, 'end')
+				.fromTo('.image-wrapper-3', { opacity: 0 }, { opacity: 1 }, 'end');
+		});
 
-	const [offsetY, setOffsetY] = useState(() => new Array(data.length).fill(0));
-
-	useEffect(() => {
-		scrollY.set(scroll.y);
-	}, [scroll]);
-
-	useEffect(() => {
-		if (imageContainer && scrollBlockRef && imageTopPadding > 0) {
-			const { top } = getViewportCoords(imageContainer.current);
-
-			const sectionHeight = scrollBlockRef.current.offsetHeight;
-
-			if (top <= imageTopPadding && !scrollTopValue && !scrollBottomValue) {
-				setScrollTopValue(scrollY.current);
-				setScrollBottomValue(
-					scrollY.current + sectionHeight - imageContainer.current.offsetHeight
-				);
-			}
-
-			if (scrollTopValue && scrollBottomValue) {
-				if (scrollY.current >= scrollTopValue && scrollY.current < scrollBottomValue) {
-					setImageTransformValue(scrollY.current - scrollTopValue);
-				}
-			}
-		}
-	}, [scrollY.current, imageContainer, scrollBlockRef]);
-
-	useEffect(() => {
-		if (contentBlockRef && imageTopPadding > 0) {
-			const block = contentBlockRef.current;
-
-			const newTextScrolls = [];
-
-			Array.from(block.children).forEach((element) => {
-				const { top } = getCoords(element);
-
-				const scrollValue = top - imageTopPadding - (paddingTop + paddingBottom) / 2;
-
-				newTextScrolls.push(scrollValue);
-			}, []);
-
-			setOffsetY(newTextScrolls);
-		}
-	}, [contentBlockRef, paddingBottom, paddingTop]);
-
-	const imageTransform = useTransform(scrollY, offsetY, [
-		0,
-		(scrollBottomValue - scrollTopValue) / 2,
-		scrollBottomValue - scrollTopValue
-	]);
+		return () => ctx.revert();
+	}, [imgScrollHeight, imageContainer]);
 
 	return (
-		<div className="latest-projects-scroll" ref={scrollBlockRef}>
+		<div className="latest-projects-scroll" id="#projects" ref={projectsRef}>
 			<div className="latest-projects-scroll__wrapper">
 				<div
 					className="latest-projects-scroll__content"
@@ -140,22 +105,12 @@ const ProjectScroll = ({ data }) => {
 				</div>
 				<motion.div
 					className="latest-projects-scroll__image"
-					style={{ translateY: imageTransform }}
+					id="projects-img"
 					ref={imageContainer}
 				>
 					{data.map(({ id, img }, idx) => {
-						let opacityValues = new Array(data.length).fill(0);
-
-						opacityValues[idx] = 1;
-
-						const opacity = useTransform(scrollY, offsetY, opacityValues);
-
 						return (
-							<motion.div
-								className="img-wrapper"
-								style={{ opacity: opacity }}
-								key={id}
-							>
+							<motion.div className={`img-wrapper image-wrapper-${idx + 1}`} key={id}>
 								<img
 									width="835"
 									height="626"

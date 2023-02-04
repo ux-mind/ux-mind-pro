@@ -7,11 +7,15 @@ import Request from './Request/Request';
 import Customers from './Customers/Customers';
 import Share from './Share/Share';
 
+import useExperienceAnimation from '../../hooks/animationHooks/useExperienceAnimation';
+
 const Home = () => {
+	const { experienceRef, experienceText } = useExperienceAnimation();
+
 	return (
 		<div className="home">
 			<Hero />
-			<Experience />
+			<Experience experienceRef={experienceRef} experienceText={experienceText} />
 			<Projects />
 			<Banner />
 			<Request />

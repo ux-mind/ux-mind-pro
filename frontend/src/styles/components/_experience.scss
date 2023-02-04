@@ -2,7 +2,7 @@
 	position: relative;
 	overflow: hidden;
 	z-index: 2;
-	// margin-bottom: 200px;
+	pointer-events: none;
 	& .container {
 		height: 100%;
 	}

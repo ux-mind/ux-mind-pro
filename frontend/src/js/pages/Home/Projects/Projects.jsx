@@ -9,8 +9,6 @@ import { useSelector } from 'react-redux';
 import projects from '../../../data/projects';
 
 const Projects = () => {
-	const scroll = useSelector((state) => state.scroll.scrollValues);
-
 	return (
 		<motion.section className="section latest-projects" id="projects">
 			<div className="container">

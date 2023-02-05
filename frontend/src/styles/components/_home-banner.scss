@@ -1,17 +1,24 @@
 .home-banner {
 	position: relative;
+	height: 100vh;
+	margin-bottom: 600px;
 	&__block {
-		height: 1000px;
+		height: 100vh;
 		max-height: inherit;
 		position: relative;
-	}
-	&__wrapper {
 		overflow: hidden;
-		height: 54.4%;
+	}
+	&__bottom {
+		position: absolute;
+		width: 100%;
+		height: 44%;
+		bottom: 0;
+		left: 0;
+		background: $primary-color;
 	}
 	& img {
 		width: 100%;
-		height: 100%;
+		height: 100vh;
 		object-fit: cover;
 	}
 }
@@ -19,11 +26,11 @@
 @media screen and (max-width: 991px) {
 	.home-banner {
 		max-height: 811px;
-		&__wrapper {
-			height: 25.89396%;
-		}
 		&__block {
 			height: auto;
+		}
+		&__bottom {
+			display: none;
 		}
 	}
 }

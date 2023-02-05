@@ -28,8 +28,8 @@ const App = () => {
 							<Footer />
 							{/* </div> */}
 							{/* </Scrollbar> */}
+							<ModalsComponent />
 						</SmoothScroll>
-						<ModalsComponent />
 					</Provider>
 				</BrowserRouter>
 			</div>

@@ -11,7 +11,7 @@ const useExperienceAnimation = () => {
 		query: `(max-width: 991px)`
 	});
 
-	const tl1 = useRef(null);
+	const tl = useRef(null);
 	const experienceRef = useRef(null);
 	const experienceText = useRef(null);
 
@@ -24,7 +24,7 @@ const useExperienceAnimation = () => {
 
 	useLayoutEffect(() => {
 		const ctx = gsap.context(() => {
-			tl1.current = gsap.timeline({
+			tl.current = gsap.timeline({
 				scrollTrigger: {
 					trigger: '#experience',
 					pin: true,
@@ -36,7 +36,7 @@ const useExperienceAnimation = () => {
 				ease: 'none'
 			});
 
-			tl1.current
+			tl.current
 				.fromTo(
 					'.experience-bg',
 					{

@@ -33,7 +33,7 @@ const Banner = () => {
 			});
 
 			if (isMobile) {
-				tl.current.fromTo('#banner img', { x: '-70%', scale: 1 }, { x: '-50%', scale: 2 });
+				tl.current.fromTo('#banner img', { y: '-70%', scale: 1 }, { y: '-50%', scale: 2 });
 			} else {
 				tl.current.to('.home-banner__bottom', { y: '100%' });
 			}

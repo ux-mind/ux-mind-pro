@@ -21,7 +21,6 @@ const Menu = () => {
 	const isMobile = useMediaQuery({ query: '(max-width: 991px)' });
 
 	const opened = useSelector((state) => state.modals.menuOpened);
-	const dispatch = useDispatch();
 
 	const menuVariants = {
 		hidden: {

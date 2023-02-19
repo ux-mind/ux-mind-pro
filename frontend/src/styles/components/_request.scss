@@ -11,8 +11,9 @@
 		}
 	}
 	&-list {
+		height: 100%;
+		min-height: 480px;
 		@include flex(row, stretch);
-		height: 480px;
 		&__item {
 			@include flex(row, flex-end, flex-start);
 			min-height: 100%;
@@ -26,7 +27,6 @@
 				border-right: 2px solid $white;
 			}
 			& p {
-				position: absolute;
 				max-width: none;
 				@include font(3.2rem, calc(36 / 32));
 				margin: 0;

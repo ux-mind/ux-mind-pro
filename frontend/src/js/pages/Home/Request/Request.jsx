@@ -1,10 +1,11 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Title from '../../../components/Title';
-import { motion, useTransform, useMotionValue, useInView } from 'framer-motion';
+import { motion, useInView, useMotionValue, useTransform } from 'framer-motion';
 import { getCoords } from '../../../functions/functions';
 import { useMediaQuery } from 'react-responsive';
 
 import { useSelector } from 'react-redux';
+import { gsap } from 'gsap';
 
 const requestList = [
 	{ id: 0, text: 'UX/UI' },
@@ -49,6 +50,45 @@ const Request = () => {
 	const itemTransform = useTransform(scrollY, offsetY, [0, 521]);
 
 	useEffect(() => {
+		gsap.to('.request', {
+			backgroundColor: 'white',
+			scrollTrigger: {
+				scrub: 1,
+				trigger: '.customers',
+				start: 'top 20%',
+				end: 'top 0%',
+				markers: true
+			}
+		});
+		gsap.to('.request-content', {
+			height: '90vh',
+			scrollTrigger: {
+				scrub: 1,
+				trigger: '.request-content',
+				start: 'top 20%',
+				end: 'top',
+			}
+		});
+		const tl = gsap.timeline({
+			scrollTrigger: {
+				trigger: ".request-content",
+				start: "top 80%",
+				end: "top 20%",
+				scrub: true,
+			}
+		});
+
+		tl.to(".request-list__item-0", {opacity: 1})
+			.to(".request-list__item-1", {opacity: 1})
+			.to(".request-list__item-2", {opacity: 1})
+			.to(".request-list__item-3", {opacity: 1})
+			.to(".request-list__item-4", {opacity: 1})
+			.to(".request-list__item-5", {opacity: 1})
+			.to(".request-list__item-6", {opacity: 1})
+			.to(".request-list__item-7", {opacity: 1})
+	}, []);
+
+	useEffect(() => {
 		if (requestRef) {
 			let { top } = getCoords(requestRef.current);
 
@@ -70,31 +110,31 @@ const Request = () => {
 
 	return (
 		<motion.section
-			className="section request"
+			className='section request'
 			ref={requestRef}
-			style={{ marginTop: topPosition }}
+			style={{ marginTop: topPosition, backgroundColor: '#0d08ff', height: '160vh' }}
 		>
-			<motion.div className="request-block">
-				<div className="container">
-					<div className="section-wrapper request-wrapper">
-						<div className="request-top">
-							<div className="request-top__link">
-								<button className="link-primary">Leave a request</button>
+			<motion.div className='request-block'>
+				<div className='container'>
+					<div className='section-wrapper request-wrapper'>
+						<div className='request-top'>
+							<div className='request-top__link'>
+								<button className='link-primary'>Leave a request</button>
 							</div>
-							<div className="request-top__title">
-								<Title size="s">
-									<span className="title_transparent">Smart design</span>
+							<div className='request-top__title'>
+								<Title size='s'>
+									<span className='title_transparent'>Smart design</span>
 									<br />& development solutions <br />
 									for the digital environment
 								</Title>
 							</div>
 						</div>
-						<div className="request-content">
+						<div className='request-content' style={{height: '50vh', minHeight: '50vh'}}>
 							{isMobile ? (
-								<ul className="request-list" ref={requestRef}>
+								<ul className='request-list' ref={requestRef}>
 									{requestList.map(({ id, text }, idx) => {
 										return (
-											<li className="request-list__item" key={id}>
+											<li className='request-list__item' key={id}>
 												<p dangerouslySetInnerHTML={{ __html: text }}></p>
 											</li>
 										);
@@ -102,20 +142,22 @@ const Request = () => {
 								</ul>
 							) : (
 								<motion.ul
-									className="request-list"
+									className='request-list'
 									ref={requestRef}
-									style={{ height: listMinHeight }}
 								>
 									{requestList.map(({ id, text }, idx) => {
 										return (
 											<motion.li
-												className="request-list__item"
+												className={`request-list__item request-list__item-${id}`}
 												key={id}
+												// style={{
+												// 	transition: isInView
+												// 		? `opacity .4s ${1 + 0.4 * idx}s`
+												// 		: 'none',
+												// 	opacity: isInView ? 1 : 0
+												// }}
 												style={{
-													transition: isInView
-														? `opacity .4s ${1 + 0.4 * idx}s`
-														: 'none',
-													opacity: isInView ? 1 : 0
+													opacity: 0
 												}}
 											>
 												<motion.p

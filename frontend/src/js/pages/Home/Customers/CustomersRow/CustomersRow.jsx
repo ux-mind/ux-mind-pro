@@ -13,11 +13,11 @@ const hashRow = [
 	{ id: 7, content: '#trends' }
 ];
 
-function CustomersRow() {
+function CustomersRow({customersHeight}) {
 	return (
-		<div className="customers-row">
+		<div ref={customersHeight} className='customers-row customers-row-container' style={{ top: '100%' }}>
 			<motion.div
-				className="customers-line"
+				className='customers-line'
 				animate={{
 					translateX: ['-100%', '0%']
 				}}
@@ -28,13 +28,13 @@ function CustomersRow() {
 				}}
 			>
 				{hashRow.map(({ id, content }) => (
-					<div className="customers-line__item" key={id}>
+					<div className='customers-line__item' key={id}>
 						{content}
 					</div>
 				))}
 			</motion.div>
 			<motion.div
-				className="customers-line"
+				className='customers-line'
 				animate={{
 					translateX: ['-100%', '0%']
 				}}
@@ -45,13 +45,13 @@ function CustomersRow() {
 				}}
 			>
 				{hashRow.map(({ id, content }) => (
-					<div className="customers-line__item" key={id}>
+					<div className='customers-line__item' key={id}>
 						{content}
 					</div>
 				))}
 			</motion.div>
 			<motion.div
-				className="customers-line"
+				className='customers-line'
 				animate={{
 					translateX: ['-100%', '0%']
 				}}
@@ -62,7 +62,7 @@ function CustomersRow() {
 				}}
 			>
 				{hashRow.map(({ id, content }) => (
-					<div className="customers-line__item" key={id}>
+					<div className='customers-line__item' key={id}>
 						{content}
 					</div>
 				))}

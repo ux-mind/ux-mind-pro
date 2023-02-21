@@ -1,9 +1,7 @@
-import React, { useState, useLayoutEffect, useRef } from 'react';
+import React, { useLayoutEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import ScrollSmoother from 'gsap-trial/ScrollSmoother';
-import { useDispatch } from 'react-redux';
-import { updateScrollY } from '../redux/reducers/scrollReducer';
 
 const SmoothScrollComponent = ({ children }) => {
 	const viewportRef = useRef(null);

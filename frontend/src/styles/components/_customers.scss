@@ -1,44 +1,91 @@
 .customers {
-	background: $white;
-	padding: 240px 0;
-	&-title {
-		margin-bottom: 88px;
-	}
-	&-row {
-		margin-bottom: 96px;
-		@include flex();
-		overflow: hidden;
-	}
-	&-line {
-		@include flex();
-		&__item {
-			display: inline-block;
-			padding: 0.416667em 1.166667em;
-			background: $primary-color;
-			border-radius: 100px;
-			@include font(2.4rem, calc(32 / 24));
-			font-weight: 700;
-		}
-		&__slide {
-			width: auto;
-		}
-	}
+  background: transparent;
+  padding: 0 0;
+  position: relative;
+  overflow: hidden;
+
+  .overlay {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+
+    &-white{
+      z-index: 1;
+      background-color: white;
+    }
+    &-blue{
+      z-index: 2;
+      background-color: $primary-color;
+    }
+
+
+  }
+
+  &-reviews-container {
+    transition: 400ms;
+    position: absolute;
+    z-index: 3;
+    left: 10%;
+  }
+
+  &-title {
+    margin-bottom: 88px;
+
+    &-container {
+      transition: 400ms;
+      position: absolute;
+      z-index: 3;
+      left: 10%;
+    }
+  }
+
+  &-row {
+    margin-bottom: 96px;
+    @include flex();
+    overflow: hidden;
+
+    &-container {
+      transition: 400ms;
+      position: absolute;
+      z-index: 3;
+    }
+  }
+
+  &-line {
+    @include flex();
+
+    &__item {
+      display: inline-block;
+      padding: 0.416667em 1.166667em;
+      background: $primary-color;
+      border-radius: 100px;
+      @include font(2.4rem, calc(32 / 24));
+      font-weight: 700;
+    }
+
+    &__slide {
+      width: auto;
+    }
+  }
 }
 
 @media screen and (max-width: 991px) {
-	.customers {
-		padding: 144px 0;
-		&-title {
-			margin-bottom: 48px;
-		}
-		&-row {
-			margin-bottom: 56px;
-		}
-		&-line {
-			&__item {
-				padding: 0.44445em 1.22222em;
-				@include font(1.8rem, calc(26 / 18));
-			}
-		}
-	}
+  .customers {
+    padding: 144px 0;
+
+    &-title {
+      margin-bottom: 48px;
+    }
+
+    &-row {
+      margin-bottom: 56px;
+    }
+
+    &-line {
+      &__item {
+        padding: 0.44445em 1.22222em;
+        @include font(1.8rem, calc(26 / 18));
+      }
+    }
+  }
 }

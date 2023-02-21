@@ -1,4 +1,27 @@
 .reviews {
+
+	&-white-color {
+		.reviews-link > a {
+			color: white;
+		}
+
+		h4 {
+			color: white;
+		}
+
+		p {
+			color: white;
+		}
+
+		.reviews-item::before {
+			color: white;
+		}
+
+		svg > path {
+			stroke: white;
+		}
+	}
+
 	@include flex(row, flex-start, space-between);
 	&-link {
 		max-width: 33.93987%;
@@ -57,7 +80,7 @@
 		}
 	}
 	&-item {
-		background: $white;
+		background: transparent;
 		position: relative;
 		padding-top: 80px;
 		@include flex(column);

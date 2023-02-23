@@ -1,6 +1,6 @@
 import React from 'react';
 import Title from '../../Title';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Scrollbars } from 'react-custom-scrollbars-2';
 import ModalHeader from '../../ModalHeader/ModalHeader';
 import { useFormik } from 'formik';
@@ -50,13 +50,13 @@ const ContactModal = () => {
 
 	return (
 		<AnimatePresence>
-			{opened ? (
+			{!!opened && (
 				<motion.div
 					className={`modal contact-modal modal_opened`}
 					variants={modalVariants}
-					initial="hidden"
-					animate="show"
-					exit="hidden"
+					initial='hidden'
+					animate='show'
+					exit='hidden'
 					transition={{
 						type: 'tween',
 						duration: isMobile ? 0.35 : 0.6
@@ -64,15 +64,15 @@ const ContactModal = () => {
 				>
 					<ModalHeader setOpened={() => dispatch(toggleContactModal())} />
 					<Scrollbars>
-						<div className="contact-modal__wrapper">
-							<div className="container">
-								<div className="contact-modal__title">
-									<Title size="s">
+						<div className='contact-modal__wrapper'>
+							<div className='container'>
+								<div className='contact-modal__title'>
+									<Title size='s'>
 										Let's discuss your project and&nbsp;find creative solutions
 									</Title>
 								</div>
 								<form
-									className="contact-modal__form"
+									className='contact-modal__form'
 									onSubmit={formik.handleSubmit}
 								>
 									<Input
@@ -83,8 +83,8 @@ const ContactModal = () => {
 										}
 										value={formik.values.name}
 										onChange={formik.handleChange}
-										placeholder="Name"
-										name="name"
+										placeholder='Name'
+										name='name'
 									/>
 									<Input
 										message={
@@ -94,8 +94,8 @@ const ContactModal = () => {
 										}
 										value={formik.values.email}
 										onChange={formik.handleChange}
-										placeholder="Email"
-										name="email"
+										placeholder='Email'
+										name='email'
 									/>
 									<Input
 										message={
@@ -106,23 +106,23 @@ const ContactModal = () => {
 										long={true}
 										value={formik.values.message}
 										onChange={formik.handleChange}
-										placeholder="Message"
-										name="message"
+										placeholder='Message'
+										name='message'
 									/>
-									<div className="contact-modal__submit-wrapper">
-										<button type="submit" className="link link-primary">
+									<div className='contact-modal__submit-wrapper'>
+										<button type='submit' className='link link-primary'>
 											Send
 										</button>
 									</div>
 								</form>
 							</div>
-							<div className="contact-modal__textline">
+							<div className='contact-modal__textline'>
 								<AnimatedTextLine />
 							</div>
 						</div>
 					</Scrollbars>
 				</motion.div>
-			) : null}
+			)}
 		</AnimatePresence>
 	);
 };

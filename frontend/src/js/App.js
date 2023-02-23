@@ -14,20 +14,20 @@ const App = () => {
 	return (
 		<React.StrictMode>
 			<Head />
-			<div className="app">
-				<BrowserRouter>
-					<Provider store={store}>
+			<BrowserRouter>
+				<Provider store={store}>
+					<div className='app'>
 						<SmoothScroll>
 							<Header />
 							<Routes>
-								<Route path="/" element={<Home />} />
+								<Route path='/' element={<Home />} />
 							</Routes>
 							<Footer />
-							<ModalsComponent />
 						</SmoothScroll>
-					</Provider>
-				</BrowserRouter>
-			</div>
+						<ModalsComponent />
+					</div>
+				</Provider>
+			</BrowserRouter>
 		</React.StrictMode>
 	);
 };

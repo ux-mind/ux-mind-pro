@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { motion, useMotionValue } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleMenu } from '../../redux/reducers/modalsReducer';
@@ -11,15 +11,8 @@ const Header = () => {
 	const htmlElement = document.documentElement;
 
 	const menuOpened = useSelector((state) => state.modals.menuOpened);
-	const scrollY = useSelector((state) => state.scroll.scrollValues.y);
 
 	const dispatch = useDispatch();
-
-	const translateY = useMotionValue(-scrollY);
-
-	useEffect(() => {
-		translateY.set(-scrollY);
-	}, [scrollY]);
 
 	useEffect(() => {
 		// Lock body scroll when menu is opened
@@ -35,23 +28,22 @@ const Header = () => {
 		<>
 			<motion.header
 				className={`header ${menuOpened ? 'header_active' : ''}`}
-				// style={{ translateY }}
 			>
-				<div className="container">
-					<div className="header-wrapper">
-						<Link className="logo header-logo" to="/">
-							<img width="38" height="38" src={logo} alt="logo" />
+				<div className='container'>
+					<div className='header-wrapper'>
+						<Link className='logo header-logo' to='/'>
+							<img width='38' height='38' src={logo} alt='logo' />
 						</Link>
 						<button
-							type="button"
+							type='button'
 							className={`menu-btn ${menuOpened ? 'menu-btn_opened' : ''}`}
 							onClick={() => dispatch(toggleMenu())}
 						>
-							<div className="menu-btn-sticks">
+							<div className='menu-btn-sticks'>
 								<span></span>
 								<span></span>
 							</div>
-							<span className="menu-btn__text">Menu</span>
+							<span className='menu-btn__text'>Menu</span>
 						</button>
 					</div>
 				</div>

@@ -1,36 +1,30 @@
-import React, { useLayoutEffect, useRef } from 'react';
+import React, { useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import ScrollSmoother from 'gsap-trial/ScrollSmoother';
 
+
 const SmoothScrollComponent = ({ children }) => {
-	const viewportRef = useRef(null);
-
-	// const [height, setHeight] = useState(window.innerHeight);
-
-	// const dispatch = useDispatch();
-
-	const q = gsap.utils.selector(viewportRef);
-	gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
-
 	useLayoutEffect(() => {
+		gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
+
 		const smoother = ScrollSmoother.create({
+			wrapper: '#smooth-wrapper',
+			content: '#smooth-content',
 			smooth: 1,
 			effects: true,
-			markers: false
+			smoothTouch: 0.1
 		});
 
-		return () => {
-			smoother.kill();
-		};
+		return () => smoother.kill();
 	}, []);
 
 	return (
-		<>
-			<div className="viewport" ref={viewportRef}>
-				<div id="smooth-content">{children}</div>
+		<div id='smooth-wrapper'>
+			<div id='smooth-content'>
+				{children}
 			</div>
-		</>
+		</div>
 	);
 };
 

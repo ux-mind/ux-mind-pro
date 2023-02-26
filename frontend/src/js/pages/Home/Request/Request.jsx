@@ -3,7 +3,7 @@ import Title from '../../../components/Title';
 import { motion, useInView, useMotionValue, useTransform } from 'framer-motion';
 import { getCoords } from '../../../functions/functions';
 import { useMediaQuery } from 'react-responsive';
-
+import ScrollTrigger from 'gsap/ScrollTrigger';
 import { useSelector } from 'react-redux';
 import { gsap } from 'gsap';
 
@@ -30,8 +30,6 @@ const Request = () => {
 
 	const requestRef = useRef(null);
 
-	const isInView = useInView(requestRef);
-
 	const scrollY = useMotionValue(scroll.y);
 
 	const [offsetY, setOffsetY] = useState(() => [0, 0]);
@@ -44,48 +42,69 @@ const Request = () => {
 	// Animation values for the Request list
 	const listHeightValues = [380, 1306];
 
-	const listMinHeight = useTransform(scrollY, offsetY, listHeightValues);
-
 	// Animation values for the list items
 	const itemTransform = useTransform(scrollY, offsetY, [0, 521]);
 
 	useEffect(() => {
-		gsap.to('.request', {
-			backgroundColor: 'white',
-			scrollTrigger: {
-				scrub: 1,
-				trigger: '.customers',
-				start: 'top 20%',
-				end: 'top 0%',
-				markers: true
-			}
-		});
-		gsap.to('.request-content', {
-			height: '90vh',
-			scrollTrigger: {
-				scrub: 1,
-				trigger: '.request-content',
-				start: 'top 20%',
-				end: 'top',
-			}
-		});
-		const tl = gsap.timeline({
-			scrollTrigger: {
-				trigger: ".request-content",
-				start: "top 80%",
-				end: "top 20%",
-				scrub: true,
-			}
-		});
+		ScrollTrigger.matchMedia({
+			'(max-width: 991px)': () => {
+				const tl = gsap.timeline({
+					scrollTrigger: {
+						trigger: '.request-content',
+						start: '20% 80%',
+						end: '20% top',
+						scrub: true,
+						markers: true
+					}
+				});
 
-		tl.to(".request-list__item-0", {opacity: 1})
-			.to(".request-list__item-1", {opacity: 1})
-			.to(".request-list__item-2", {opacity: 1})
-			.to(".request-list__item-3", {opacity: 1})
-			.to(".request-list__item-4", {opacity: 1})
-			.to(".request-list__item-5", {opacity: 1})
-			.to(".request-list__item-6", {opacity: 1})
-			.to(".request-list__item-7", {opacity: 1})
+				tl.to('.request-list__item-0', { opacity: 1 })
+					.to('.request-list__item-1', { opacity: 1 })
+					.to('.request-list__item-2', { opacity: 1 })
+					.to('.request-list__item-3', { opacity: 1 })
+					.to('.request-list__item-4', { opacity: 1 })
+					.to('.request-list__item-5', { opacity: 1 })
+					.to('.request-list__item-6', { opacity: 1 })
+					.to('.request-list__item-7', { opacity: 1 });
+			},
+			'(min-width: 992px)': () => {
+				gsap.to('.request', {
+					backgroundColor: 'white',
+					scrollTrigger: {
+						scrub: 1,
+						trigger: '.customers',
+						start: 'top 20%',
+						end: 'top 0%'
+					}
+				});
+				gsap.to('.request-content', {
+					height: '90vh',
+					scrollTrigger: {
+						scrub: 1,
+						trigger: '.request-content',
+						start: 'top 20%',
+						end: 'top'
+					}
+				});
+				const tl = gsap.timeline({
+					scrollTrigger: {
+						trigger: '.request-content',
+						start: 'top 80%',
+						end: 'top 20%',
+						scrub: true
+					}
+				});
+
+				tl.to('.request-list__item-0', { opacity: 1 })
+					.to('.request-list__item-1', { opacity: 1 })
+					.to('.request-list__item-2', { opacity: 1 })
+					.to('.request-list__item-3', { opacity: 1 })
+					.to('.request-list__item-4', { opacity: 1 })
+					.to('.request-list__item-5', { opacity: 1 })
+					.to('.request-list__item-6', { opacity: 1 })
+					.to('.request-list__item-7', { opacity: 1 });
+			}
+		});
 	}, []);
 
 	useEffect(() => {
@@ -112,7 +131,7 @@ const Request = () => {
 		<motion.section
 			className='section request'
 			ref={requestRef}
-			style={{ marginTop: topPosition, backgroundColor: '#0d08ff', height: '160vh' }}
+			style={{ marginTop: topPosition, backgroundColor: '#0d08ff', height: isMobile ? 'auto' : '160vh' }}
 		>
 			<motion.div className='request-block'>
 				<div className='container'>
@@ -129,12 +148,18 @@ const Request = () => {
 								</Title>
 							</div>
 						</div>
-						<div className='request-content' style={{height: '50vh', minHeight: '50vh'}}>
+						<div className='request-content'
+							 style={{
+								 height: isMobile ? 'auto' : '50vh',
+								 minHeight: isMobile ? 'auto' : '50vh',
+								 paddingBottom: isMobile ? '0' : '100px'
+							 }}>
 							{isMobile ? (
 								<ul className='request-list' ref={requestRef}>
-									{requestList.map(({ id, text }, idx) => {
+									{requestList.map(({ id, text }) => {
 										return (
-											<li className='request-list__item' key={id}>
+											<li className={`request-list__item  request-list__item-${id}`} key={id}
+												style={{ opacity: 0 }}>
 												<p dangerouslySetInnerHTML={{ __html: text }}></p>
 											</li>
 										);
@@ -145,20 +170,12 @@ const Request = () => {
 									className='request-list'
 									ref={requestRef}
 								>
-									{requestList.map(({ id, text }, idx) => {
+									{requestList.map(({ id, text }) => {
 										return (
 											<motion.li
 												className={`request-list__item request-list__item-${id}`}
 												key={id}
-												// style={{
-												// 	transition: isInView
-												// 		? `opacity .4s ${1 + 0.4 * idx}s`
-												// 		: 'none',
-												// 	opacity: isInView ? 1 : 0
-												// }}
-												style={{
-													opacity: 0
-												}}
+												style={{ opacity: 0 }}
 											>
 												<motion.p
 													dangerouslySetInnerHTML={{ __html: text }}

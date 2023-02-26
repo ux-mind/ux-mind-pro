@@ -15,7 +15,7 @@ const AnimatedTitle = () => {
 	return (
 		<div className="hero-title">
 			<div className="hero-title__wrapper">
-				<Title size="xl">UX Mind</Title>
+				<Title size="xl" classes='animated-title'>UX Mind</Title>
 			</div>
 			<motion.div
 				className="hero-title_animated"

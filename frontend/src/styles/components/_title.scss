@@ -1,89 +1,119 @@
+.animated-title {
+  animation: ease-in-out 1s show-text-out-of-line-bottom;
+
+  @keyframes show-text-out-of-line-bottom {
+    from {
+      transform: translate(0px, 100%);
+    }
+    to {
+      transform: translate(0px, 0%);
+    }
+  }
+}
+
 .title {
-	color: $white;
-	font-weight: 700;
-	letter-spacing: -0.02em;
-	margin: 0;
-	position: relative;
-	&_size {
-		&-xl {
-			@include font(24rem, calc(248 / 240));
-			&.title_transparent {
-				-webkit-text-stroke: 3px $white;
-			}
-		}
-		&-l {
-			@include font(13.6rem, 1);
-		}
-		&-s {
-			@include font(6.4rem, calc(72 / 64));
-		}
-		&-sm {
-			@include font(3.6rem, calc(44 / 36));
-		}
-		&-xs {
-			@include font(3.2rem, calc(40 / 32));
-		}
-	}
-	&_transparent {
-		color: transparent;
-		-webkit-text-stroke: 2px $white;
-	}
-	&_underlined {
-		position: relative;
-		&::before {
-			@include before(0, 100%, 7px);
-			background: $white;
-			top: auto;
-			bottom: 10px;
-			transform: none;
-		}
-	}
+  color: $white;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0;
+  position: relative;
+
+  &_size {
+    &-xl {
+      @include font(24rem, calc(248 / 240));
+
+      &.title_transparent {
+        -webkit-text-stroke: 3px $white;
+      }
+    }
+
+    &-l {
+      @include font(13.6rem, 1);
+    }
+
+    &-s {
+      @include font(6.4rem, calc(72 / 64));
+    }
+
+    &-sm {
+      @include font(3.6rem, calc(44 / 36));
+    }
+
+    &-xs {
+      @include font(3.2rem, calc(40 / 32));
+    }
+  }
+
+  &_transparent {
+    color: transparent;
+    -webkit-text-stroke: 2px $white;
+  }
+
+  &_underlined {
+    position: relative;
+
+    &::before {
+      @include before(0, 100%, 7px);
+      background: $white;
+      top: auto;
+      bottom: 10px;
+      transform: none;
+    }
+  }
 }
 
 @media screen and (max-width: 1420px) {
-	.title {
-		&_size {
-			&-xl {
-				@include font(16rem, calc(24 / 16));
-			}
-			&-l {
-				@include font(9.2rem, 1);
-			}
-		}
-	}
+  .title {
+    &_size {
+      &-xl {
+        @include font(16rem, calc(24 / 16));
+      }
+
+      &-l {
+        @include font(9.2rem, 1);
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 991px) {
-	.title {
-		&_size {
-			&-xl {
-				@include font(6.4rem, calc(72 / 64));
-				&.title_transparent {
-					-webkit-text-stroke: 1.5px $white;
-				}
-			}
-			&-l {
-				@include font(4.8rem, calc(56 / 48));
-			}
-			&-s {
-				@include font(3.2rem, calc(40 / 32));
-			}
-			&-sm {
-				@include font(2.6rem, calc(34 / 26));
-			}
-			&-xs {
-				@include font(2.4rem, calc(32 / 24));
-			}
-		}
-		&_transparent {
-			color: transparent;
-			-webkit-text-stroke: 1.5px $white;
-		}
-		&_underlined {
-			&::before {
-				height: 2px;
-				bottom: 5px;
-			}
-		}
-	}
+  .title {
+    &_size {
+      &-xl {
+        @include font(6.4rem, calc(72 / 64));
+
+        &.title_transparent {
+          -webkit-text-stroke: 1.5px $white;
+        }
+      }
+
+      &-l {
+        @include font(4.8rem, calc(56 / 48));
+      }
+
+      &-s {
+        @include font(3.2rem, calc(40 / 32));
+      }
+
+      &-sm {
+        @include font(2.6rem, calc(34 / 26));
+      }
+
+      &-xs {
+        @include font(2.4rem, calc(32 / 24));
+      }
+    }
+
+    &_transparent {
+      color: transparent;
+      -webkit-text-stroke: 1.5px $white;
+    }
+
+    &_underlined {
+      &::before {
+        height: 2px;
+        bottom: 5px;
+      }
+    }
+  }
 }

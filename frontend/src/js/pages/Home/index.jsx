@@ -13,7 +13,7 @@ const Home = () => {
 	const { experienceRef, experienceText } = useExperienceAnimation();
 
 	return (
-		<div className="home">
+		<div className='home'>
 			<Hero />
 			<Experience experienceRef={experienceRef} experienceText={experienceText} />
 			<Projects />

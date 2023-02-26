@@ -8,9 +8,8 @@ import Input from '../../Input';
 import AnimatedTextLine from '../../AnimatedTextLine/AnimatedTextLine';
 import { basicSchema } from '../../../schemas';
 import { useMediaQuery } from 'react-responsive';
-
-import { useDispatch, useSelector } from 'react-redux';
 import { toggleContactModal } from '../../../redux/reducers/modalsReducer';
+import { useDispatch, useSelector } from 'react-redux';
 
 const ContactModal = () => {
 	const isMobile = useMediaQuery({ query: '(max-width: 991px)' });

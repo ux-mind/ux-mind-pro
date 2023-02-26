@@ -1,10 +1,10 @@
 import React from 'react';
 
-const Title = ({ size = 'l', color = 'white', children }) => {
+const Title = ({ size = 'l', color = 'white', classes = '', children }) => {
 	switch (size) {
 		case 'xl': {
 			return (
-				<h1 className={`title title_size-${size} ${color === `blue` ? `text_blue` : ''}`}>
+				<h1 className={`title title_size-${size} ${color === `blue` ? `text_blue` : ''} ${classes}`}>
 					{children}
 				</h1>
 			);

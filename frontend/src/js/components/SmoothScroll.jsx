@@ -1,7 +1,7 @@
 import React, { useLayoutEffect } from 'react';
 import { gsap } from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-import ScrollSmoother from 'gsap-trial/ScrollSmoother';
+import ScrollSmoother from 'gsap/ScrollSmoother';
 
 
 const SmoothScrollComponent = ({ children }) => {
@@ -13,7 +13,7 @@ const SmoothScrollComponent = ({ children }) => {
 			content: '#smooth-content',
 			smooth: 1,
 			effects: true,
-			smoothTouch: 0.1
+			smoothTouch: 1
 		});
 
 		return () => smoother.kill();

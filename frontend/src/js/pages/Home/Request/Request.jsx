@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Title from '../../../components/Title';
-import { motion, useInView, useMotionValue, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useTransform } from 'framer-motion';
 import { getCoords } from '../../../functions/functions';
 import { useMediaQuery } from 'react-responsive';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -39,9 +39,6 @@ const Request = () => {
 
 	const topPosition = useTransform(scrollY, offsetY, topValues);
 
-	// Animation values for the Request list
-	const listHeightValues = [380, 1306];
-
 	// Animation values for the list items
 	const itemTransform = useTransform(scrollY, offsetY, [0, 521]);
 
@@ -53,8 +50,7 @@ const Request = () => {
 						trigger: '.request-content',
 						start: '20% 80%',
 						end: '20% top',
-						scrub: true,
-						markers: true
+						scrub: true
 					}
 				});
 
